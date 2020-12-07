@@ -1,0 +1,1 @@
+autorest --input-file=swagger.json --csharp --output-folder=../src --override-client-name=KameleoLocalApiClient --namespace=Kameleo.LocalApiClient
