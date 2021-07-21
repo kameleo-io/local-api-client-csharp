@@ -29,6 +29,8 @@ namespace Kameleo.LocalApiClient.Models
         /// 'noise', 'block', 'off'</param>
         /// <param name="startPage">This website will be opened in the browser
         /// when the profile launches.</param>
+        /// <param name="passwordManager">Possible values include: 'enabled',
+        /// 'disabled'</param>
         /// <param name="extensions">A list of abolute paths from where the
         /// profile should load extensions or addons when starting the browser.
         /// For chrome and edge use CRX3 format extensions. For firefox use
@@ -39,7 +41,7 @@ namespace Kameleo.LocalApiClient.Models
         /// It determines which browser to launch. This cannot be modified
         /// after creation. Possible values are 'automatic', 'chrome',
         /// 'chromium', 'firefox', 'edge', 'external'</param>
-        public UpdateProfileRequest(string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, IList<string> extensions = default(IList<string>), string notes = default(string), string launcher = default(string))
+        public UpdateProfileRequest(string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions = default(IList<string>), string notes = default(string), string launcher = default(string))
         {
             Canvas = canvas;
             Webgl = webgl;
@@ -51,6 +53,7 @@ namespace Kameleo.LocalApiClient.Models
             Plugins = plugins;
             Screen = screen;
             StartPage = startPage;
+            PasswordManager = passwordManager;
             Extensions = extensions;
             Notes = notes;
             Launcher = launcher;
@@ -115,6 +118,12 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "startPage")]
         public string StartPage { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'enabled', 'disabled'
+        /// </summary>
+        [JsonProperty(PropertyName = "passwordManager")]
+        public string PasswordManager { get; set; }
 
         /// <summary>
         /// Gets or sets a list of abolute paths from where the profile should
@@ -187,6 +196,10 @@ namespace Kameleo.LocalApiClient.Models
             if (StartPage == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "StartPage");
+            }
+            if (PasswordManager == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "PasswordManager");
             }
             if (Webgl != null)
             {

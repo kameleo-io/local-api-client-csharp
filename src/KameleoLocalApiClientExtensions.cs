@@ -347,6 +347,38 @@ namespace Kameleo.LocalApiClient
             }
 
             /// <summary>
+            /// Tests a provided proxy connection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            public static TestProxyResponse TestProxy(this IKameleoLocalApiClient operations, TestProxyRequest body = default(TestProxyRequest))
+            {
+                return operations.TestProxyAsync(body).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Tests a provided proxy connection.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<TestProxyResponse> TestProxyAsync(this IKameleoLocalApiClient operations, TestProxyRequest body = default(TestProxyRequest), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.TestProxyWithHttpMessagesAsync(body, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Gets a preview list about profiles that are currently in the system.
             /// </summary>
             /// <param name='operations'>
@@ -584,6 +616,54 @@ namespace Kameleo.LocalApiClient
             public static async Task<StatusResponse> StartProfileAsync(this IKameleoLocalApiClient operations, System.Guid guid, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.StartProfileWithHttpMessagesAsync(guid, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Starts a profile, for desktop profiles additional WebDriver settings can be
+            /// provided. The browser will be launched. In case of mobile profiles and
+            /// external launcher types the external spoofing engine will be launched.
+            /// If successful, the profile's lifetime state will be 'running'. Otherwise
+            /// the profile's lifetime state will be 'terminated'. During the api call the
+            /// lifetime state can be 'starting' for a temporarily.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the profile
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            public static StatusResponse StartProfileWithWebDriverSettings(this IKameleoLocalApiClient operations, System.Guid guid, WebDriverSettings body = default(WebDriverSettings))
+            {
+                return operations.StartProfileWithWebDriverSettingsAsync(guid, body).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Starts a profile, for desktop profiles additional WebDriver settings can be
+            /// provided. The browser will be launched. In case of mobile profiles and
+            /// external launcher types the external spoofing engine will be launched.
+            /// If successful, the profile's lifetime state will be 'running'. Otherwise
+            /// the profile's lifetime state will be 'terminated'. During the api call the
+            /// lifetime state can be 'starting' for a temporarily.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the profile
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<StatusResponse> StartProfileWithWebDriverSettingsAsync(this IKameleoLocalApiClient operations, System.Guid guid, WebDriverSettings body = default(WebDriverSettings), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.StartProfileWithWebDriverSettingsWithHttpMessagesAsync(guid, body, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

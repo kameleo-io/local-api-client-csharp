@@ -163,6 +163,19 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
+        /// <para>Enable or disable the password manager function in the browser. Possible values:</para>
+        /// <para>'enabled': Enable password manager so browser will ask to save and load passwords on logins.</para>
+        /// <para>'disable': Disable password manager.</para>
+        /// </summary>
+        /// <param name="value">Enable or disable the password manager function in the browser. Values can be 'enabled', 'disable'.</param>
+        public BuilderForCreateProfile SetPasswordManager(string value)
+        {
+            _profileRequest.PasswordManager = value;
+
+            return this;
+        }
+
+        /// <summary>
         /// <para>Tells the mode how the screen will be spoofed. Possible values:</para>
         /// <para>'automatic': Automatically override the screen resolution based on the Base Profile.</para>
         /// <para>'manual': Manually override the screen resolution.</para>
@@ -251,6 +264,7 @@ namespace Kameleo.LocalApiClient
                 Fonts = new FontSpoofingTypeFontIListMultiLevelChoice("disabled"),
                 Plugins = new PluginSpoofingTypePluginIListMultiLevelChoice("disabled"),
                 Screen = new ScreenSpoofingTypeScreenSizeMultiLevelChoice("off"),
+                PasswordManager = "disabled",
             };
         }
     }
