@@ -186,6 +186,19 @@ namespace Kameleo.LocalApiClient
         Task<HttpOperationResponse> TerminateApplicationWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Tests a provided proxy connection.
+        /// </summary>
+        /// <param name='body'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<TestProxyResponse>> TestProxyWithHttpMessagesAsync(TestProxyRequest body = default(TestProxyRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Gets a preview list about profiles that are currently in the
         /// system.
         /// </summary>
@@ -290,6 +303,29 @@ namespace Kameleo.LocalApiClient
         /// The cancellation token.
         /// </param>
         Task<HttpOperationResponse<StatusResponse>> StartProfileWithHttpMessagesAsync(System.Guid guid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Starts a profile, for desktop profiles additional WebDriver
+        /// settings can be provided. The browser will be launched. In case of
+        /// mobile profiles and external launcher types the external spoofing
+        /// engine will be launched.
+        /// If successful, the profile's lifetime state will be 'running'.
+        /// Otherwise the profile's lifetime state will be 'terminated'. During
+        /// the api call the lifetime state can be 'starting' for a
+        /// temporarily.
+        /// </summary>
+        /// <param name='guid'>
+        /// The unique identifier of the profile
+        /// </param>
+        /// <param name='body'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<StatusResponse>> StartProfileWithWebDriverSettingsWithHttpMessagesAsync(System.Guid guid, WebDriverSettings body = default(WebDriverSettings), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Stops a profile. The browsers will be stopped. In case of mobile

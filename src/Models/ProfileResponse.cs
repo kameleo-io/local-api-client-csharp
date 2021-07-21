@@ -31,6 +31,8 @@ namespace Kameleo.LocalApiClient.Models
         /// 'noise', 'block', 'off'</param>
         /// <param name="startPage">This website will be opened in the browser
         /// when the profile launches.</param>
+        /// <param name="passwordManager">Possible values include: 'enabled',
+        /// 'disabled'</param>
         /// <param name="extensions">A list of abolute paths from where the
         /// profile should load extensions or addons when starting the browser.
         /// For chrome and edge use CRX3 format extensions. For firefox use
@@ -45,7 +47,7 @@ namespace Kameleo.LocalApiClient.Models
         /// .kameleo profile file was accessed lastly. This is updated when a
         /// profile is saved to a .kameleo file, or loaded from a .kameleo
         /// file.</param>
-        public ProfileResponse(System.Guid id, System.DateTime createdAt, BaseProfile baseProfile, string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, IList<string> extensions, string notes, string launcher, StatusResponse status, string lastKnownPath = default(string))
+        public ProfileResponse(System.Guid id, System.DateTime createdAt, BaseProfile baseProfile, string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, string lastKnownPath = default(string))
         {
             Id = id;
             LastKnownPath = lastKnownPath;
@@ -61,6 +63,7 @@ namespace Kameleo.LocalApiClient.Models
             Plugins = plugins;
             Screen = screen;
             StartPage = startPage;
+            PasswordManager = passwordManager;
             Extensions = extensions;
             Notes = notes;
             Launcher = launcher;
@@ -153,6 +156,12 @@ namespace Kameleo.LocalApiClient.Models
         public string StartPage { get; set; }
 
         /// <summary>
+        /// Gets or sets possible values include: 'enabled', 'disabled'
+        /// </summary>
+        [JsonProperty(PropertyName = "passwordManager")]
+        public string PasswordManager { get; set; }
+
+        /// <summary>
         /// Gets or sets a list of abolute paths from where the profile should
         /// load extensions or addons when starting the browser. For chrome and
         /// edge use CRX3 format extensions. For firefox use signed xpi format
@@ -232,6 +241,10 @@ namespace Kameleo.LocalApiClient.Models
             if (StartPage == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "StartPage");
+            }
+            if (PasswordManager == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "PasswordManager");
             }
             if (Extensions == null)
             {
