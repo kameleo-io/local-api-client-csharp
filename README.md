@@ -115,6 +115,7 @@ namespace Kameleo.AutomateBrowsers
             // Use any WebDriver command to drive the browser
             // and enjoy full protection from Selenium detection methods
             webdriver.Navigate().GoToUrl("https://google.com");
+            webdriver.FindElement(By.CssSelector("div[aria-modal=\"true\"][tabindex=\"0\"] button:not([aria-label]):last-child")).Click();
             webdriver.FindElement(By.Name("q")).SendKeys("Kameleo");
             webdriver.FindElement(By.Name("q")).SendKeys(Keys.Enter);
             await Task.Delay(5000);
