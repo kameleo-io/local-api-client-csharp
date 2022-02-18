@@ -30,10 +30,12 @@ namespace Kameleo.LocalApiClient.Models
         /// build the new profile.</param>
         /// <param name="canvas">Possible values include: 'intelligent',
         /// 'noise', 'block', 'off'</param>
-        /// <param name="startPage">This website will be opened in the browser
-        /// when the profile launches.</param>
+        /// <param name="audio">Possible values include: 'off', 'noise',
+        /// 'block'</param>
         /// <param name="passwordManager">Possible values include: 'enabled',
         /// 'disabled'</param>
+        /// <param name="startPage">This website will be opened in the browser
+        /// when the profile launches.</param>
         /// <param name="extensions">A list of abolute paths from where the
         /// profile should load extensions or addons when starting the browser.
         /// For chrome and edge use CRX3 format extensions. For firefox use
@@ -44,11 +46,12 @@ namespace Kameleo.LocalApiClient.Models
         /// It determines which browser to launch. This cannot be modified
         /// after creation. Possible values are 'automatic', 'chrome',
         /// 'chromium', 'firefox', 'edge', 'external'</param>
-        public CreateProfileRequest(string baseProfileId, string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage = default(string), string passwordManager = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), string launcher = default(string))
+        public CreateProfileRequest(string baseProfileId, string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string passwordManager, string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), string launcher = default(string))
         {
             BaseProfileId = baseProfileId;
             Canvas = canvas;
             Webgl = webgl;
+            Audio = audio;
             Timezone = timezone;
             Geolocation = geolocation;
             Proxy = proxy;
@@ -88,6 +91,12 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "webgl")]
         public WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice Webgl { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'off', 'noise', 'block'
+        /// </summary>
+        [JsonProperty(PropertyName = "audio")]
+        public string Audio { get; set; }
 
         /// <summary>
         /// </summary>
@@ -181,6 +190,10 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Webgl");
             }
+            if (Audio == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Audio");
+            }
             if (Timezone == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Timezone");
@@ -208,6 +221,10 @@ namespace Kameleo.LocalApiClient.Models
             if (Screen == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Screen");
+            }
+            if (PasswordManager == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "PasswordManager");
             }
             if (Webgl != null)
             {

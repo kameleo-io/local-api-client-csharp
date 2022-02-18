@@ -23,9 +23,12 @@ namespace Kameleo.LocalApiClient.Models
         /// <summary>
         /// Initializes a new instance of the TestProxyRequest class.
         /// </summary>
-        public TestProxyRequest(ProxyConnectionTypeServerMultiLevelChoice proxy)
+        /// <param name="value">Possible values include: 'none', 'http',
+        /// 'socks5', 'ssh'</param>
+        public TestProxyRequest(string value, Server extra)
         {
-            Proxy = proxy;
+            Value = value;
+            Extra = extra;
             CustomInit();
         }
 
@@ -35,9 +38,16 @@ namespace Kameleo.LocalApiClient.Models
         partial void CustomInit();
 
         /// <summary>
+        /// Gets or sets possible values include: 'none', 'http', 'socks5',
+        /// 'ssh'
         /// </summary>
-        [JsonProperty(PropertyName = "proxy")]
-        public ProxyConnectionTypeServerMultiLevelChoice Proxy { get; set; }
+        [JsonProperty(PropertyName = "value")]
+        public string Value { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "extra")]
+        public Server Extra { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -47,13 +57,17 @@ namespace Kameleo.LocalApiClient.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (Proxy == null)
+            if (Value == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Proxy");
+                throw new ValidationException(ValidationRules.CannotBeNull, "Value");
             }
-            if (Proxy != null)
+            if (Extra == null)
             {
-                Proxy.Validate();
+                throw new ValidationException(ValidationRules.CannotBeNull, "Extra");
+            }
+            if (Extra != null)
+            {
+                Extra.Validate();
             }
         }
     }
