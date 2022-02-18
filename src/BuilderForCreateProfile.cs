@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Kameleo.LocalApiClient.Models;
 using Newtonsoft.Json;
 
@@ -15,6 +16,11 @@ namespace Kameleo.LocalApiClient
 
         public static BuilderForCreateProfile ForBaseProfile(string baseProfileId)
         {
+            if (string.IsNullOrEmpty(baseProfileId))
+            {
+                throw new ArgumentException("baseProfileId must be set", nameof(baseProfileId));
+            }
+
             return new BuilderForCreateProfile(baseProfileId);
         }
 
@@ -52,6 +58,19 @@ namespace Kameleo.LocalApiClient
             _profileRequest.Webgl.Value = value;
             _profileRequest.Webgl.Extra = options;
 
+            return this;
+        }
+
+        /// <summary>
+        /// <para>Tells the mode how the audio will be spoofed. Possible values:</para>
+        /// <para>'noise': Add some noise to the Audio generation.</para>
+        /// <para>'block': Completely block the Audio API.</para>
+        /// <para>'off': Turn off the spoofing, use the original settings.</para>
+        /// </summary>
+        /// <param name="value">Settings how the Audio will be spoofed. Values can be 'noise', 'block', 'off'.</param>
+        public BuilderForCreateProfile SetAudio(string value)
+        {
+            _profileRequest.Audio = value;
             return this;
         }
 
@@ -241,6 +260,7 @@ namespace Kameleo.LocalApiClient
         {
             _profileRequest.Canvas = "noise";
             _profileRequest.Webgl.Value = "noise";
+            _profileRequest.Audio = "noise";
             _profileRequest.Timezone.Value = "automatic";
             _profileRequest.Geolocation.Value = "automatic";
             _profileRequest.WebRtc.Value = "automatic";
@@ -257,6 +277,7 @@ namespace Kameleo.LocalApiClient
                 BaseProfileId = baseProfileId,
                 Canvas = "off",
                 Webgl = new WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice("off"),
+                Audio = "off",
                 Timezone = new TimezoneSpoofingTypeTimezoneMultiLevelChoice("off"),
                 Geolocation = new GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice("off"),
                 Proxy = new ProxyConnectionTypeServerMultiLevelChoice("none"),

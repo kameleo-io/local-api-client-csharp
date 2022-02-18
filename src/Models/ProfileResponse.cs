@@ -29,14 +29,16 @@ namespace Kameleo.LocalApiClient.Models
         /// <param name="createdAt">Date when the profile was created.</param>
         /// <param name="canvas">Possible values include: 'intelligent',
         /// 'noise', 'block', 'off'</param>
+        /// <param name="audio">Possible values include: 'off', 'noise',
+        /// 'block'</param>
         /// <param name="startPage">This website will be opened in the browser
         /// when the profile launches.</param>
         /// <param name="passwordManager">Possible values include: 'enabled',
         /// 'disabled'</param>
-        /// <param name="extensions">A list of abolute paths from where the
-        /// profile should load extensions or addons when starting the browser.
-        /// For chrome and edge use CRX3 format extensions. For firefox use
-        /// signed xpi format addons.</param>
+        /// <param name="extensions">A list of extensions or addons that will
+        /// be loaded to the profile when the profile is started. For chrome
+        /// and edge use CRX3 format extensions. For firefox use signed xpi
+        /// format addons.</param>
         /// <param name="notes">A free text including any notes written by the
         /// user.</param>
         /// <param name="launcher">The mode how the profile should be launched.
@@ -47,7 +49,7 @@ namespace Kameleo.LocalApiClient.Models
         /// .kameleo profile file was accessed lastly. This is updated when a
         /// profile is saved to a .kameleo file, or loaded from a .kameleo
         /// file.</param>
-        public ProfileResponse(System.Guid id, System.DateTime createdAt, BaseProfile baseProfile, string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, string lastKnownPath = default(string))
+        public ProfileResponse(System.Guid id, System.DateTime createdAt, BaseProfile baseProfile, string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, string lastKnownPath = default(string))
         {
             Id = id;
             LastKnownPath = lastKnownPath;
@@ -55,6 +57,7 @@ namespace Kameleo.LocalApiClient.Models
             BaseProfile = baseProfile;
             Canvas = canvas;
             Webgl = webgl;
+            Audio = audio;
             Timezone = timezone;
             Geolocation = geolocation;
             Proxy = proxy;
@@ -114,6 +117,12 @@ namespace Kameleo.LocalApiClient.Models
         public WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice Webgl { get; set; }
 
         /// <summary>
+        /// Gets or sets possible values include: 'off', 'noise', 'block'
+        /// </summary>
+        [JsonProperty(PropertyName = "audio")]
+        public string Audio { get; set; }
+
+        /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "timezone")]
         public TimezoneSpoofingTypeTimezoneMultiLevelChoice Timezone { get; set; }
@@ -162,10 +171,9 @@ namespace Kameleo.LocalApiClient.Models
         public string PasswordManager { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of abolute paths from where the profile should
-        /// load extensions or addons when starting the browser. For chrome and
-        /// edge use CRX3 format extensions. For firefox use signed xpi format
-        /// addons.
+        /// Gets or sets a list of extensions or addons that will be loaded to
+        /// the profile when the profile is started. For chrome and edge use
+        /// CRX3 format extensions. For firefox use signed xpi format addons.
         /// </summary>
         [JsonProperty(PropertyName = "extensions")]
         public IList<string> Extensions { get; set; }
@@ -209,6 +217,10 @@ namespace Kameleo.LocalApiClient.Models
             if (Webgl == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Webgl");
+            }
+            if (Audio == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Audio");
             }
             if (Timezone == null)
             {

@@ -27,12 +27,17 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         /// <param name="canvas">Possible values include: 'intelligent',
         /// 'noise', 'block', 'off'</param>
+        /// <param name="audio">Possible values include: 'off', 'noise',
+        /// 'block'</param>
         /// <param name="startPage">This website will be opened in the browser
         /// when the profile launches.</param>
         /// <param name="passwordManager">Possible values include: 'enabled',
         /// 'disabled'</param>
-        /// <param name="extensions">A list of abolute paths from where the
-        /// profile should load extensions or addons when starting the browser.
+        /// <param name="extensions">A list of extensions or addons should be
+        /// loaded to the browser when starting the profile. For extensions
+        /// that are added now, it should be an absolute path.
+        /// For extensions already added to the profile in a previous update,
+        /// the name is only enough.
         /// For chrome and edge use CRX3 format extensions. For firefox use
         /// signed xpi format addons.</param>
         /// <param name="notes">A free text including any notes written by the
@@ -41,10 +46,11 @@ namespace Kameleo.LocalApiClient.Models
         /// It determines which browser to launch. This cannot be modified
         /// after creation. Possible values are 'automatic', 'chrome',
         /// 'chromium', 'firefox', 'edge', 'external'</param>
-        public UpdateProfileRequest(string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions = default(IList<string>), string notes = default(string), string launcher = default(string))
+        public UpdateProfileRequest(string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions = default(IList<string>), string notes = default(string), string launcher = default(string))
         {
             Canvas = canvas;
             Webgl = webgl;
+            Audio = audio;
             Timezone = timezone;
             Geolocation = geolocation;
             Proxy = proxy;
@@ -76,6 +82,12 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "webgl")]
         public WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice Webgl { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'off', 'noise', 'block'
+        /// </summary>
+        [JsonProperty(PropertyName = "audio")]
+        public string Audio { get; set; }
 
         /// <summary>
         /// </summary>
@@ -126,10 +138,13 @@ namespace Kameleo.LocalApiClient.Models
         public string PasswordManager { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of abolute paths from where the profile should
-        /// load extensions or addons when starting the browser. For chrome and
-        /// edge use CRX3 format extensions. For firefox use signed xpi format
-        /// addons.
+        /// Gets or sets a list of extensions or addons should be loaded to the
+        /// browser when starting the profile. For extensions that are added
+        /// now, it should be an absolute path.
+        /// For extensions already added to the profile in a previous update,
+        /// the name is only enough.
+        /// For chrome and edge use CRX3 format extensions. For firefox use
+        /// signed xpi format addons.
         /// </summary>
         [JsonProperty(PropertyName = "extensions")]
         public IList<string> Extensions { get; set; }
@@ -164,6 +179,10 @@ namespace Kameleo.LocalApiClient.Models
             if (Webgl == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Webgl");
+            }
+            if (Audio == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Audio");
             }
             if (Timezone == null)
             {
