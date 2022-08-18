@@ -258,13 +258,15 @@ namespace Kameleo.LocalApiClient
         /// </summary>
         public BuilderForCreateProfile SetRecommendedDefaults()
         {
-            _profileRequest.Canvas = "noise";
-            _profileRequest.Webgl.Value = "noise";
-            _profileRequest.Audio = "noise";
+            _profileRequest.Canvas = "intelligent";
+            _profileRequest.Webgl.Value = "off";
+            _profileRequest.Audio = "off";
             _profileRequest.Timezone.Value = "automatic";
             _profileRequest.Geolocation.Value = "automatic";
             _profileRequest.WebRtc.Value = "automatic";
             _profileRequest.Screen.Value = "automatic";
+            _profileRequest.Fonts.Value = "enabled";
+            _profileRequest.Plugins.Value = "enabled";
             _profileRequest.Launcher = "automatic";
 
             return this;
