@@ -5,7 +5,7 @@
     <Authors>Kameleo Team</Authors>
     <Company>Kameleo</Company>
     <PackageTags>kameleo; stealth browsing platform; selenium; webdriver; browser automation; web scraping; puppeteer; headless; chrome; firefox; chromium; edge</PackageTags>
-    <Version>2.9.0</Version>
+    <Version>2.10.0</Version>
     <Description>This .NET Standard package provides convenient access to the Local API REST interface of the Kameleo Client.</Description>
     <PackageProjectUrl>https://kameleo.io</PackageProjectUrl>
     <RepositoryUrl>https://github.com/kameleo-io/local-api-client-csharp</RepositoryUrl>
