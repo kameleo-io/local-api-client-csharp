@@ -31,6 +31,29 @@ namespace Kameleo.LocalApiClient
 
             return result;
         }
+        
+        
+        /// <summary>
+        /// Sets the name of the profile.
+        /// </summary>
+        /// <param name="value">The name of the profile.</param>
+        /// <returns></returns>
+        public BuilderForCreateProfile SetName(string value)
+        {
+            _profileRequest.Name = value;
+            return this;
+        }
+        
+        /// <summary>
+        /// Sets the tags of the profile.
+        /// </summary>
+        /// <param name="value">The tags of the profile.</param>
+        /// <returns></returns>
+        public BuilderForCreateProfile SetTags(List<string> value)
+        {
+            _profileRequest.Tags = value;
+            return this;
+        }
 
         /// <summary>
         /// <para>Tells the mode how the canvas will be spoofed. Possible values:</para>
@@ -258,6 +281,7 @@ namespace Kameleo.LocalApiClient
         /// </summary>
         public BuilderForCreateProfile SetRecommendedDefaults()
         {
+            _profileRequest.Name = "";
             _profileRequest.Canvas = "intelligent";
             _profileRequest.Webgl.Value = "off";
             _profileRequest.Audio = "off";

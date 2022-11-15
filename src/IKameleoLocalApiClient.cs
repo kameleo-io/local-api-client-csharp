@@ -78,23 +78,31 @@ namespace Kameleo.LocalApiClient
         /// </summary>
         /// <param name='deviceType'>
         /// Filter option for the Device Type. Possible values are 'desktop',
-        /// 'mobile'. For example set it to mobile if you only want to get
-        /// mobile profiles.
+        /// 'mobile'.
+        /// You can also use a comma-separated list to provide more than one
+        /// value.
         /// </param>
         /// <param name='osFamily'>
         /// Filter option for os family. Possible values are 'windows',
-        /// 'macos', 'linux', 'android', 'ios'. For example set it to windows
-        /// if you only want to get Windows profiles.
+        /// 'macos', 'linux', 'android', 'ios'.
+        /// You can also use a comma-separated list to provide more than one
+        /// value.
         /// </param>
         /// <param name='browserProduct'>
         /// Filter option for browser product. Possible values are 'chrome',
-        /// 'firefox', 'edge', 'safari'. For example set it to safari if you
-        /// only want to get profiles with Safari browser.
+        /// 'firefox', 'edge', 'safari'.
+        /// You can also use a comma-separated list to provide more than one
+        /// value.
         /// </param>
         /// <param name='language'>
         /// Filter option for os language. Use ISO 639-1 language code format.
-        /// For example set it to en-gb if you only want to get English
-        /// profiles.
+        /// For example, set it to en-gb if you want to get only English
+        /// profiles from Great-Britain.
+        /// You can also use a comma-separated list to provide more than one
+        /// value.
+        /// This field also supports wildcard for the sublanguage part: to
+        /// retrieve both en-us, en-gb, and en-ca profiles, use 'en-*' as
+        /// value.
         /// </param>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -349,7 +357,7 @@ namespace Kameleo.LocalApiClient
 
         /// <summary>
         /// Saves a profile to a file. It will create a .kameleo file to the
-        /// required location. It will store all the profile settings, browsing
+        /// given location. It will store all the profile settings, browsing
         /// data, cookies, history, bookmarks, installed extension / addons.
         /// Later it can be reloaded.
         /// </summary>
@@ -367,6 +375,24 @@ namespace Kameleo.LocalApiClient
         Task<HttpOperationResponse<ProfileResponse>> SaveProfileWithHttpMessagesAsync(System.Guid guid, SaveProfileRequest body = default(SaveProfileRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Creates a duplicate of a loaded profile in memory. The created
+        /// profile contains all the profile settings, browsing data, cookies,
+        /// history, bookmarks and installed extensions. This operation does
+        /// not perform any filesystem activity and will not affect your
+        /// existing profile.
+        /// </summary>
+        /// <param name='guid'>
+        /// The unique identifier of the profile
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<ProfileResponse>> DuplicateProfileWithHttpMessagesAsync(System.Guid guid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Loads a profile from a file. It will load the profile from a
         /// .kameleo file. It will load all the profile settings, browsing
         /// data, cookies, history, bookmarks, installed extension / addons.
@@ -380,6 +406,22 @@ namespace Kameleo.LocalApiClient
         /// The cancellation token.
         /// </param>
         Task<HttpOperationResponse<ProfileResponse>> LoadProfileWithHttpMessagesAsync(LoadProfileRequest body = default(LoadProfileRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Upgrades the profile to the latest available browser version from
+        /// the server. The exact target of the upgrade depends on the
+        /// profile's current device, browser, operating system, and language
+        /// settings.
+        /// </summary>
+        /// <param name='guid'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<ProfileResponse>> UpgradeProfileWithHttpMessagesAsync(System.Guid guid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

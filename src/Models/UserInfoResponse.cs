@@ -28,18 +28,25 @@ namespace Kameleo.LocalApiClient.Models
         /// <param name="userId">The guid of the user.</param>
         /// <param name="email">The email address of the authenticated
         /// user.</param>
+        /// <param name="emailConfirmed">A boolean value indicating whether the
+        /// email address is confirmed.</param>
         /// <param name="subscriptionEnd">The end date of the authenticated
         /// user's current subscription.</param>
         /// <param name="capabilities">The capabilities that the authenticated
         /// user owns thanks to his current subscription.</param>
+        /// <param name="gracePeriod">A boolean value indicates whether the
+        /// subscription is in a grace period and should be renewed
+        /// immediately.</param>
         /// <param name="lastAppLogin">The last date when the user
         /// authenticated by the app.</param>
-        public UserInfoResponse(System.Guid userId, string email, System.DateTime subscriptionEnd, IList<string> capabilities, System.DateTime? lastAppLogin = default(System.DateTime?))
+        public UserInfoResponse(System.Guid userId, string email, bool emailConfirmed, System.DateTime subscriptionEnd, IList<string> capabilities, bool gracePeriod, System.DateTime? lastAppLogin = default(System.DateTime?))
         {
             UserId = userId;
             Email = email;
+            EmailConfirmed = emailConfirmed;
             SubscriptionEnd = subscriptionEnd;
             Capabilities = capabilities;
+            GracePeriod = gracePeriod;
             LastAppLogin = lastAppLogin;
             CustomInit();
         }
@@ -62,6 +69,13 @@ namespace Kameleo.LocalApiClient.Models
         public string Email { get; set; }
 
         /// <summary>
+        /// Gets or sets a boolean value indicating whether the email address
+        /// is confirmed.
+        /// </summary>
+        [JsonProperty(PropertyName = "emailConfirmed")]
+        public bool EmailConfirmed { get; set; }
+
+        /// <summary>
         /// Gets or sets the end date of the authenticated user's current
         /// subscription.
         /// </summary>
@@ -74,6 +88,13 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "capabilities")]
         public IList<string> Capabilities { get; set; }
+
+        /// <summary>
+        /// Gets or sets a boolean value indicates whether the subscription is
+        /// in a grace period and should be renewed immediately.
+        /// </summary>
+        [JsonProperty(PropertyName = "gracePeriod")]
+        public bool GracePeriod { get; set; }
 
         /// <summary>
         /// Gets or sets the last date when the user authenticated by the app.

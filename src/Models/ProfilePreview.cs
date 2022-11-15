@@ -8,6 +8,8 @@ namespace Kameleo.LocalApiClient.Models
 {
     using Microsoft.Rest;
     using Newtonsoft.Json;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
@@ -27,6 +29,9 @@ namespace Kameleo.LocalApiClient.Models
         /// Initializes a new instance of the ProfilePreview class.
         /// </summary>
         /// <param name="id">A unique identifier of the profile</param>
+        /// <param name="name">The name of the profile</param>
+        /// <param name="tags">Profile tags</param>
+        /// <param name="createdAt">Date when the profile was created.</param>
         /// <param name="language">Language of the profile. This is derived
         /// from the base profile. Using ISO 639-1 language codes.</param>
         /// <param name="launcher">The mode how the profile should be launched.
@@ -37,9 +42,13 @@ namespace Kameleo.LocalApiClient.Models
         /// .kameleo profile file was accessed lastly. This is updated when a
         /// profile is saved to a .kameleo file, or loaded from a .kameleo
         /// file.</param>
-        public ProfilePreview(System.Guid id, Device device, Os os, Browser browser, string language, string launcher, StatusResponse status, string lastKnownPath = default(string))
+        public ProfilePreview(System.Guid id, string name, IList<string> tags, ProxyConnectionTypeServerMultiLevelChoice proxy, System.DateTime createdAt, Device device, Os os, Browser browser, string language, string launcher, StatusResponse status, string lastKnownPath = default(string))
         {
             Id = id;
+            Name = name;
+            Tags = tags;
+            Proxy = proxy;
+            CreatedAt = createdAt;
             LastKnownPath = lastKnownPath;
             Device = device;
             Os = os;
@@ -60,6 +69,29 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "id")]
         public System.Guid Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the profile
+        /// </summary>
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets profile tags
+        /// </summary>
+        [JsonProperty(PropertyName = "tags")]
+        public IList<string> Tags { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "proxy")]
+        public ProxyConnectionTypeServerMultiLevelChoice Proxy { get; set; }
+
+        /// <summary>
+        /// Gets or sets date when the profile was created.
+        /// </summary>
+        [JsonProperty(PropertyName = "createdAt")]
+        public System.DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Gets or sets an absolute path where the related .kameleo profile
@@ -113,6 +145,18 @@ namespace Kameleo.LocalApiClient.Models
         /// </exception>
         public virtual void Validate()
         {
+            if (Name == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Name");
+            }
+            if (Tags == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Tags");
+            }
+            if (Proxy == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Proxy");
+            }
             if (Device == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Device");
@@ -136,6 +180,10 @@ namespace Kameleo.LocalApiClient.Models
             if (Status == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Status");
+            }
+            if (Proxy != null)
+            {
+                Proxy.Validate();
             }
             if (Device != null)
             {

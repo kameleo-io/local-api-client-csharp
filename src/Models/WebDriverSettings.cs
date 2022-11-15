@@ -35,9 +35,9 @@ namespace Kameleo.LocalApiClient.Models
         /// be passed at startup. In case of Chromium based options it will be
         /// a user profile preference. In case of Firefox profiles it will be a
         /// preference.</param>
-        /// <param name="additionalOptions">List of additional WebDriver
-        /// options that can be passed at startup. It is applicable for both
-        /// chromium based browsers and for firefox.</param>
+        /// <param name="additionalOptions">List of additional Kameleo options
+        /// that can be passed at startup. It applies to all desktop profiles.
+        /// See Kameleo Help Center for available options.</param>
         public WebDriverSettings(IList<string> arguments = default(IList<string>), IList<Preference> preferences = default(IList<Preference>), IList<Preference> additionalOptions = default(IList<Preference>))
         {
             Arguments = arguments;
@@ -69,9 +69,9 @@ namespace Kameleo.LocalApiClient.Models
         public IList<Preference> Preferences { get; set; }
 
         /// <summary>
-        /// Gets or sets list of additional WebDriver options that can be
-        /// passed at startup. It is applicable for both chromium based
-        /// browsers and for firefox.
+        /// Gets or sets list of additional Kameleo options that can be passed
+        /// at startup. It applies to all desktop profiles. See Kameleo Help
+        /// Center for available options.
         /// </summary>
         [JsonProperty(PropertyName = "additionalOptions")]
         public IList<Preference> AdditionalOptions { get; set; }
