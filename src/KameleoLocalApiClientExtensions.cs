@@ -99,21 +99,25 @@ namespace Kameleo.LocalApiClient
             /// </param>
             /// <param name='deviceType'>
             /// Filter option for the Device Type. Possible values are 'desktop', 'mobile'.
-            /// For example set it to mobile if you only want to get mobile profiles.
+            /// You can also use a comma-separated list to provide more than one value.
             /// </param>
             /// <param name='osFamily'>
             /// Filter option for os family. Possible values are 'windows', 'macos',
-            /// 'linux', 'android', 'ios'. For example set it to windows if you only want
-            /// to get Windows profiles.
+            /// 'linux', 'android', 'ios'.
+            /// You can also use a comma-separated list to provide more than one value.
             /// </param>
             /// <param name='browserProduct'>
             /// Filter option for browser product. Possible values are 'chrome', 'firefox',
-            /// 'edge', 'safari'. For example set it to safari if you only want to get
-            /// profiles with Safari browser.
+            /// 'edge', 'safari'.
+            /// You can also use a comma-separated list to provide more than one value.
             /// </param>
             /// <param name='language'>
-            /// Filter option for os language. Use ISO 639-1 language code format. For
-            /// example set it to en-gb if you only want to get English profiles.
+            /// Filter option for os language. Use ISO 639-1 language code format.
+            /// For example, set it to en-gb if you want to get only English profiles from
+            /// Great-Britain.
+            /// You can also use a comma-separated list to provide more than one value.
+            /// This field also supports wildcard for the sublanguage part: to retrieve
+            /// both en-us, en-gb, and en-ca profiles, use 'en-*' as value.
             /// </param>
             public static IList<BaseProfilePreview> SearchBaseProfiles(this IKameleoLocalApiClient operations, string deviceType = default(string), string osFamily = default(string), string browserProduct = default(string), string language = default(string))
             {
@@ -130,21 +134,25 @@ namespace Kameleo.LocalApiClient
             /// </param>
             /// <param name='deviceType'>
             /// Filter option for the Device Type. Possible values are 'desktop', 'mobile'.
-            /// For example set it to mobile if you only want to get mobile profiles.
+            /// You can also use a comma-separated list to provide more than one value.
             /// </param>
             /// <param name='osFamily'>
             /// Filter option for os family. Possible values are 'windows', 'macos',
-            /// 'linux', 'android', 'ios'. For example set it to windows if you only want
-            /// to get Windows profiles.
+            /// 'linux', 'android', 'ios'.
+            /// You can also use a comma-separated list to provide more than one value.
             /// </param>
             /// <param name='browserProduct'>
             /// Filter option for browser product. Possible values are 'chrome', 'firefox',
-            /// 'edge', 'safari'. For example set it to safari if you only want to get
-            /// profiles with Safari browser.
+            /// 'edge', 'safari'.
+            /// You can also use a comma-separated list to provide more than one value.
             /// </param>
             /// <param name='language'>
-            /// Filter option for os language. Use ISO 639-1 language code format. For
-            /// example set it to en-gb if you only want to get English profiles.
+            /// Filter option for os language. Use ISO 639-1 language code format.
+            /// For example, set it to en-gb if you want to get only English profiles from
+            /// Great-Britain.
+            /// You can also use a comma-separated list to provide more than one value.
+            /// This field also supports wildcard for the sublanguage part: to retrieve
+            /// both en-us, en-gb, and en-ca profiles, use 'en-*' as value.
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
@@ -712,7 +720,7 @@ namespace Kameleo.LocalApiClient
             }
 
             /// <summary>
-            /// Saves a profile to a file. It will create a .kameleo file to the required
+            /// Saves a profile to a file. It will create a .kameleo file to the given
             /// location. It will store all the profile settings, browsing data, cookies,
             /// history, bookmarks, installed extension / addons. Later it can be reloaded.
             /// </summary>
@@ -730,7 +738,7 @@ namespace Kameleo.LocalApiClient
             }
 
             /// <summary>
-            /// Saves a profile to a file. It will create a .kameleo file to the required
+            /// Saves a profile to a file. It will create a .kameleo file to the given
             /// location. It will store all the profile settings, browsing data, cookies,
             /// history, bookmarks, installed extension / addons. Later it can be reloaded.
             /// </summary>
@@ -748,6 +756,46 @@ namespace Kameleo.LocalApiClient
             public static async Task<ProfileResponse> SaveProfileAsync(this IKameleoLocalApiClient operations, System.Guid guid, SaveProfileRequest body = default(SaveProfileRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.SaveProfileWithHttpMessagesAsync(guid, body, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Creates a duplicate of a loaded profile in memory. The created profile
+            /// contains all the profile settings, browsing data, cookies, history,
+            /// bookmarks and installed extensions. This operation does not perform any
+            /// filesystem activity and will not affect your existing profile.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the profile
+            /// </param>
+            public static ProfileResponse DuplicateProfile(this IKameleoLocalApiClient operations, System.Guid guid)
+            {
+                return operations.DuplicateProfileAsync(guid).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Creates a duplicate of a loaded profile in memory. The created profile
+            /// contains all the profile settings, browsing data, cookies, history,
+            /// bookmarks and installed extensions. This operation does not perform any
+            /// filesystem activity and will not affect your existing profile.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the profile
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ProfileResponse> DuplicateProfileAsync(this IKameleoLocalApiClient operations, System.Guid guid, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.DuplicateProfileWithHttpMessagesAsync(guid, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
@@ -784,6 +832,42 @@ namespace Kameleo.LocalApiClient
             public static async Task<ProfileResponse> LoadProfileAsync(this IKameleoLocalApiClient operations, LoadProfileRequest body = default(LoadProfileRequest), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.LoadProfileWithHttpMessagesAsync(body, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Upgrades the profile to the latest available browser version from the
+            /// server. The exact target of the upgrade depends on the profile's current
+            /// device, browser, operating system, and language settings.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// </param>
+            public static ProfileResponse UpgradeProfile(this IKameleoLocalApiClient operations, System.Guid guid)
+            {
+                return operations.UpgradeProfileAsync(guid).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Upgrades the profile to the latest available browser version from the
+            /// server. The exact target of the upgrade depends on the profile's current
+            /// device, browser, operating system, and language settings.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ProfileResponse> UpgradeProfileAsync(this IKameleoLocalApiClient operations, System.Guid guid, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.UpgradeProfileWithHttpMessagesAsync(guid, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }

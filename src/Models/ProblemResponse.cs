@@ -39,7 +39,7 @@ namespace Kameleo.LocalApiClient.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "code")]
-        public int? Code { get; set; }
+        public int? Code { get; private set; }
 
         /// <summary>
         /// </summary>

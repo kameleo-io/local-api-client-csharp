@@ -47,11 +47,11 @@ namespace Kameleo.LocalApiClient.Models
         public string Type { get; set; }
 
         /// <summary>
-        /// Gets or sets name of the device. This is only available for mobile
+        /// Gets name of the device. This is only available for mobile
         /// profiles.
         /// </summary>
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Validate the object.

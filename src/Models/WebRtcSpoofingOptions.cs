@@ -11,8 +11,8 @@ namespace Kameleo.LocalApiClient.Models
     using System.Linq;
 
     /// <summary>
-    /// When the Geolocation spoofing is set to manual these extra settings
-    /// will be used as well.
+    /// When the WebRTC spoofing is set to manual these extra settings will be
+    /// used as well.
     /// </summary>
     public partial class WebRtcSpoofingOptions
     {
