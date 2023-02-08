@@ -76,10 +76,26 @@ namespace Kameleo.LocalApiClient
         /// <para>'off': Turn off the spoofing, use the original settings</para>
         /// </summary>
         /// <param name="value">Values can be: 'noise', 'block', 'off'</param>
-        public BuilderForCreateProfile SetWebgl(string value, WebglSpoofingOptions options = null)
+        public BuilderForCreateProfile SetWebgl(string value)
         {
-            _profileRequest.Webgl.Value = value;
-            _profileRequest.Webgl.Extra = options;
+            _profileRequest.Webgl = value;
+
+            return this;
+        }
+        
+        /// <summary>
+        /// <para>Tells the mode how the WebGL vendor and renderer will be spoofed. Possible values:</para>
+        /// <para>'automatic': The vendor and renderer values comes from the base profile.</para>
+        /// <para>'manual': Manually set the vendor and renderer values.</para>
+        /// <para>'off': Turn off the spoofing, use the original settings.</para>
+        /// </summary>
+        /// <param name="value">Values can be: 'automatic', 'manual', 'off'</param>
+        /// <param name="options">When the WebglMeta spoofing is set to manual the webgl gpu vendor and renderer is required. For example:
+        /// Google Inc. (NVIDIA)/ANGLE (NVIDIA, NVIDIA GeForce GTX 1050 Ti Direct3D11 vs_5_0 ps_5_0, D3D11)</param>
+        public BuilderForCreateProfile SetWebglMeta(string value, WebglMetaSpoofingOptions options = null)
+        {
+            _profileRequest.WebglMeta.Value = value;
+            _profileRequest.WebglMeta.Extra = options;
 
             return this;
         }
@@ -283,7 +299,8 @@ namespace Kameleo.LocalApiClient
         {
             _profileRequest.Name = "";
             _profileRequest.Canvas = "intelligent";
-            _profileRequest.Webgl.Value = "off";
+            _profileRequest.Webgl = "off";
+            _profileRequest.WebglMeta.Value = "automatic";
             _profileRequest.Audio = "off";
             _profileRequest.Timezone.Value = "automatic";
             _profileRequest.Geolocation.Value = "automatic";
@@ -302,7 +319,8 @@ namespace Kameleo.LocalApiClient
             {
                 BaseProfileId = baseProfileId,
                 Canvas = "off",
-                Webgl = new WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice("off"),
+                Webgl = "off",
+                WebglMeta = new WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice("off"),
                 Audio = "off",
                 Timezone = new TimezoneSpoofingTypeTimezoneMultiLevelChoice("off"),
                 Geolocation = new GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice("off"),

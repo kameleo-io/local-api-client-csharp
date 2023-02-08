@@ -183,6 +183,20 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Value");
             }
+            if (Domain != null)
+            {
+                if (Domain.Length < 1)
+                {
+                    throw new ValidationException(ValidationRules.MinLength, "Domain", 1);
+                }
+            }
+            if (Path != null)
+            {
+                if (Path.Length < 1)
+                {
+                    throw new ValidationException(ValidationRules.MinLength, "Path", 1);
+                }
+            }
         }
     }
 }

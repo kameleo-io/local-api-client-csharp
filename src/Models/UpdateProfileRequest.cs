@@ -27,6 +27,8 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         /// <param name="canvas">Possible values include: 'intelligent',
         /// 'noise', 'block', 'off'</param>
+        /// <param name="webgl">Possible values include: 'noise', 'block',
+        /// 'off'</param>
         /// <param name="audio">Possible values include: 'off', 'noise',
         /// 'block'</param>
         /// <param name="startPage">This website will be opened in the browser
@@ -50,10 +52,11 @@ namespace Kameleo.LocalApiClient.Models
         /// It determines which browser to launch. This cannot be modified
         /// after creation. Possible values are 'automatic', 'chrome',
         /// 'chromium', 'firefox', 'edge', 'external'</param>
-        public UpdateProfileRequest(string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, string name, IList<string> extensions = default(IList<string>), string notes = default(string), IList<string> tags = default(IList<string>), string launcher = default(string))
+        public UpdateProfileRequest(string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, string name, IList<string> extensions = default(IList<string>), string notes = default(string), IList<string> tags = default(IList<string>), string launcher = default(string))
         {
             Canvas = canvas;
             Webgl = webgl;
+            WebglMeta = webglMeta;
             Audio = audio;
             Timezone = timezone;
             Geolocation = geolocation;
@@ -85,9 +88,15 @@ namespace Kameleo.LocalApiClient.Models
         public string Canvas { get; set; }
 
         /// <summary>
+        /// Gets or sets possible values include: 'noise', 'block', 'off'
         /// </summary>
         [JsonProperty(PropertyName = "webgl")]
-        public WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice Webgl { get; set; }
+        public string Webgl { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "webglMeta")]
+        public WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice WebglMeta { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'off', 'noise', 'block'
@@ -200,6 +209,10 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Webgl");
             }
+            if (WebglMeta == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "WebglMeta");
+            }
             if (Audio == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Audio");
@@ -244,9 +257,9 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Name");
             }
-            if (Webgl != null)
+            if (WebglMeta != null)
             {
-                Webgl.Validate();
+                WebglMeta.Validate();
             }
             if (Timezone != null)
             {
@@ -275,6 +288,13 @@ namespace Kameleo.LocalApiClient.Models
             if (Screen != null)
             {
                 Screen.Validate();
+            }
+            if (Name != null)
+            {
+                if (Name.Length < 1)
+                {
+                    throw new ValidationException(ValidationRules.MinLength, "Name", 1);
+                }
             }
         }
     }
