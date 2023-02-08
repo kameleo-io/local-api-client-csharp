@@ -57,6 +57,13 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Path");
             }
+            if (Path != null)
+            {
+                if (Path.Length < 1)
+                {
+                    throw new ValidationException(ValidationRules.MinLength, "Path", 1);
+                }
+            }
         }
     }
 }

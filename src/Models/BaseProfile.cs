@@ -42,7 +42,7 @@ namespace Kameleo.LocalApiClient.Models
         /// profile</param>
         /// <param name="plugins">A list of plugins included in the
         /// profile</param>
-        public BaseProfile(string version, string id, Device device, Os os, Browser browser, string language, string resolution, IList<string> fonts, IList<string> plugins)
+        public BaseProfile(string version, string id, Device device, Os os, Browser browser, string language, string resolution, IList<string> fonts, IList<string> plugins, WebglMeta webglMeta)
         {
             Version = version;
             Id = id;
@@ -53,6 +53,7 @@ namespace Kameleo.LocalApiClient.Models
             Resolution = resolution;
             Fonts = fonts;
             Plugins = plugins;
+            WebglMeta = webglMeta;
             CustomInit();
         }
 
@@ -117,6 +118,11 @@ namespace Kameleo.LocalApiClient.Models
         public IList<string> Plugins { get; set; }
 
         /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "webglMeta")]
+        public WebglMeta WebglMeta { get; set; }
+
+        /// <summary>
         /// Validate the object.
         /// </summary>
         /// <exception cref="ValidationException">
@@ -160,6 +166,10 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Plugins");
             }
+            if (WebglMeta == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "WebglMeta");
+            }
             if (Device != null)
             {
                 Device.Validate();
@@ -171,6 +181,10 @@ namespace Kameleo.LocalApiClient.Models
             if (Browser != null)
             {
                 Browser.Validate();
+            }
+            if (WebglMeta != null)
+            {
+                WebglMeta.Validate();
             }
         }
     }

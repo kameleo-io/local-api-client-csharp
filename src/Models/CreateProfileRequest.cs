@@ -30,6 +30,8 @@ namespace Kameleo.LocalApiClient.Models
         /// build the new profile.</param>
         /// <param name="canvas">Possible values include: 'intelligent',
         /// 'noise', 'block', 'off'</param>
+        /// <param name="webgl">Possible values include: 'noise', 'block',
+        /// 'off'</param>
         /// <param name="audio">Possible values include: 'off', 'noise',
         /// 'block'</param>
         /// <param name="passwordManager">Possible values include: 'enabled',
@@ -51,13 +53,14 @@ namespace Kameleo.LocalApiClient.Models
         /// It determines which browser to launch. This cannot be modified
         /// after creation. Possible values are 'automatic', 'chrome',
         /// 'chromium', 'firefox', 'edge', 'external'</param>
-        public CreateProfileRequest(string baseProfileId, string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string passwordManager, string name = default(string), IList<string> tags = default(IList<string>), string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), string launcher = default(string))
+        public CreateProfileRequest(string baseProfileId, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string passwordManager, string name = default(string), IList<string> tags = default(IList<string>), string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), string launcher = default(string))
         {
             BaseProfileId = baseProfileId;
             Name = name;
             Tags = tags;
             Canvas = canvas;
             Webgl = webgl;
+            WebglMeta = webglMeta;
             Audio = audio;
             Timezone = timezone;
             Geolocation = geolocation;
@@ -110,9 +113,15 @@ namespace Kameleo.LocalApiClient.Models
         public string Canvas { get; set; }
 
         /// <summary>
+        /// Gets or sets possible values include: 'noise', 'block', 'off'
         /// </summary>
         [JsonProperty(PropertyName = "webgl")]
-        public WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice Webgl { get; set; }
+        public string Webgl { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "webglMeta")]
+        public WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice WebglMeta { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'off', 'noise', 'block'
@@ -212,6 +221,10 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Webgl");
             }
+            if (WebglMeta == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "WebglMeta");
+            }
             if (Audio == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Audio");
@@ -248,9 +261,16 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "PasswordManager");
             }
-            if (Webgl != null)
+            if (BaseProfileId != null)
             {
-                Webgl.Validate();
+                if (BaseProfileId.Length < 1)
+                {
+                    throw new ValidationException(ValidationRules.MinLength, "BaseProfileId", 1);
+                }
+            }
+            if (WebglMeta != null)
+            {
+                WebglMeta.Validate();
             }
             if (Timezone != null)
             {

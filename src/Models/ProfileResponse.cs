@@ -33,6 +33,8 @@ namespace Kameleo.LocalApiClient.Models
         /// <param name="createdAt">Date when the profile was created.</param>
         /// <param name="canvas">Possible values include: 'intelligent',
         /// 'noise', 'block', 'off'</param>
+        /// <param name="webgl">Possible values include: 'noise', 'block',
+        /// 'off'</param>
         /// <param name="audio">Possible values include: 'off', 'noise',
         /// 'block'</param>
         /// <param name="startPage">This website will be opened in the browser
@@ -53,7 +55,7 @@ namespace Kameleo.LocalApiClient.Models
         /// .kameleo profile file was accessed lastly. This is updated when a
         /// profile is saved to a .kameleo file, or loaded from a .kameleo
         /// file.</param>
-        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice webgl, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, string lastKnownPath = default(string))
+        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, string lastKnownPath = default(string))
         {
             Id = id;
             Name = name;
@@ -63,6 +65,7 @@ namespace Kameleo.LocalApiClient.Models
             BaseProfile = baseProfile;
             Canvas = canvas;
             Webgl = webgl;
+            WebglMeta = webglMeta;
             Audio = audio;
             Timezone = timezone;
             Geolocation = geolocation;
@@ -132,9 +135,15 @@ namespace Kameleo.LocalApiClient.Models
         public string Canvas { get; set; }
 
         /// <summary>
+        /// Gets or sets possible values include: 'noise', 'block', 'off'
         /// </summary>
         [JsonProperty(PropertyName = "webgl")]
-        public WebglSpoofingTypeWebglSpoofingOptionsMultiLevelChoice Webgl { get; set; }
+        public string Webgl { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "webglMeta")]
+        public WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice WebglMeta { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'off', 'noise', 'block'
@@ -246,6 +255,10 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Webgl");
             }
+            if (WebglMeta == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "WebglMeta");
+            }
             if (Audio == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Audio");
@@ -306,9 +319,9 @@ namespace Kameleo.LocalApiClient.Models
             {
                 BaseProfile.Validate();
             }
-            if (Webgl != null)
+            if (WebglMeta != null)
             {
-                Webgl.Validate();
+                WebglMeta.Validate();
             }
             if (Timezone != null)
             {

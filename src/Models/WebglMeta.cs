@@ -10,27 +10,27 @@ namespace Kameleo.LocalApiClient.Models
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class Device
+    public partial class WebglMeta
     {
         /// <summary>
-        /// Initializes a new instance of the Device class.
+        /// Initializes a new instance of the WebglMeta class.
         /// </summary>
-        public Device()
+        public WebglMeta()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the Device class.
+        /// Initializes a new instance of the WebglMeta class.
         /// </summary>
-        /// <param name="type">Type of the device. Possible values are:
-        /// 'desktop', 'mobile'.</param>
-        /// <param name="name">Name of the device. This is only available for
-        /// mobile profiles.</param>
-        public Device(string type, string name = default(string))
+        /// <param name="vendor">The UnmaskedVendor field from WebGL
+        /// context</param>
+        /// <param name="renderer">The UnmaskedRenderer field from WebGL
+        /// context</param>
+        public WebglMeta(string vendor, string renderer = default(string))
         {
-            Type = type;
-            Name = name;
+            Vendor = vendor;
+            Renderer = renderer;
             CustomInit();
         }
 
@@ -40,18 +40,16 @@ namespace Kameleo.LocalApiClient.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets type of the device. Possible values are: 'desktop',
-        /// 'mobile'.
+        /// Gets or sets the UnmaskedVendor field from WebGL context
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
+        [JsonProperty(PropertyName = "vendor")]
+        public string Vendor { get; set; }
 
         /// <summary>
-        /// Gets or sets name of the device. This is only available for mobile
-        /// profiles.
+        /// Gets or sets the UnmaskedRenderer field from WebGL context
         /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        [JsonProperty(PropertyName = "renderer")]
+        public string Renderer { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -61,9 +59,9 @@ namespace Kameleo.LocalApiClient.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (Type == null)
+            if (Vendor == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Type");
+                throw new ValidationException(ValidationRules.CannotBeNull, "Vendor");
             }
         }
     }

@@ -161,7 +161,7 @@ namespace Kameleo.LocalApiClient.Models
         public string SameSite { get; set; }
 
         /// <summary>
-        /// Gets this unix timestamp formatted attribute is used to set
+        /// Gets or sets this unix timestamp formatted attribute is used to set
         /// persistent cookies. It signifies how long the browser should use
         /// the persistent cookie and when the cookie should be deleted.
         /// If this attribute is not specified, then the lifetime of the cookie
@@ -169,22 +169,22 @@ namespace Kameleo.LocalApiClient.Models
         /// non-persistent cookie.
         /// </summary>
         [JsonProperty(PropertyName = "expirationDate")]
-        public long? ExpirationDate { get; private set; }
+        public long? ExpirationDate { get; set; }
 
         /// <summary>
-        /// Gets session cookies are deleted when the current session ends. The
-        /// browser defines when the "current session" ends, and some browsers
-        /// use session restoring when restarting, which can cause session
-        /// cookies to last indefinitely long.
+        /// Gets or sets session cookies are deleted when the current session
+        /// ends. The browser defines when the "current session" ends, and some
+        /// browsers use session restoring when restarting, which can cause
+        /// session cookies to last indefinitely long.
         /// </summary>
         [JsonProperty(PropertyName = "session")]
-        public bool? Session { get; private set; }
+        public bool? Session { get; set; }
 
         /// <summary>
-        /// Gets the ID of the cookie store containing this cookie.
+        /// Gets or sets the ID of the cookie store containing this cookie.
         /// </summary>
         [JsonProperty(PropertyName = "storeId")]
-        public string StoreId { get; private set; }
+        public string StoreId { get; set; }
 
         /// <summary>
         /// Validate the object.
