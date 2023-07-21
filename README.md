@@ -169,7 +169,7 @@ var browser = await playwright.Firefox.LaunchPersistentContextAsync("", new Brow
 	// browsers. To overcome this limitation, a tool bundled with Kameleo, named
 	// pw-bridge.exe will bridge the communication gap between the running Firefox
 	// instance and this playwright script.
-    ExecutablePath = executablePath,
+	ExecutablePath = executablePath,
 	Args = new List<string> { $"-target {browserWsEndpoint}" },
 	ViewportSize = null,
 });
