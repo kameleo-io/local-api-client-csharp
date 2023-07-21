@@ -31,8 +31,8 @@ namespace Kameleo.LocalApiClient
 
             return result;
         }
-        
-        
+
+
         /// <summary>
         /// Sets the name of the profile.
         /// </summary>
@@ -43,7 +43,7 @@ namespace Kameleo.LocalApiClient
             _profileRequest.Name = value;
             return this;
         }
-        
+
         /// <summary>
         /// Sets the tags of the profile.
         /// </summary>
@@ -82,7 +82,7 @@ namespace Kameleo.LocalApiClient
 
             return this;
         }
-        
+
         /// <summary>
         /// <para>Tells the mode how the WebGL vendor and renderer will be spoofed. Possible values:</para>
         /// <para>'automatic': The vendor and renderer values comes from the base profile.</para>
@@ -195,21 +195,6 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Tells the mode how the Plugins will be spoofed.</para>
-        /// <para>'enabled': Enable plugins spoofing. A list can be provided to EXCLUDE plugins from the plugins of the base profile.</para>
-        /// <para>'disabled': Disable plugins spoofing.</para>
-        /// </summary>
-        /// <param name="value">Settings how the Plugins will be spoofed. Values can be 'enabled', 'disabled'.</param>
-        /// <param name="options">If value is set to enabled, a list can be provided to EXCLUDE plugins from the plugins of the base profile.</param>
-        public BuilderForCreateProfile SetPlugins(string value, IList<string> options = null)
-        {
-            _profileRequest.Plugins.Value = value;
-            _profileRequest.Plugins.Extra = options;
-
-            return this;
-        }
-
-        /// <summary>
         /// This website will be opened in the browser when the profile launches.
         /// </summary>
         /// <param name="value">This website will be opened in the browser when the profile launches.</param>
@@ -251,7 +236,7 @@ namespace Kameleo.LocalApiClient
             {
                 _profileRequest.Screen.Extra = $"{width}x{height}";
             }
-            
+
             return this;
         }
 
@@ -276,15 +261,11 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>The mode how the profile should be launched. It determines which browser to launch. This cannot be modified after creation. Possible values are:</para>
-        /// <para>'automatic': Automatically choose launcher based on DeviceType and BrowserProduct property.</para>
-        /// <para>'chrome': Forcefully start the profile in Chrome.</para>
-        /// <para>'chromium': Forcefully start the profile in Chromium.</para>
-        /// <para>'firefox': Forcefully start the profile in Firefox.</para>
-        /// <para>'edge': Forcefully start the profile in Edge.</para>
-        /// <para>'external': Only start the external spoofing engine and connect any browser manually. This is also used for Mobile Device spoofing.</para>
+        /// <para> The mode how the profile should be launched. It determines which browser to launch. This cannot be modified after creation. </para>
+        /// <para> Possible values for Desktop profiles 'automatic'. </para>
+        /// <para> Possible values for Mobile profiles: 'chromium', 'external'. </para>
         /// </summary>
-        /// <param name="browserLauncher">The mode how the profile should be launched. It determines which browser to launch. Possible values are 'automatic', 'chrome', 'chromium', 'firefox', 'edge', 'external'</param>
+        /// <param name="browserLauncher">The mode how the profile should be launched. It determines which browser to launch. Possible values for Desktop profiles 'automatic'. Possible values for Mobile profiles: 'chromium', 'external'. </param>
         public BuilderForCreateProfile SetLauncher(string browserLauncher)
         {
             _profileRequest.Launcher = browserLauncher;
@@ -307,7 +288,6 @@ namespace Kameleo.LocalApiClient
             _profileRequest.WebRtc.Value = "automatic";
             _profileRequest.Screen.Value = "automatic";
             _profileRequest.Fonts.Value = "enabled";
-            _profileRequest.Plugins.Value = "enabled";
             _profileRequest.Launcher = "automatic";
 
             return this;
@@ -327,7 +307,6 @@ namespace Kameleo.LocalApiClient
                 Proxy = new ProxyConnectionTypeServerMultiLevelChoice("none"),
                 WebRtc = new WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice("off"),
                 Fonts = new FontSpoofingTypeFontIListMultiLevelChoice("disabled"),
-                Plugins = new PluginSpoofingTypePluginIListMultiLevelChoice("disabled"),
                 Screen = new ScreenSpoofingTypeScreenSizeMultiLevelChoice("off"),
                 PasswordManager = "disabled",
             };

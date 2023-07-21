@@ -40,9 +40,7 @@ namespace Kameleo.LocalApiClient.Models
         /// pixels</param>
         /// <param name="fonts">A list of font types included in the
         /// profile</param>
-        /// <param name="plugins">A list of plugins included in the
-        /// profile</param>
-        public BaseProfile(string version, string id, Device device, Os os, Browser browser, string language, string resolution, IList<string> fonts, IList<string> plugins, WebglMeta webglMeta)
+        public BaseProfile(string version, string id, Device device, Os os, Browser browser, string language, string resolution, IList<string> fonts, WebglMeta webglMeta)
         {
             Version = version;
             Id = id;
@@ -52,7 +50,6 @@ namespace Kameleo.LocalApiClient.Models
             Language = language;
             Resolution = resolution;
             Fonts = fonts;
-            Plugins = plugins;
             WebglMeta = webglMeta;
             CustomInit();
         }
@@ -112,12 +109,6 @@ namespace Kameleo.LocalApiClient.Models
         public IList<string> Fonts { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of plugins included in the profile
-        /// </summary>
-        [JsonProperty(PropertyName = "plugins")]
-        public IList<string> Plugins { get; set; }
-
-        /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "webglMeta")]
         public WebglMeta WebglMeta { get; set; }
@@ -161,10 +152,6 @@ namespace Kameleo.LocalApiClient.Models
             if (Fonts == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Fonts");
-            }
-            if (Plugins == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Plugins");
             }
             if (WebglMeta == null)
             {

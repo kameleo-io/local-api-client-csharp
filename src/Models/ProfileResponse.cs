@@ -47,20 +47,16 @@ namespace Kameleo.LocalApiClient.Models
         /// format addons.</param>
         /// <param name="notes">A free text including any notes written by the
         /// user.</param>
-        /// <param name="launcher">The mode how the profile should be launched.
-        /// It determines which browser to launch. This cannot be modified
-        /// after creation. Possible values are 'automatic', 'chrome',
-        /// 'chromium', 'firefox', 'edge', 'external'</param>
-        /// <param name="lastKnownPath">An absolute path where the related
-        /// .kameleo profile file was accessed lastly. This is updated when a
-        /// profile is saved to a .kameleo file, or loaded from a .kameleo
-        /// file.</param>
-        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, PluginSpoofingTypePluginIListMultiLevelChoice plugins, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, string lastKnownPath = default(string))
+        /// <param name="launcher">This setting determines which browser engine
+        /// is launched when a profile is started. This can be modified only
+        /// before the first start. Possible values for Desktop profiles:
+        /// 'automatic'. Possible values for Mobile proiles: 'chromium',
+        /// 'external'.</param>
+        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status)
         {
             Id = id;
             Name = name;
             Tags = tags;
-            LastKnownPath = lastKnownPath;
             CreatedAt = createdAt;
             BaseProfile = baseProfile;
             Canvas = canvas;
@@ -72,7 +68,6 @@ namespace Kameleo.LocalApiClient.Models
             Proxy = proxy;
             WebRtc = webRtc;
             Fonts = fonts;
-            Plugins = plugins;
             Screen = screen;
             StartPage = startPage;
             PasswordManager = passwordManager;
@@ -107,14 +102,6 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "tags")]
         public IList<string> Tags { get; set; }
-
-        /// <summary>
-        /// Gets or sets an absolute path where the related .kameleo profile
-        /// file was accessed lastly. This is updated when a profile is saved
-        /// to a .kameleo file, or loaded from a .kameleo file.
-        /// </summary>
-        [JsonProperty(PropertyName = "lastKnownPath")]
-        public string LastKnownPath { get; set; }
 
         /// <summary>
         /// Gets or sets date when the profile was created.
@@ -178,11 +165,6 @@ namespace Kameleo.LocalApiClient.Models
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "plugins")]
-        public PluginSpoofingTypePluginIListMultiLevelChoice Plugins { get; set; }
-
-        /// <summary>
-        /// </summary>
         [JsonProperty(PropertyName = "screen")]
         public ScreenSpoofingTypeScreenSizeMultiLevelChoice Screen { get; set; }
 
@@ -214,10 +196,11 @@ namespace Kameleo.LocalApiClient.Models
         public string Notes { get; set; }
 
         /// <summary>
-        /// Gets or sets the mode how the profile should be launched. It
-        /// determines which browser to launch. This cannot be modified after
-        /// creation. Possible values are 'automatic', 'chrome', 'chromium',
-        /// 'firefox', 'edge', 'external'
+        /// Gets or sets this setting determines which browser engine is
+        /// launched when a profile is started. This can be modified only
+        /// before the first start. Possible values for Desktop profiles:
+        /// 'automatic'. Possible values for Mobile proiles: 'chromium',
+        /// 'external'.
         /// </summary>
         [JsonProperty(PropertyName = "launcher")]
         public string Launcher { get; set; }
@@ -283,10 +266,6 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Fonts");
             }
-            if (Plugins == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Plugins");
-            }
             if (Screen == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Screen");
@@ -342,10 +321,6 @@ namespace Kameleo.LocalApiClient.Models
             if (Fonts != null)
             {
                 Fonts.Validate();
-            }
-            if (Plugins != null)
-            {
-                Plugins.Validate();
             }
             if (Screen != null)
             {

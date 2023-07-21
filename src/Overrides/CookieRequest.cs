@@ -3,9 +3,17 @@ namespace Kameleo.LocalApiClient.Models
 {
     public partial class CookieRequest
     {
-        public CookieRequest(BrowserCookie cookie) 
-            : this(cookie.Domain, cookie.Name, cookie.Path, cookie.Value, cookie.HostOnly, cookie.HttpOnly, cookie.Secure, cookie.SameSite, cookie.ExpirationDate)
-        {
-        }
+        public CookieRequest(BrowserCookie cookie)
+            : this(
+                cookie.Domain,
+                cookie.Name,
+                cookie.Path,
+                cookie.Value,
+                cookie.HostOnly,
+                cookie.HttpOnly,
+                cookie.Secure,
+                cookie.SameSite,
+                cookie.ExpirationDate
+            ) { }
     }
 }
