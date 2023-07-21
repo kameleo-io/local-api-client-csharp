@@ -34,7 +34,7 @@ Install-Package Kameleo.LocalApiClient
 ./Kameleo.CLI.exe email="your@email.com" password="Pa$$w0rd"
 ```
 
-## 3. Start a browser with out-of-the-box fingerprinting protection 
+## 3. Start a browser with out-of-the-box fingerprinting protection
 ```csharp
 using System;
 using System.Threading.Tasks;
@@ -77,12 +77,12 @@ Kameleo gives you the ability to control any supported browser using Selenium. I
 
 You need to install the official [Selenium package](https://www.nuget.org/packages/Selenium.WebDriver/).
 ```csharp
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 ```
 
 ```csharp
+const int KameleoPort = 5050;
 // Connect to the running browser instance using WebDriver
 var uri = new Uri($"http://localhost:{KameleoPort}/webdriver");
 var opts = new ChromeOptions();
@@ -108,6 +108,7 @@ using PuppeteerSharp;
 
 ```csharp
 // Connect to the browser through CDP
+const int KameleoPort = 5050;
 var browserWsEndpoint = $"ws://localhost:{KameleoPort}/puppeteer/{profile.Id}";
 var browser = await Puppeteer.ConnectAsync(new ConnectOptions { BrowserWSEndpoint = browserWsEndpoint, DefaultViewport = null });
 var page = await browser.NewPageAsync();
@@ -128,10 +129,13 @@ You need to import the official [Playwright package](https://www.nuget.org/packa
 using Microsoft.Playwright;
 ```
 
+You can find more details here: [Using Kameleo with Playwright framework – Kameleo Support Center](https://help.kameleo.io/hc/en-us/articles/4419471627793-Using-Kameleo-with-Playwright-framework).
+
 ## Chromium-based profiles with Playwright
 
 ```csharp
 // Connect to the browser with Playwright through CDP
+const int KameleoPort = 5050;
 var browserWsEndpoint = $"ws://localhost:{KameleoPort}/playwright/{profile.Id}";
 var playwright = await Playwright.CreateAsync();
 var browser = await playwright.Chromium.ConnectOverCDPAsync(browserWsEndpoint);
@@ -153,21 +157,25 @@ The full example can be found [here](https://github.com/kameleo-io/local-api-exa
 
 ```csharp
 // Connect to the browser with Playwright
+const int KameleoPort = 5050;
 var browserWsEndpoint = $"ws://localhost:{KameleoPort}/playwright/{profile.Id}";
 var playwright = await Playwright.CreateAsync();
+// The exact path to the bridge executable is subject to change. Here, we use %LOCALAPPDATA%\Programs\Kameleo\pw-bridge.exe
+var localAppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+var executablePath = Path.Combine(localAppDataFolder, "Programs", "Kameleo", "pw-bridge.exe");
 var browser = await playwright.Firefox.LaunchPersistentContextAsync("", new BrowserTypeLaunchPersistentContextOptions
 {
-	// The Playwright framework is not designed to connect to already running 
-	// browsers. To overcome this limitation, a tool bundled with Kameleo, named 
-	// pw-bridge.exe will bridge the communication gap between the running Firefox 
+	// The Playwright framework is not designed to connect to already running
+	// browsers. To overcome this limitation, a tool bundled with Kameleo, named
+	// pw-bridge.exe will bridge the communication gap between the running Firefox
 	// instance and this playwright script.
-	ExecutablePath = "<PATH_TO_KAMELEO_FOLDER>\\pw-bridge.exe",
+	ExecutablePath = executablePath,
 	Args = new List<string> { $"-target {browserWsEndpoint}" },
 	ViewportSize = null,
 });
 
 // Kameleo will open the a new page in the default browser context.
-// NOTE: We DO NOT recommend using multiple browser contexts, as this might interfere 
+// NOTE: We DO NOT recommend using multiple browser contexts, as this might interfere
 //       with Kameleo's browser fingerprint modification features.
 var page = await browser.NewPageAsync();
 
@@ -200,7 +208,7 @@ var createProfileRequest = BuilderForCreateProfile
 var profile = await client.CreateProfileAsync(createProfileRequest);
 
 // Start the profile with a couple of extra parameters, so Selenium automation can be done fluently
-await client.StartProfileWithWebDriverSettingsAsync(profile.Id, new WebDriverSettings()
+await client.StartProfileWithOptionsAsync(profile.Id, new WebDriverSettings()
 {
 	AdditionalOptions = new List<Preference>
 	{
@@ -230,11 +238,12 @@ The full example can be found [here](https://github.com/kameleo-io/local-api-exa
 - Modify and Delete browser cookies
 - Start profile with extra WebDriver capabilities
 - How to duplicate virtual browser profiles
-- Test proxies
 - Refresh the browser of the emulated profiles
 
 > Note: _If you are interested in more information about Kameleo, or have encountered an issue with using it, please check out our [Help Center](https://help.kameleo.io/)._
 
+# Package
+This package can be found on NuGet Gallery here: [Kameleo.LocalApiClient](https://www.nuget.org/packages/Kameleo.LocalApiClient).
 
 # License
 This project is released under MIT License. Please refer the LICENSE.txt for more details.

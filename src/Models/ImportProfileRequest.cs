@@ -11,24 +11,24 @@ namespace Kameleo.LocalApiClient.Models
     using System.Linq;
 
     /// <summary>
-    /// Tells where the profile should be loaded from
+    /// Tells where the profile should be imported from
     /// </summary>
-    public partial class LoadProfileRequest
+    public partial class ImportProfileRequest
     {
         /// <summary>
-        /// Initializes a new instance of the LoadProfileRequest class.
+        /// Initializes a new instance of the ImportProfileRequest class.
         /// </summary>
-        public LoadProfileRequest()
+        public ImportProfileRequest()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the LoadProfileRequest class.
+        /// Initializes a new instance of the ImportProfileRequest class.
         /// </summary>
-        /// <param name="path">The path where the profile should be loaded
+        /// <param name="path">The path where the profile should be imported
         /// from</param>
-        public LoadProfileRequest(string path)
+        public ImportProfileRequest(string path)
         {
             Path = path;
             CustomInit();
@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the path where the profile should be loaded from
+        /// Gets or sets the path where the profile should be imported from
         /// </summary>
         [JsonProperty(PropertyName = "path")]
         public string Path { get; set; }

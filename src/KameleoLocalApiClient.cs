@@ -41,19 +41,6 @@ namespace Kameleo.LocalApiClient
         /// <summary>
         /// Initializes a new instance of the KameleoLocalApiClient class.
         /// </summary>
-        /// <param name='httpClient'>
-        /// HttpClient to be used
-        /// </param>
-        /// <param name='disposeHttpClient'>
-        /// True: will dispose the provided httpClient on calling KameleoLocalApiClient.Dispose(). False: will not dispose provided httpClient</param>
-        public KameleoLocalApiClient(HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
-        {
-            Initialize();
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the KameleoLocalApiClient class.
-        /// </summary>
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
@@ -159,9 +146,10 @@ namespace Kameleo.LocalApiClient
             CustomInitialize();
         }
         /// <summary>
-        /// Get the possible values for base profile filtering. We can filter the
-        /// available values. With this we can see for example that what languages of
-        /// profiles do we have for Windows profiles with Chrome.
+        /// Retrieves the available filtering options for base profiles, including
+        /// device types, operating system families, browser products, and languages.
+        /// This enables you to refine the selection, for example, to see which
+        /// languages are available for profiles using Windows with Chrome.
         /// </summary>
         /// <param name='deviceType'>
         /// Filter option for the Device Type. Possible values are 'desktop', 'mobile'.
@@ -333,9 +321,10 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Filtering base profiles with some criteria. It will return X base profiles.
-        /// It is not an idempotent method. This means if you are calling it twice
-        /// after each other it may return a different set of base profiles.
+        /// Retrieves a set of 25 base profiles based on specified criteria, with the
+        /// most recent browser versions at the beginning of the list. Note that
+        /// calling this method multiple times will return different sets of base
+        /// profiles.
         /// </summary>
         /// <param name='deviceType'>
         /// Filter option for the Device Type. Possible values are 'desktop', 'mobile'.
@@ -509,7 +498,9 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Gets the list of the cookies of the profile.
+        /// Retrieves the list of cookies stored in the profile's browser. Note that
+        /// this list does not include session cookies, which are not persisted between
+        /// browser launches.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -641,8 +632,9 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Adds a list of cookies to the profile. If cookies are already present for a
-        /// domain, they will be overwritten.
+        /// Adds a list of cookies to the profile, allowing you to inject cookies
+        /// before starting the profile. If cookies already exist for a domain, they
+        /// will be replaced with the new ones.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -793,7 +785,8 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Deletes the cookies of the profile.
+        /// Deletes all the cookies stored in the profile, which will likely log the
+        /// profile out of all websites.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -1246,147 +1239,7 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Tests a provided proxy connection.
-        /// </summary>
-        /// <param name='body'>
-        /// </param>
-        /// <param name='customHeaders'>
-        /// Headers that will be added to request.
-        /// </param>
-        /// <param name='cancellationToken'>
-        /// The cancellation token.
-        /// </param>
-        /// <exception cref="TestProxyResponseException">
-        /// Thrown when the operation returned an invalid status code
-        /// </exception>
-        /// <exception cref="SerializationException">
-        /// Thrown when unable to deserialize the response
-        /// </exception>
-        /// <return>
-        /// A response object containing the response body and response headers.
-        /// </return>
-        public async Task<HttpOperationResponse<TestProxyResponse>> TestProxyWithHttpMessagesAsync(TestProxyRequest body = default(TestProxyRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (body != null)
-            {
-                body.Validate();
-            }
-            // Tracing
-            bool _shouldTrace = ServiceClientTracing.IsEnabled;
-            string _invocationId = null;
-            if (_shouldTrace)
-            {
-                _invocationId = ServiceClientTracing.NextInvocationId.ToString();
-                Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("body", body);
-                tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "TestProxy", tracingParameters);
-            }
-            // Construct URL
-            var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "general/test-proxy").ToString();
-            // Create HTTP transport objects
-            var _httpRequest = new HttpRequestMessage();
-            HttpResponseMessage _httpResponse = null;
-            _httpRequest.Method = new HttpMethod("POST");
-            _httpRequest.RequestUri = new System.Uri(_url);
-            // Set Headers
-
-
-            if (customHeaders != null)
-            {
-                foreach(var _header in customHeaders)
-                {
-                    if (_httpRequest.Headers.Contains(_header.Key))
-                    {
-                        _httpRequest.Headers.Remove(_header.Key);
-                    }
-                    _httpRequest.Headers.TryAddWithoutValidation(_header.Key, _header.Value);
-                }
-            }
-
-            // Serialize Request
-            string _requestContent = null;
-            if(body != null)
-            {
-                _requestContent = SafeJsonConvert.SerializeObject(body, SerializationSettings);
-                _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
-                _httpRequest.Content.Headers.ContentType =System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
-            }
-            // Send Request
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.SendRequest(_invocationId, _httpRequest);
-            }
-            cancellationToken.ThrowIfCancellationRequested();
-            _httpResponse = await HttpClient.SendAsync(_httpRequest, cancellationToken).ConfigureAwait(false);
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.ReceiveResponse(_invocationId, _httpResponse);
-            }
-            HttpStatusCode _statusCode = _httpResponse.StatusCode;
-            cancellationToken.ThrowIfCancellationRequested();
-            string _responseContent = null;
-            if ((int)_statusCode != 200)
-            {
-                var ex = new TestProxyResponseException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
-                try
-                {
-                    _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                    TestProxyResponse _errorBody =  SafeJsonConvert.DeserializeObject<TestProxyResponse>(_responseContent, DeserializationSettings);
-                    if (_errorBody != null)
-                    {
-                        ex.Body = _errorBody;
-                    }
-                }
-                catch (JsonException)
-                {
-                    // Ignore the exception
-                }
-                ex.Request = new HttpRequestMessageWrapper(_httpRequest, _requestContent);
-                ex.Response = new HttpResponseMessageWrapper(_httpResponse, _responseContent);
-                if (_shouldTrace)
-                {
-                    ServiceClientTracing.Error(_invocationId, ex);
-                }
-                _httpRequest.Dispose();
-                if (_httpResponse != null)
-                {
-                    _httpResponse.Dispose();
-                }
-                throw ex;
-            }
-            // Create Result
-            var _result = new HttpOperationResponse<TestProxyResponse>();
-            _result.Request = _httpRequest;
-            _result.Response = _httpResponse;
-            // Deserialize Response
-            if ((int)_statusCode == 200)
-            {
-                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
-                try
-                {
-                    _result.Body = SafeJsonConvert.DeserializeObject<TestProxyResponse>(_responseContent, DeserializationSettings);
-                }
-                catch (JsonException ex)
-                {
-                    _httpRequest.Dispose();
-                    if (_httpResponse != null)
-                    {
-                        _httpResponse.Dispose();
-                    }
-                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
-                }
-            }
-            if (_shouldTrace)
-            {
-                ServiceClientTracing.Exit(_invocationId, _result);
-            }
-            return _result;
-        }
-
-        /// <summary>
-        /// Gets a preview list about profiles that are currently in the system.
+        /// Gets a list of the profiles that are loaded in the current workspace.
         /// </summary>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -1798,7 +1651,9 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Returns a profile from the system.
+        /// Gets the profile with the specified ID from the current workspace. On
+        /// startup, Kameleo will automatically scan and load profiles stored in your
+        /// workspace folder.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -1930,9 +1785,10 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Removes profile from the system. When you are launching and stopping a big
-        /// number of profiles for example for scraping it is recommended to call this
-        /// after you have stopped the profile. This will free up disk space.
+        /// Irreversibly deletes a profile from the current workspace, freeing up disk
+        /// space and removing all associated data. It is recommended to create a
+        /// backup using the export function before deleting a profile, as this
+        /// operation is permanent and can result in data loss.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -2043,7 +1899,9 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Returns the current status of the profile.
+        /// Returns the current status information about a profile, including its save
+        /// state, lifetime state, and the connection port for profiles using an
+        /// external spoofing engine.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -2175,11 +2033,11 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Starts a profile. The browser will be launched. In case of mobile profiles
-        /// and external launcher types the external spoofing engine will be launched.
-        /// If successful, the profile's lifetime state will be 'running'. Otherwise
-        /// the profile's lifetime state will be 'terminated'. During the api call the
-        /// lifetime state can be 'starting' for a temporarily.
+        /// Starts the selected profile by transitioning its status to 'starting',
+        /// launching the browser engine associated with the profile, and then changing
+        /// its status to 'running'. If there is an error during start up, it will be
+        /// 'terminated'. You can use the launcher property to override the browser
+        /// engine before the first start.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -2311,12 +2169,11 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Starts a profile, for desktop profiles additional WebDriver settings can be
-        /// provided. The browser will be launched. In case of mobile profiles and
-        /// external launcher types the external spoofing engine will be launched.
-        /// If successful, the profile's lifetime state will be 'running'. Otherwise
-        /// the profile's lifetime state will be 'terminated'. During the api call the
-        /// lifetime state can be 'starting' for a temporarily.
+        /// Starts the selected profile with additional command line arguments or
+        /// browser profile options. The browser engine associated with the profile is
+        /// launched, and then the profile's status is changed to 'running'. If there
+        /// is an error during start-up, it will be 'terminated'. You can use the
+        /// launcher property to override the browser engine before the first start.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -2338,7 +2195,7 @@ namespace Kameleo.LocalApiClient
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<StatusResponse>> StartProfileWithWebDriverSettingsWithHttpMessagesAsync(System.Guid guid, WebDriverSettings body = default(WebDriverSettings), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<StatusResponse>> StartProfileWithOptionsWithHttpMessagesAsync(System.Guid guid, WebDriverSettings body = default(WebDriverSettings), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -2350,7 +2207,7 @@ namespace Kameleo.LocalApiClient
                 tracingParameters.Add("guid", guid);
                 tracingParameters.Add("body", body);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "StartProfileWithWebDriverSettings", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "StartProfileWithOptions", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
@@ -2457,11 +2314,9 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Stops a profile. The browsers will be stopped. In case of mobile profiles
-        /// and external launcher types the external spoofing engine will be stopped.
-        /// If successful, the profile's lifetime state will be 'terminated'. Otherwise
-        /// the profile's lifetime state will be 'running'. During the api call the
-        /// lifetime state can be 'terminating' for a temporarily.
+        /// Stops the selected profile and optionally releases resources. The browser
+        /// engine (desktop browsers or external spoofing engine) associated with the
+        /// profile is closed, and the profile's status is changed to 'terminated'.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -2593,9 +2448,11 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Saves a profile to a file. It will create a .kameleo file to the given
-        /// location. It will store all the profile settings, browsing data, cookies,
-        /// history, bookmarks, installed extension / addons. Later it can be reloaded.
+        /// Exports a profile to a file, creating a .kameleo file at the specified
+        /// location. This file encapsulates everything about the profile including
+        /// settings, browsing data, cookies, history, bookmarks, and any installed
+        /// extensions/addons. This allows for the profile to be loaded again at a
+        /// later time, and it can also be loaded into a different Kameleo instance.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -2617,7 +2474,7 @@ namespace Kameleo.LocalApiClient
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<ProfileResponse>> SaveProfileWithHttpMessagesAsync(System.Guid guid, SaveProfileRequest body = default(SaveProfileRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<ProfileResponse>> ExportProfileWithHttpMessagesAsync(System.Guid guid, ExportProfileRequest body = default(ExportProfileRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (body != null)
             {
@@ -2633,11 +2490,11 @@ namespace Kameleo.LocalApiClient
                 tracingParameters.Add("guid", guid);
                 tracingParameters.Add("body", body);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "SaveProfile", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "ExportProfile", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "profiles/{guid}/save").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "profiles/{guid}/export").ToString();
             _url = _url.Replace("{guid}", System.Uri.EscapeDataString(SafeJsonConvert.SerializeObject(guid, SerializationSettings).Trim('"')));
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
@@ -2740,10 +2597,10 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Creates a duplicate of a loaded profile in memory. The created profile
-        /// contains all the profile settings, browsing data, cookies, history,
-        /// bookmarks and installed extensions. This operation does not perform any
-        /// filesystem activity and will not affect your existing profile.
+        /// Creates a copy of the loaded profile, which is saved to the workspace on
+        /// the filesystem. The duplicated profile will have a new ID, but will retain
+        /// all the settings, browsing data, cookies, history, bookmarks, and installed
+        /// extensions of the original profile.
         /// </summary>
         /// <param name='guid'>
         /// The unique identifier of the profile
@@ -2875,9 +2732,10 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Loads a profile from a file. It will load the profile from a .kameleo file.
-        /// It will load all the profile settings, browsing data, cookies, history,
-        /// bookmarks, installed extension / addons.
+        /// Imports a profile from a .kameleo file, effectively recreating the profile
+        /// with all its attributes, including settings, browsing data, cookies,
+        /// history, bookmarks, and any installed extensions/addons. If the profile is
+        /// already loaded, the import process will fail.
         /// </summary>
         /// <param name='body'>
         /// </param>
@@ -2896,7 +2754,7 @@ namespace Kameleo.LocalApiClient
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<ProfileResponse>> LoadProfileWithHttpMessagesAsync(LoadProfileRequest body = default(LoadProfileRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<ProfileResponse>> ImportProfileWithHttpMessagesAsync(ImportProfileRequest body = default(ImportProfileRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (body != null)
             {
@@ -2911,11 +2769,11 @@ namespace Kameleo.LocalApiClient
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("body", body);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "LoadProfile", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "ImportProfile", tracingParameters);
             }
             // Construct URL
             var _baseUrl = BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "profiles/load").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "profiles/import").ToString();
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -3017,9 +2875,10 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// Upgrades the profile to the latest available browser version from the
-        /// server. The exact target of the upgrade depends on the profile's current
-        /// device, browser, operating system, and language settings.
+        /// Upgrades the profile to the most recent browser version available from the
+        /// server, tailored to the profile's current device, browser, operating
+        /// system, and language settings. Note that upgrading a profile will alter its
+        /// browser fingerprint.
         /// </summary>
         /// <param name='guid'>
         /// </param>

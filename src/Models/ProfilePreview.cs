@@ -34,22 +34,18 @@ namespace Kameleo.LocalApiClient.Models
         /// <param name="createdAt">Date when the profile was created.</param>
         /// <param name="language">Language of the profile. This is derived
         /// from the base profile. Using ISO 639-1 language codes.</param>
-        /// <param name="launcher">The mode how the profile should be launched.
-        /// It determines which browser to launch. This cannot be modified
-        /// after creation. Possible values are 'automatic', 'chrome',
-        /// 'chromium', 'firefox', 'edge', 'external'</param>
-        /// <param name="lastKnownPath">An absolute path where the related
-        /// .kameleo profile file was accessed lastly. This is updated when a
-        /// profile is saved to a .kameleo file, or loaded from a .kameleo
-        /// file.</param>
-        public ProfilePreview(System.Guid id, string name, IList<string> tags, ProxyConnectionTypeServerMultiLevelChoice proxy, System.DateTime createdAt, Device device, Os os, Browser browser, string language, string launcher, StatusResponse status, string lastKnownPath = default(string))
+        /// <param name="launcher">This setting determines which browser engine
+        /// is launched when a profile is started. This can be modified only
+        /// before the first start. Possible values for Desktop profiles:
+        /// 'automatic'. Possible values for Mobile proiles: 'chromium',
+        /// 'external'.</param>
+        public ProfilePreview(System.Guid id, string name, IList<string> tags, ProxyConnectionTypeServerMultiLevelChoice proxy, System.DateTime createdAt, Device device, Os os, Browser browser, string language, string launcher, StatusResponse status)
         {
             Id = id;
             Name = name;
             Tags = tags;
             Proxy = proxy;
             CreatedAt = createdAt;
-            LastKnownPath = lastKnownPath;
             Device = device;
             Os = os;
             Browser = browser;
@@ -94,14 +90,6 @@ namespace Kameleo.LocalApiClient.Models
         public System.DateTime CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or sets an absolute path where the related .kameleo profile
-        /// file was accessed lastly. This is updated when a profile is saved
-        /// to a .kameleo file, or loaded from a .kameleo file.
-        /// </summary>
-        [JsonProperty(PropertyName = "lastKnownPath")]
-        public string LastKnownPath { get; set; }
-
-        /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "device")]
         public Device Device { get; set; }
@@ -124,10 +112,11 @@ namespace Kameleo.LocalApiClient.Models
         public string Language { get; set; }
 
         /// <summary>
-        /// Gets or sets the mode how the profile should be launched. It
-        /// determines which browser to launch. This cannot be modified after
-        /// creation. Possible values are 'automatic', 'chrome', 'chromium',
-        /// 'firefox', 'edge', 'external'
+        /// Gets or sets this setting determines which browser engine is
+        /// launched when a profile is started. This can be modified only
+        /// before the first start. Possible values for Desktop profiles:
+        /// 'automatic'. Possible values for Mobile proiles: 'chromium',
+        /// 'external'.
         /// </summary>
         [JsonProperty(PropertyName = "launcher")]
         public string Launcher { get; set; }

@@ -11,24 +11,24 @@ namespace Kameleo.LocalApiClient.Models
     using System.Linq;
 
     /// <summary>
-    /// Tells where the profile should be saved
+    /// Tells where the profile should be exported.
     /// </summary>
-    public partial class SaveProfileRequest
+    public partial class ExportProfileRequest
     {
         /// <summary>
-        /// Initializes a new instance of the SaveProfileRequest class.
+        /// Initializes a new instance of the ExportProfileRequest class.
         /// </summary>
-        public SaveProfileRequest()
+        public ExportProfileRequest()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the SaveProfileRequest class.
+        /// Initializes a new instance of the ExportProfileRequest class.
         /// </summary>
         /// <param name="path">The path where the profile should be
-        /// saved.</param>
-        public SaveProfileRequest(string path)
+        /// exported.</param>
+        public ExportProfileRequest(string path)
         {
             Path = path;
             CustomInit();
@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the path where the profile should be saved.
+        /// Gets or sets the path where the profile should be exported.
         /// </summary>
         [JsonProperty(PropertyName = "path")]
         public string Path { get; set; }

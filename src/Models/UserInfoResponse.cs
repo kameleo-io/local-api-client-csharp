@@ -39,7 +39,9 @@ namespace Kameleo.LocalApiClient.Models
         /// immediately.</param>
         /// <param name="lastAppLogin">The last date when the user
         /// authenticated by the app.</param>
-        public UserInfoResponse(System.Guid userId, string email, bool emailConfirmed, System.DateTime subscriptionEnd, IList<string> capabilities, bool gracePeriod, System.DateTime? lastAppLogin = default(System.DateTime?))
+        /// <param name="workspaceFolder">The user's workspace folder path
+        /// where the profiles are stored.</param>
+        public UserInfoResponse(System.Guid userId, string email, bool emailConfirmed, System.DateTime subscriptionEnd, IList<string> capabilities, bool gracePeriod, System.DateTime? lastAppLogin = default(System.DateTime?), string workspaceFolder = default(string))
         {
             UserId = userId;
             Email = email;
@@ -48,6 +50,7 @@ namespace Kameleo.LocalApiClient.Models
             Capabilities = capabilities;
             GracePeriod = gracePeriod;
             LastAppLogin = lastAppLogin;
+            WorkspaceFolder = workspaceFolder;
             CustomInit();
         }
 
@@ -101,6 +104,13 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "lastAppLogin")]
         public System.DateTime? LastAppLogin { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user's workspace folder path where the profiles
+        /// are stored.
+        /// </summary>
+        [JsonProperty(PropertyName = "workspaceFolder")]
+        public string WorkspaceFolder { get; set; }
 
         /// <summary>
         /// Validate the object.
