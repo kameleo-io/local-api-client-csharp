@@ -37,7 +37,7 @@ namespace Kameleo.LocalApiClient.Models
         /// <param name="launcher">This setting determines which browser engine
         /// is launched when a profile is started. This can be modified only
         /// before the first start. Possible values for Desktop profiles:
-        /// 'automatic'. Possible values for Mobile proiles: 'chromium',
+        /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.</param>
         public ProfilePreview(System.Guid id, string name, IList<string> tags, ProxyConnectionTypeServerMultiLevelChoice proxy, System.DateTime createdAt, Device device, Os os, Browser browser, string language, string launcher, StatusResponse status)
         {
@@ -115,7 +115,7 @@ namespace Kameleo.LocalApiClient.Models
         /// Gets or sets this setting determines which browser engine is
         /// launched when a profile is started. This can be modified only
         /// before the first start. Possible values for Desktop profiles:
-        /// 'automatic'. Possible values for Mobile proiles: 'chromium',
+        /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.
         /// </summary>
         [JsonProperty(PropertyName = "launcher")]

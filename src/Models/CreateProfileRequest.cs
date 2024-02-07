@@ -52,9 +52,9 @@ namespace Kameleo.LocalApiClient.Models
         /// <param name="launcher">This setting determines which browser engine
         /// is launched when a profile is started. This can be modified only
         /// before the first start. Possible values for Desktop profiles:
-        /// 'automatic'. Possible values for Mobile proiles: 'chromium',
+        /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.</param>
-        public CreateProfileRequest(string baseProfileId, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string passwordManager, string name = default(string), IList<string> tags = default(IList<string>), string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), string launcher = default(string))
+        public CreateProfileRequest(string baseProfileId, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string passwordManager, string name = default(string), IList<string> tags = default(IList<string>), HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency = default(HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice), string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), string launcher = default(string))
         {
             BaseProfileId = baseProfileId;
             Name = name;
@@ -69,6 +69,7 @@ namespace Kameleo.LocalApiClient.Models
             WebRtc = webRtc;
             Fonts = fonts;
             Screen = screen;
+            HardwareConcurrency = hardwareConcurrency;
             StartPage = startPage;
             PasswordManager = passwordManager;
             Extensions = extensions;
@@ -160,6 +161,11 @@ namespace Kameleo.LocalApiClient.Models
         public ScreenSpoofingTypeScreenSizeMultiLevelChoice Screen { get; set; }
 
         /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "hardwareConcurrency")]
+        public HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice HardwareConcurrency { get; set; }
+
+        /// <summary>
         /// Gets or sets this website will be opened in the browser when the
         /// profile launches.
         /// </summary>
@@ -191,7 +197,7 @@ namespace Kameleo.LocalApiClient.Models
         /// Gets or sets this setting determines which browser engine is
         /// launched when a profile is started. This can be modified only
         /// before the first start. Possible values for Desktop profiles:
-        /// 'automatic'. Possible values for Mobile proiles: 'chromium',
+        /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.
         /// </summary>
         [JsonProperty(PropertyName = "launcher")]
@@ -287,6 +293,10 @@ namespace Kameleo.LocalApiClient.Models
             if (Screen != null)
             {
                 Screen.Validate();
+            }
+            if (HardwareConcurrency != null)
+            {
+                HardwareConcurrency.Validate();
             }
         }
     }

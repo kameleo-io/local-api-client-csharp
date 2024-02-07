@@ -32,7 +32,6 @@ namespace Kameleo.LocalApiClient
             return result;
         }
 
-
         /// <summary>
         /// Sets the name of the profile.
         /// </summary>
@@ -241,6 +240,20 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
+        /// <para>Tells the mode how the HardwareConcurrency will be spoofed. Possible values:</para>
+        /// <para>'automatic': Automatically override the HardwareConcurrency based on the Base Profile.</para>
+        /// <para>'manual': Manually override the HardwareConcurrency. Valid values: 1,2,4,8,16.</para>
+        /// <para>'off': Turn off the spoofing, use the original settings.</para>
+        /// </summary>
+        public BuilderForCreateProfile SetHardwareConcurrency(string value, int? options = null)
+        {
+            _profileRequest.HardwareConcurrency.Value = value;
+            _profileRequest.HardwareConcurrency.Extra = options;
+
+            return this;
+        }
+
+        /// <summary>
         /// A list of abolute paths from where the profile should load extensions or addons when starting the browser. For chrome and edge use CRX3 format extensions. For firefox use signed xpi format addons.
         /// </summary>
         public BuilderForCreateProfile SetExtensions(IList<string> absolutePaths)
@@ -288,6 +301,7 @@ namespace Kameleo.LocalApiClient
             _profileRequest.WebRtc.Value = "automatic";
             _profileRequest.Screen.Value = "automatic";
             _profileRequest.Fonts.Value = "enabled";
+            _profileRequest.HardwareConcurrency.Value = "automatic";
             _profileRequest.Launcher = "automatic";
 
             return this;
@@ -308,6 +322,7 @@ namespace Kameleo.LocalApiClient
                 WebRtc = new WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice("off"),
                 Fonts = new FontSpoofingTypeFontIListMultiLevelChoice("disabled"),
                 Screen = new ScreenSpoofingTypeScreenSizeMultiLevelChoice("off"),
+                HardwareConcurrency = new HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice("off"),
                 PasswordManager = "disabled",
             };
         }

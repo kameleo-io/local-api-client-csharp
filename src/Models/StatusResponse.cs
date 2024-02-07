@@ -29,7 +29,8 @@ namespace Kameleo.LocalApiClient.Models
         /// <param name="persistenceState">Possible values include: 'unsaved',
         /// 'saved'</param>
         /// <param name="lifetimeState">Possible values include: 'created',
-        /// 'starting', 'running', 'terminating', 'terminated'</param>
+        /// 'starting', 'running', 'terminating', 'terminated',
+        /// 'unknown'</param>
         /// <param name="externalSpoofingEnginePort">In case of running
         /// profiles which use an external browser this shows the connection
         /// port (for mobile profiles as well).</param>
@@ -54,7 +55,7 @@ namespace Kameleo.LocalApiClient.Models
 
         /// <summary>
         /// Gets or sets possible values include: 'created', 'starting',
-        /// 'running', 'terminating', 'terminated'
+        /// 'running', 'terminating', 'terminated', 'unknown'
         /// </summary>
         [JsonProperty(PropertyName = "lifetimeState")]
         public string LifetimeState { get; set; }
