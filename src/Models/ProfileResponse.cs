@@ -50,9 +50,9 @@ namespace Kameleo.LocalApiClient.Models
         /// <param name="launcher">This setting determines which browser engine
         /// is launched when a profile is started. This can be modified only
         /// before the first start. Possible values for Desktop profiles:
-        /// 'automatic'. Possible values for Mobile proiles: 'chromium',
+        /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.</param>
-        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status)
+        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status)
         {
             Id = id;
             Name = name;
@@ -69,6 +69,7 @@ namespace Kameleo.LocalApiClient.Models
             WebRtc = webRtc;
             Fonts = fonts;
             Screen = screen;
+            HardwareConcurrency = hardwareConcurrency;
             StartPage = startPage;
             PasswordManager = passwordManager;
             Extensions = extensions;
@@ -169,6 +170,11 @@ namespace Kameleo.LocalApiClient.Models
         public ScreenSpoofingTypeScreenSizeMultiLevelChoice Screen { get; set; }
 
         /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "hardwareConcurrency")]
+        public HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice HardwareConcurrency { get; set; }
+
+        /// <summary>
         /// Gets or sets this website will be opened in the browser when the
         /// profile launches.
         /// </summary>
@@ -199,7 +205,7 @@ namespace Kameleo.LocalApiClient.Models
         /// Gets or sets this setting determines which browser engine is
         /// launched when a profile is started. This can be modified only
         /// before the first start. Possible values for Desktop profiles:
-        /// 'automatic'. Possible values for Mobile proiles: 'chromium',
+        /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.
         /// </summary>
         [JsonProperty(PropertyName = "launcher")]
@@ -270,6 +276,10 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Screen");
             }
+            if (HardwareConcurrency == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "HardwareConcurrency");
+            }
             if (StartPage == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "StartPage");
@@ -325,6 +335,10 @@ namespace Kameleo.LocalApiClient.Models
             if (Screen != null)
             {
                 Screen.Validate();
+            }
+            if (HardwareConcurrency != null)
+            {
+                HardwareConcurrency.Validate();
             }
             if (Status != null)
             {
