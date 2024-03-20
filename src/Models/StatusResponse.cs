@@ -27,9 +27,9 @@ namespace Kameleo.LocalApiClient.Models
         /// Initializes a new instance of the StatusResponse class.
         /// </summary>
         /// <param name="persistenceState">Possible values include: 'unsaved',
-        /// 'saved'</param>
+        /// 'saved', 'syncing'</param>
         /// <param name="lifetimeState">Possible values include: 'created',
-        /// 'starting', 'running', 'terminating', 'terminated',
+        /// 'starting', 'running', 'terminating', 'terminated', 'locked',
         /// 'unknown'</param>
         /// <param name="externalSpoofingEnginePort">In case of running
         /// profiles which use an external browser this shows the connection
@@ -48,14 +48,14 @@ namespace Kameleo.LocalApiClient.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets possible values include: 'unsaved', 'saved'
+        /// Gets or sets possible values include: 'unsaved', 'saved', 'syncing'
         /// </summary>
         [JsonProperty(PropertyName = "persistenceState")]
         public string PersistenceState { get; set; }
 
         /// <summary>
         /// Gets or sets possible values include: 'created', 'starting',
-        /// 'running', 'terminating', 'terminated', 'unknown'
+        /// 'running', 'terminating', 'terminated', 'locked', 'unknown'
         /// </summary>
         [JsonProperty(PropertyName = "lifetimeState")]
         public string LifetimeState { get; set; }

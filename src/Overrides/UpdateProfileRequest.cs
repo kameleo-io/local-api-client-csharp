@@ -18,6 +18,7 @@ namespace Kameleo.LocalApiClient.Models
                 profile.HardwareConcurrency,
                 profile.PasswordManager,
                 profile.Name,
+                profile.DeviceMemory,
                 profile.StartPage,
                 profile.Extensions,
                 profile.Notes,
