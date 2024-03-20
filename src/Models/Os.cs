@@ -23,12 +23,13 @@ namespace Kameleo.LocalApiClient.Models
         /// <summary>
         /// Initializes a new instance of the Os class.
         /// </summary>
-        /// <param name="family">Family of the OS. Possible values are
-        /// 'windows', 'macos', 'linux', 'android', 'ios'.</param>
-        /// <param name="version">Version of the OS. For example it helps you
-        /// determine the exact version of the macOS.</param>
-        /// <param name="platform">Platform of the OS. Tells if it runs on 64
-        /// bit or 32 bit or some other processor platform.</param>
+        /// <param name="family">Specifies the operating system family.
+        /// Possible values are 'windows', 'macos', 'linux', 'android',
+        /// 'ios'.</param>
+        /// <param name="version">The specific version of the OS. For example
+        /// it helps you determine the exact version of the macOS.</param>
+        /// <param name="platform">The OS's platform, indicating the processor
+        /// architecture (e.g., 64-bit, 32-bit)</param>
         public Os(string family, string version, string platform)
         {
             Family = family;
@@ -43,22 +44,22 @@ namespace Kameleo.LocalApiClient.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets family of the OS. Possible values are 'windows',
-        /// 'macos', 'linux', 'android', 'ios'.
+        /// Gets or sets specifies the operating system family. Possible values
+        /// are 'windows', 'macos', 'linux', 'android', 'ios'.
         /// </summary>
         [JsonProperty(PropertyName = "family")]
         public string Family { get; set; }
 
         /// <summary>
-        /// Gets or sets version of the OS. For example it helps you determine
-        /// the exact version of the macOS.
+        /// Gets or sets the specific version of the OS. For example it helps
+        /// you determine the exact version of the macOS.
         /// </summary>
         [JsonProperty(PropertyName = "version")]
         public string Version { get; set; }
 
         /// <summary>
-        /// Gets or sets platform of the OS. Tells if it runs on 64 bit or 32
-        /// bit or some other processor platform.
+        /// Gets or sets the OS's platform, indicating the processor
+        /// architecture (e.g., 64-bit, 32-bit)
         /// </summary>
         [JsonProperty(PropertyName = "platform")]
         public string Platform { get; set; }

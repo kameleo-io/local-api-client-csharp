@@ -55,8 +55,9 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Tells the mode how the canvas will be spoofed. Possible values:</para>
-        /// <para>'noise': Add some noise to the Canvas generation.</para>
+        /// <para>Specifies how the canvas will be spoofed. Possible values:</para>
+        /// <para>'intelligent': Use intelligent canvas spoofing. This will result non-unique canvas fingerprints.</para>
+        /// <para>'noise': Add some noise to canvas generation.</para>
         /// <para>'block': Completely block the 2D API.</para>
         /// <para>'off': Turn off the spoofing, use the original settings.</para>
         /// </summary>
@@ -83,7 +84,7 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Tells the mode how the WebGL vendor and renderer will be spoofed. Possible values:</para>
+        /// <para>Specifies how the WebGL vendor and renderer will be spoofed. Possible values:</para>
         /// <para>'automatic': The vendor and renderer values comes from the base profile.</para>
         /// <para>'manual': Manually set the vendor and renderer values.</para>
         /// <para>'off': Turn off the spoofing, use the original settings.</para>
@@ -100,7 +101,7 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Tells the mode how the audio will be spoofed. Possible values:</para>
+        /// <para>Specifies how the audio will be spoofed. Possible values:</para>
         /// <para>'noise': Add some noise to the Audio generation.</para>
         /// <para>'block': Completely block the Audio API.</para>
         /// <para>'off': Turn off the spoofing, use the original settings.</para>
@@ -113,7 +114,7 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Tells the mode how the Timezone will be spoofed. Possble values:</para>
+        /// <para>Specifies how the Timezone will be spoofed. Possble values:</para>
         /// <para>'automatic': Timezone is automatically set by the IP</para>
         /// <para>'manual': Timezone is manually overridden in the profile</para>
         /// <para>'off': Turn off the spoofing, use the original settings</para>
@@ -131,10 +132,10 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Tells the mode how the Geolocation will be spoofed. Possible values:</para>
+        /// <para>Specifies how the Geolocation will be spoofed. Possible values:</para>
         /// <para>'automatic': Automatically set the values based on the IP address</para>
         /// <para>'manual': Manually set the longitude and latitude in the profile</para>
-        /// <para>'block': Completely block the GeolocationAPI</para>
+        /// <para>'block': Completely block the Geolocation API</para>
         /// <para>'off': Turn off the spoofing, use the original settings</para>
         /// </summary>
         /// <param name="value">Values can be 'automatic', 'manual', 'off'.</param>
@@ -163,7 +164,7 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Tells the mode how the WebRTC will be spoofed. Possible values:</para>
+        /// <para>Specifies how WebRTC will be spoofed. Possible values:</para>
         /// <para>'automatic': Automatically set the webRTC public IP by the IP, and generates a random private IP like '2d2f78e7-1b1e-4345-a21b-07c904c98394.local'</para>
         /// <para>'manual': Manually override the webRTC public IP and private IP in the profile</para>
         /// <para>'block': Block the WebRTC functionality</para>
@@ -179,7 +180,7 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Tells the mode how the Fonts will be spoofed. Possible values:</para>
+        /// <para>Specifies how the Fonts will be spoofed. Possible values:</para>
         /// <para>'enabled': Enable fonts spoofing. A list can be provided to override the fonts coming from the base profile.</para>
         /// <para>'disable': Disable fonts spoofing.</para>
         /// </summary>
@@ -218,7 +219,7 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Tells the mode how the screen will be spoofed. Possible values:</para>
+        /// <para>Specifies how the screen will be spoofed. Possible values:</para>
         /// <para>'automatic': Automatically override the screen resolution based on the Base Profile.</para>
         /// <para>'manual': Manually override the screen resolution.</para>
         /// <para>'off': Turn off the spoofing, use the original settings.</para>
@@ -240,7 +241,7 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Tells the mode how the HardwareConcurrency will be spoofed. Possible values:</para>
+        /// <para>Specifies how the HardwareConcurrency will be spoofed. Possible values:</para>
         /// <para>'automatic': Automatically override the HardwareConcurrency based on the Base Profile.</para>
         /// <para>'manual': Manually override the HardwareConcurrency. Valid values: 1,2,4,8,16.</para>
         /// <para>'off': Turn off the spoofing, use the original settings.</para>
@@ -249,6 +250,20 @@ namespace Kameleo.LocalApiClient
         {
             _profileRequest.HardwareConcurrency.Value = value;
             _profileRequest.HardwareConcurrency.Extra = options;
+
+            return this;
+        }
+
+        /// <summary>
+        /// <para>Specifies how the DeviceMemory will be spoofed. Possible values:</para>
+        /// <para>'automatic': Automatically override the DeviceMemory based on the Base Profile.</para>
+        /// <para>'manual': Manually override the DeviceMemory. Valid values: 0.25, 0.5, 1, 2, 4, 8.</para>
+        /// <para>'off': Turn off the spoofing, use the original settings.</para>
+        /// </summary>
+        public BuilderForCreateProfile SetDeviceMemory(string value, double? options = null)
+        {
+            _profileRequest.DeviceMemory.Value = value;
+            _profileRequest.DeviceMemory.Extra = options;
 
             return this;
         }
@@ -302,6 +317,7 @@ namespace Kameleo.LocalApiClient
             _profileRequest.Screen.Value = "automatic";
             _profileRequest.Fonts.Value = "enabled";
             _profileRequest.HardwareConcurrency.Value = "automatic";
+            _profileRequest.DeviceMemory.Value = "automatic";
             _profileRequest.Launcher = "automatic";
 
             return this;
@@ -323,6 +339,7 @@ namespace Kameleo.LocalApiClient
                 Fonts = new FontSpoofingTypeFontIListMultiLevelChoice("disabled"),
                 Screen = new ScreenSpoofingTypeScreenSizeMultiLevelChoice("off"),
                 HardwareConcurrency = new HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice("off"),
+                DeviceMemory = new DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice("off"),
                 PasswordManager = "disabled",
             };
         }

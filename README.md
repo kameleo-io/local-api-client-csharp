@@ -1,5 +1,3 @@
-<img src="docs/kameleo-logo.png" width="150" align="right" />
-
 # Kameleo Local API Client
 With [Kameleo](https://kameleo.io), you can easily create multiple virtual browser profiles to work with multiple accounts. It helps you hide your actual timezone, geolocation, language, IP address and creates natural browser fingerprints to prevent detection by anti-bot systems. Kameleo is compatible with [Selenium](https://www.selenium.dev/), [Playwright](https://playwright.dev/), and [Puppeteer](https://pptr.dev/) frameworks for automating web scraping tasks. This .NET Standard package provides convenient access to the [Local API](https://app.swaggerhub.com/apis/kameleo-team/kameleo-local-api/) REST interface of the Kameleo Client.  See the [article](https://help.kameleo.io/hc/en-us/articles/4418166326417) in our knowledge base for Getting Started with Kameleo Automation.
 
@@ -52,7 +50,9 @@ namespace Kameleo.QuickstartGuide
             client.SetRetryPolicy(null);
 
             // Search Chrome Base Profiles
-            var baseProfiles = await client.SearchBaseProfilesAsync(deviceType: "desktop", browserProduct: "chrome");
+            var baseProfiles = await client.SearchBaseProfilesAsync(
+                deviceType: "desktop",
+                browserProduct: "chrome");
 
             // Create a new profile with recommended settings
             // for browser fingerprint protection
@@ -83,12 +83,13 @@ using OpenQA.Selenium.Remote;
 
 ```csharp
 const int KameleoPort = 5050;
+
 // Connect to the running browser instance using WebDriver
 var uri = new Uri($"http://localhost:{KameleoPort}/webdriver");
 var opts = new ChromeOptions();
 opts.AddAdditionalOption("kameleo:profileId", profile.Id.ToString());
-var webdriver = new RemoteWebDriver(uri, opts);
 
+var webdriver = new RemoteWebDriver(uri, opts);
 
 // Use any WebDriver command to drive the browser
 // and enjoy full protection from bot detection products
@@ -109,8 +110,12 @@ using PuppeteerSharp;
 ```csharp
 // Connect to the browser through CDP
 const int KameleoPort = 5050;
+
 var browserWsEndpoint = $"ws://localhost:{KameleoPort}/puppeteer/{profile.Id}";
-var browser = await Puppeteer.ConnectAsync(new ConnectOptions { BrowserWSEndpoint = browserWsEndpoint, DefaultViewport = null });
+var browser = await Puppeteer.ConnectAsync(new ConnectOptions {
+    BrowserWSEndpoint = browserWsEndpoint,
+    DefaultViewport = null });
+
 var page = await browser.NewPageAsync();
 
 // Use any Puppeteer command to drive the browser
@@ -136,6 +141,7 @@ You can find more details here: [Using Kameleo with Playwright framework – Kam
 ```csharp
 // Connect to the browser with Playwright through CDP
 const int KameleoPort = 5050;
+
 var browserWsEndpoint = $"ws://localhost:{KameleoPort}/playwright/{profile.Id}";
 var playwright = await Playwright.CreateAsync();
 var browser = await playwright.Chromium.ConnectOverCDPAsync(browserWsEndpoint);
@@ -158,6 +164,7 @@ The full example can be found [here](https://github.com/kameleo-io/local-api-exa
 ```csharp
 // Connect to the browser with Playwright
 const int KameleoPort = 5050;
+
 var browserWsEndpoint = $"ws://localhost:{KameleoPort}/playwright/{profile.Id}";
 var playwright = await Playwright.CreateAsync();
 // The exact path to the bridge executable is subject to change. Here, we use %LOCALAPPDATA%\Programs\Kameleo\pw-bridge.exe
@@ -198,7 +205,7 @@ var baseProfileList = await client.SearchBaseProfilesAsync(
 
 // Create a new profile with recommended settings
 // Choose one of the Base Profiles
-// Set the launcher to 'chromium' so the mobile profile will be started in Chromium by Kameleo
+// Set the launcher to 'chromium' so the mobile profile will be started in Chroma browser
 var createProfileRequest = BuilderForCreateProfile
 	.ForBaseProfile(baseProfileList[0].Id)
 	.SetRecommendedDefaults()

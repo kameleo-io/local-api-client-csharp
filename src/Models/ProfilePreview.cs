@@ -39,7 +39,9 @@ namespace Kameleo.LocalApiClient.Models
         /// before the first start. Possible values for Desktop profiles:
         /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.</param>
-        public ProfilePreview(System.Guid id, string name, IList<string> tags, ProxyConnectionTypeServerMultiLevelChoice proxy, System.DateTime createdAt, Device device, Os os, Browser browser, string language, string launcher, StatusResponse status)
+        /// <param name="storage">Possible values include: 'local',
+        /// 'cloud'</param>
+        public ProfilePreview(System.Guid id, string name, IList<string> tags, ProxyConnectionTypeServerMultiLevelChoice proxy, System.DateTime createdAt, Device device, Os os, Browser browser, string language, string launcher, StatusResponse status, string storage = default(string))
         {
             Id = id;
             Name = name;
@@ -52,6 +54,7 @@ namespace Kameleo.LocalApiClient.Models
             Language = language;
             Launcher = launcher;
             Status = status;
+            Storage = storage;
             CustomInit();
         }
 
@@ -125,6 +128,12 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "status")]
         public StatusResponse Status { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'local', 'cloud'
+        /// </summary>
+        [JsonProperty(PropertyName = "storage")]
+        public string Storage { get; set; }
 
         /// <summary>
         /// Validate the object.
