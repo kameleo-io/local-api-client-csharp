@@ -41,7 +41,7 @@ namespace Kameleo.LocalApiClient.Models
         /// authenticated by the app.</param>
         /// <param name="workspaceFolder">The user's workspace folder path
         /// where the profiles are stored.</param>
-        public UserInfoResponse(System.Guid userId, string email, bool emailConfirmed, System.DateTime subscriptionEnd, IList<string> capabilities, bool gracePeriod, System.DateTime? lastAppLogin = default(System.DateTime?), string workspaceFolder = default(string))
+        public UserInfoResponse(System.Guid userId, string email, bool emailConfirmed, System.DateTime subscriptionEnd, IList<string> capabilities, bool gracePeriod, System.DateTime lastAppLogin, string workspaceFolder, QuotaStatistics localStorage, QuotaStatistics cloudStorage)
         {
             UserId = userId;
             Email = email;
@@ -51,6 +51,8 @@ namespace Kameleo.LocalApiClient.Models
             GracePeriod = gracePeriod;
             LastAppLogin = lastAppLogin;
             WorkspaceFolder = workspaceFolder;
+            LocalStorage = localStorage;
+            CloudStorage = cloudStorage;
             CustomInit();
         }
 
@@ -103,7 +105,7 @@ namespace Kameleo.LocalApiClient.Models
         /// Gets or sets the last date when the user authenticated by the app.
         /// </summary>
         [JsonProperty(PropertyName = "lastAppLogin")]
-        public System.DateTime? LastAppLogin { get; set; }
+        public System.DateTime LastAppLogin { get; set; }
 
         /// <summary>
         /// Gets or sets the user's workspace folder path where the profiles
@@ -111,6 +113,16 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "workspaceFolder")]
         public string WorkspaceFolder { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "localStorage")]
+        public QuotaStatistics LocalStorage { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "cloudStorage")]
+        public QuotaStatistics CloudStorage { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -127,6 +139,26 @@ namespace Kameleo.LocalApiClient.Models
             if (Capabilities == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Capabilities");
+            }
+            if (WorkspaceFolder == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "WorkspaceFolder");
+            }
+            if (LocalStorage == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "LocalStorage");
+            }
+            if (CloudStorage == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "CloudStorage");
+            }
+            if (LocalStorage != null)
+            {
+                LocalStorage.Validate();
+            }
+            if (CloudStorage != null)
+            {
+                CloudStorage.Validate();
             }
         }
     }

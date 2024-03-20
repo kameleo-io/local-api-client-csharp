@@ -48,12 +48,14 @@ namespace Kameleo.LocalApiClient.Models
         /// <param name="notes">A free text including any notes written by the
         /// user.</param>
         /// <param name="tags">Profile tags</param>
+        /// <param name="storage">Possible values include: 'local',
+        /// 'cloud'</param>
         /// <param name="launcher">This setting determines which browser engine
         /// is launched when a profile is started. This can be modified only
         /// before the first start. Possible values for Desktop profiles:
         /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.</param>
-        public UpdateProfileRequest(string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, string passwordManager, string name, string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), IList<string> tags = default(IList<string>), string launcher = default(string))
+        public UpdateProfileRequest(string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, string passwordManager, string name, DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice deviceMemory = default(DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice), string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), IList<string> tags = default(IList<string>), string storage = default(string), string launcher = default(string))
         {
             Canvas = canvas;
             Webgl = webgl;
@@ -66,12 +68,14 @@ namespace Kameleo.LocalApiClient.Models
             Fonts = fonts;
             Screen = screen;
             HardwareConcurrency = hardwareConcurrency;
+            DeviceMemory = deviceMemory;
             StartPage = startPage;
             PasswordManager = passwordManager;
             Extensions = extensions;
             Notes = notes;
             Name = name;
             Tags = tags;
+            Storage = storage;
             Launcher = launcher;
             CustomInit();
         }
@@ -141,6 +145,11 @@ namespace Kameleo.LocalApiClient.Models
         public HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice HardwareConcurrency { get; set; }
 
         /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "deviceMemory")]
+        public DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice DeviceMemory { get; set; }
+
+        /// <summary>
         /// Gets or sets this website will be opened in the browser when the
         /// profile launches.
         /// </summary>
@@ -184,6 +193,12 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "tags")]
         public IList<string> Tags { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'local', 'cloud'
+        /// </summary>
+        [JsonProperty(PropertyName = "storage")]
+        public string Storage { get; set; }
 
         /// <summary>
         /// Gets or sets this setting determines which browser engine is
@@ -286,6 +301,10 @@ namespace Kameleo.LocalApiClient.Models
             if (HardwareConcurrency != null)
             {
                 HardwareConcurrency.Validate();
+            }
+            if (DeviceMemory != null)
+            {
+                DeviceMemory.Validate();
             }
             if (Name != null)
             {

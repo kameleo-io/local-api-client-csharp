@@ -11,7 +11,7 @@ namespace Kameleo.LocalApiClient.Models
     using System.Linq;
 
     /// <summary>
-    /// Tells where the profile should be exported.
+    /// Defines the target location for profile export.
     /// </summary>
     public partial class ExportProfileRequest
     {
@@ -26,8 +26,8 @@ namespace Kameleo.LocalApiClient.Models
         /// <summary>
         /// Initializes a new instance of the ExportProfileRequest class.
         /// </summary>
-        /// <param name="path">The path where the profile should be
-        /// exported.</param>
+        /// <param name="path">Specifies the file path for exporting the
+        /// profile.</param>
         public ExportProfileRequest(string path)
         {
             Path = path;
@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the path where the profile should be exported.
+        /// Gets or sets specifies the file path for exporting the profile.
         /// </summary>
         [JsonProperty(PropertyName = "path")]
         public string Path { get; set; }

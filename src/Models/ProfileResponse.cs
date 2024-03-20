@@ -52,7 +52,9 @@ namespace Kameleo.LocalApiClient.Models
         /// before the first start. Possible values for Desktop profiles:
         /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.</param>
-        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status)
+        /// <param name="storage">Possible values include: 'local',
+        /// 'cloud'</param>
+        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice deviceMemory, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, string storage = default(string))
         {
             Id = id;
             Name = name;
@@ -70,12 +72,14 @@ namespace Kameleo.LocalApiClient.Models
             Fonts = fonts;
             Screen = screen;
             HardwareConcurrency = hardwareConcurrency;
+            DeviceMemory = deviceMemory;
             StartPage = startPage;
             PasswordManager = passwordManager;
             Extensions = extensions;
             Notes = notes;
             Launcher = launcher;
             Status = status;
+            Storage = storage;
             CustomInit();
         }
 
@@ -175,6 +179,11 @@ namespace Kameleo.LocalApiClient.Models
         public HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice HardwareConcurrency { get; set; }
 
         /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "deviceMemory")]
+        public DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice DeviceMemory { get; set; }
+
+        /// <summary>
         /// Gets or sets this website will be opened in the browser when the
         /// profile launches.
         /// </summary>
@@ -215,6 +224,12 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "status")]
         public StatusResponse Status { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'local', 'cloud'
+        /// </summary>
+        [JsonProperty(PropertyName = "storage")]
+        public string Storage { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -280,6 +295,10 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "HardwareConcurrency");
             }
+            if (DeviceMemory == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "DeviceMemory");
+            }
             if (StartPage == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "StartPage");
@@ -339,6 +358,10 @@ namespace Kameleo.LocalApiClient.Models
             if (HardwareConcurrency != null)
             {
                 HardwareConcurrency.Validate();
+            }
+            if (DeviceMemory != null)
+            {
+                DeviceMemory.Validate();
             }
             if (Status != null)
             {
