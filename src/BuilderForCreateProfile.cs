@@ -61,7 +61,7 @@ namespace Kameleo.LocalApiClient
         /// <para>'block': Completely block the 2D API.</para>
         /// <para>'off': Turn off the spoofing, use the original settings.</para>
         /// </summary>
-        /// <param name="value">Settings how the WebGL will be spoofed. Values can be 'noise', 'block', 'off'.</param>
+        /// <param name="value">Specifies how the canvas will be spoofed. Values can be 'noise', 'block', 'off'.</param>
         public BuilderForCreateProfile SetCanvas(string value)
         {
             _profileRequest.Canvas = value;
@@ -106,7 +106,7 @@ namespace Kameleo.LocalApiClient
         /// <para>'block': Completely block the Audio API.</para>
         /// <para>'off': Turn off the spoofing, use the original settings.</para>
         /// </summary>
-        /// <param name="value">Settings how the Audio will be spoofed. Values can be 'noise', 'block', 'off'.</param>
+        /// <param name="value">Specifies how the audio will be spoofed. Values can be 'noise', 'block', 'off'.</param>
         public BuilderForCreateProfile SetAudio(string value)
         {
             _profileRequest.Audio = value;
@@ -170,7 +170,7 @@ namespace Kameleo.LocalApiClient
         /// <para>'block': Block the WebRTC functionality</para>
         /// <para>'off': Turn off the spoofing, use the original settings</para>
         /// </summary>
-        /// <param name="value">Settings how the WebRTC will be spoofed. Values can be 'automatic', 'manual', 'block', 'off'.</param>
+        /// <param name="value">Specifies how the WebRTC will be spoofed. Values can be 'automatic', 'manual', 'block', 'off'.</param>
         public BuilderForCreateProfile SetWebRtc(string value, WebRtcSpoofingOptions options = null)
         {
             _profileRequest.WebRtc.Value = value;
@@ -180,16 +180,14 @@ namespace Kameleo.LocalApiClient
         }
 
         /// <summary>
-        /// <para>Specifies how the Fonts will be spoofed. Possible values:</para>
-        /// <para>'enabled': Enable fonts spoofing. A list can be provided to override the fonts coming from the base profile.</para>
+        /// <para>Specifies how the fonts will be spoofed. Possible values:</para>
+        /// <para>'enabled': Enable fonts spoofing.</para>
         /// <para>'disable': Disable fonts spoofing.</para>
         /// </summary>
-        /// <param name="value">Settings how the Fonts will be spoofed. Values can be 'enabled', 'disabled'.</param>
-        /// <param name="options">If value is set to enabled, an override list can be provided.</param>
-        public BuilderForCreateProfile SetFonts(string value, IList<string> options = null)
+        /// <param name="value">Specifies how the fonts will be spoofed. Values can be 'enabled', 'disabled'.</param>
+        public BuilderForCreateProfile SetFonts(string value)
         {
-            _profileRequest.Fonts.Value = value;
-            _profileRequest.Fonts.Extra = options;
+            _profileRequest.Fonts = value;
 
             return this;
         }
@@ -224,7 +222,7 @@ namespace Kameleo.LocalApiClient
         /// <para>'manual': Manually override the screen resolution.</para>
         /// <para>'off': Turn off the spoofing, use the original settings.</para>
         /// </summary>
-        /// <param name="value">Settings how the Screen will be spoofed. Values can be 'automatic', 'manual', 'off'. When value is set to manual, the width and height must be provided.</param>
+        /// <param name="value">Specifies how the screen will be spoofed. Values can be 'automatic', 'manual', 'off'. When value is set to manual, the width and height must be provided.</param>
         public BuilderForCreateProfile SetScreen(string value, int? width = null, int? height = null)
         {
             _profileRequest.Screen.Value = value;
@@ -306,7 +304,6 @@ namespace Kameleo.LocalApiClient
         /// </summary>
         public BuilderForCreateProfile SetRecommendedDefaults()
         {
-            _profileRequest.Name = "";
             _profileRequest.Canvas = "intelligent";
             _profileRequest.Webgl = "off";
             _profileRequest.WebglMeta.Value = "automatic";
@@ -315,7 +312,7 @@ namespace Kameleo.LocalApiClient
             _profileRequest.Geolocation.Value = "automatic";
             _profileRequest.WebRtc.Value = "automatic";
             _profileRequest.Screen.Value = "automatic";
-            _profileRequest.Fonts.Value = "enabled";
+            _profileRequest.Fonts = "enabled";
             _profileRequest.HardwareConcurrency.Value = "automatic";
             _profileRequest.DeviceMemory.Value = "automatic";
             _profileRequest.Launcher = "automatic";
@@ -336,7 +333,7 @@ namespace Kameleo.LocalApiClient
                 Geolocation = new GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice("off"),
                 Proxy = new ProxyConnectionTypeServerMultiLevelChoice("none"),
                 WebRtc = new WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice("off"),
-                Fonts = new FontSpoofingTypeFontIListMultiLevelChoice("disabled"),
+                Fonts = "disabled",
                 Screen = new ScreenSpoofingTypeScreenSizeMultiLevelChoice("off"),
                 HardwareConcurrency = new HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice("off"),
                 DeviceMemory = new DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice("off"),

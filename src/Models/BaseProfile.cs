@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Models
         /// pixels</param>
         /// <param name="fonts">A list of font types included in the
         /// profile</param>
-        public BaseProfile(string version, string id, Device device, Os os, Browser browser, string language, string resolution, IList<string> fonts, WebglMeta webglMeta)
+        public BaseProfile(string version, string id, Device device, Os os, Browser browser, string language, WebglMeta webglMeta, string resolution, IList<string> fonts)
         {
             Version = version;
             Id = id;
@@ -48,9 +48,9 @@ namespace Kameleo.LocalApiClient.Models
             Os = os;
             Browser = browser;
             Language = language;
+            WebglMeta = webglMeta;
             Resolution = resolution;
             Fonts = fonts;
-            WebglMeta = webglMeta;
             CustomInit();
         }
 
@@ -97,6 +97,11 @@ namespace Kameleo.LocalApiClient.Models
         public string Language { get; set; }
 
         /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "webglMeta")]
+        public WebglMeta WebglMeta { get; set; }
+
+        /// <summary>
         /// Gets or sets the screen size of the device in pixels
         /// </summary>
         [JsonProperty(PropertyName = "resolution")]
@@ -107,11 +112,6 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "fonts")]
         public IList<string> Fonts { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "webglMeta")]
-        public WebglMeta WebglMeta { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -145,6 +145,10 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Language");
             }
+            if (WebglMeta == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "WebglMeta");
+            }
             if (Resolution == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Resolution");
@@ -152,10 +156,6 @@ namespace Kameleo.LocalApiClient.Models
             if (Fonts == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Fonts");
-            }
-            if (WebglMeta == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "WebglMeta");
             }
             if (Device != null)
             {
