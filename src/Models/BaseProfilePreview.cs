@@ -33,13 +33,14 @@ namespace Kameleo.LocalApiClient.Models
         /// profile.</param>
         /// <param name="language">Language of the base profile. Using ISO
         /// 639-1 language codes.</param>
-        public BaseProfilePreview(string id, Device device, Os os, Browser browser, string language)
+        public BaseProfilePreview(string id, Device device, Os os, Browser browser, string language, WebglMeta webglMeta)
         {
             Id = id;
             Device = device;
             Os = os;
             Browser = browser;
             Language = language;
+            WebglMeta = webglMeta;
             CustomInit();
         }
 
@@ -78,6 +79,11 @@ namespace Kameleo.LocalApiClient.Models
         public string Language { get; set; }
 
         /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "webglMeta")]
+        public WebglMeta WebglMeta { get; set; }
+
+        /// <summary>
         /// Validate the object.
         /// </summary>
         /// <exception cref="ValidationException">
@@ -105,6 +111,10 @@ namespace Kameleo.LocalApiClient.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Language");
             }
+            if (WebglMeta == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "WebglMeta");
+            }
             if (Device != null)
             {
                 Device.Validate();
@@ -116,6 +126,10 @@ namespace Kameleo.LocalApiClient.Models
             if (Browser != null)
             {
                 Browser.Validate();
+            }
+            if (WebglMeta != null)
+            {
+                WebglMeta.Validate();
             }
         }
     }

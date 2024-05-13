@@ -37,6 +37,8 @@ namespace Kameleo.LocalApiClient.Models
         /// 'off'</param>
         /// <param name="audio">Possible values include: 'off', 'noise',
         /// 'block'</param>
+        /// <param name="fonts">Possible values include: 'enabled',
+        /// 'disabled'</param>
         /// <param name="startPage">This website will be opened in the browser
         /// when the profile launches.</param>
         /// <param name="passwordManager">Possible values include: 'enabled',
@@ -54,7 +56,7 @@ namespace Kameleo.LocalApiClient.Models
         /// 'external'.</param>
         /// <param name="storage">Possible values include: 'local',
         /// 'cloud'</param>
-        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, FontSpoofingTypeFontIListMultiLevelChoice fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice deviceMemory, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, string storage = default(string))
+        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, string fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice deviceMemory, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, string storage = default(string))
         {
             Id = id;
             Name = name;
@@ -164,9 +166,10 @@ namespace Kameleo.LocalApiClient.Models
         public WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice WebRtc { get; set; }
 
         /// <summary>
+        /// Gets or sets possible values include: 'enabled', 'disabled'
         /// </summary>
         [JsonProperty(PropertyName = "fonts")]
-        public FontSpoofingTypeFontIListMultiLevelChoice Fonts { get; set; }
+        public string Fonts { get; set; }
 
         /// <summary>
         /// </summary>
@@ -346,10 +349,6 @@ namespace Kameleo.LocalApiClient.Models
             if (WebRtc != null)
             {
                 WebRtc.Validate();
-            }
-            if (Fonts != null)
-            {
-                Fonts.Validate();
             }
             if (Screen != null)
             {

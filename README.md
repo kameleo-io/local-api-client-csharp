@@ -35,41 +35,32 @@ Install-Package Kameleo.LocalApiClient
 ## 3. Start a browser with out-of-the-box fingerprinting protection
 ```csharp
 using System;
-using System.Threading.Tasks;
 using Kameleo.LocalApiClient;
 
-namespace Kameleo.QuickstartGuide
-{
-    class Program
-    {
-        private const string KameleoBaseUrl = "http://localhost:5050";
+const string KameleoBaseUrl = "http://localhost:5050";
 
-        static async Task Main()
-        {
-            var client = new KameleoLocalApiClient(new Uri(KameleoBaseUrl));
-            client.SetRetryPolicy(null);
+var client = new KameleoLocalApiClient(new Uri(KameleoBaseUrl));
+client.SetRetryPolicy(null);
 
-            // Search Chrome Base Profiles
-            var baseProfiles = await client.SearchBaseProfilesAsync(
-                deviceType: "desktop",
-                browserProduct: "chrome");
+// Search Chrome Base Profiles
+var baseProfiles = await client.SearchBaseProfilesAsync(
+    deviceType: "desktop",
+    browserProduct: "chrome");
 
-            // Create a new profile with recommended settings
-            // for browser fingerprint protection
-            var requestBody = BuilderForCreateProfile
-                .ForBaseProfile(baseProfiles[0].Id)
-                .SetRecommendedDefaults()
-                .Build();
+// Create a new profile with recommended settings
+// for browser fingerprint protection
+var requestBody = BuilderForCreateProfile
+    .ForBaseProfile(baseProfiles[0].Id)
+    .SetName("example profile")
+    .SetRecommendedDefaults()
+    .Build();
 
-            var profile = await client.CreateProfileAsync(requestBody);
+var profile = await client.CreateProfileAsync(requestBody);
 
-            // Start the browser
-            await client.StartProfileAsync(profile.Id);
+// Start the browser
+await client.StartProfileAsync(profile.Id);
 
-            // At this point you can automate the browser with your favorite framework
-        }
-    }
-}
+// At this point you can automate the browser with your favorite framework
 ```
 
 # Automate Kameleo profiles with Selenium
@@ -208,6 +199,7 @@ var baseProfileList = await client.SearchBaseProfilesAsync(
 // Set the launcher to 'chromium' so the mobile profile will be started in Chroma browser
 var createProfileRequest = BuilderForCreateProfile
 	.ForBaseProfile(baseProfileList[0].Id)
+    .SetName("automate mobile profiles on desktop example")
 	.SetRecommendedDefaults()
 	.SetLauncher("chromium")
 	.Build();
