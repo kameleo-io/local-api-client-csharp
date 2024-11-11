@@ -39,9 +39,13 @@ namespace Kameleo.LocalApiClient.Models
         /// before the first start. Possible values for Desktop profiles:
         /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.</param>
+        /// <param name="folderId">A unique identifier of the containing
+        /// folder, or null if not in a folder. This will always be null for
+        /// locally stored profiles, as only cloud profiles can be added to
+        /// folders.</param>
         /// <param name="storage">Possible values include: 'local',
         /// 'cloud'</param>
-        public ProfilePreview(System.Guid id, string name, IList<string> tags, ProxyConnectionTypeServerMultiLevelChoice proxy, System.DateTime createdAt, Device device, Os os, Browser browser, string language, string launcher, StatusResponse status, string storage = default(string))
+        public ProfilePreview(System.Guid id, string name, IList<string> tags, ProxyConnectionTypeServerMultiLevelChoice proxy, System.DateTime createdAt, Device device, Os os, Browser browser, string language, string launcher, StatusResponse status, System.Guid folderId, string storage = default(string))
         {
             Id = id;
             Name = name;
@@ -55,6 +59,7 @@ namespace Kameleo.LocalApiClient.Models
             Launcher = launcher;
             Status = status;
             Storage = storage;
+            FolderId = folderId;
             CustomInit();
         }
 
@@ -134,6 +139,14 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "storage")]
         public string Storage { get; set; }
+
+        /// <summary>
+        /// Gets or sets a unique identifier of the containing folder, or null
+        /// if not in a folder. This will always be null for locally stored
+        /// profiles, as only cloud profiles can be added to folders.
+        /// </summary>
+        [JsonProperty(PropertyName = "folderId")]
+        public System.Guid FolderId { get; set; }
 
         /// <summary>
         /// Validate the object.

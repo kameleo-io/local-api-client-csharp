@@ -25,7 +25,7 @@ namespace Kameleo.LocalApiClient.Models
         /// <param name="currentUsage">Indicates the current count of profiles
         /// accessible to the user, always a non-negative value.</param>
         /// <param name="maximumLimit">Indicates the maximum permitted profile
-        /// count for the user, with null implying no limit.</param>
+        /// count for the user, with -1 implying no limit.</param>
         public QuotaStatistics(int currentUsage, int maximumLimit)
         {
             CurrentUsage = currentUsage;
@@ -47,7 +47,7 @@ namespace Kameleo.LocalApiClient.Models
 
         /// <summary>
         /// Gets or sets indicates the maximum permitted profile count for the
-        /// user, with null implying no limit.
+        /// user, with -1 implying no limit.
         /// </summary>
         [JsonProperty(PropertyName = "maximumLimit")]
         public int MaximumLimit { get; set; }

@@ -49,6 +49,8 @@ namespace Kameleo.LocalApiClient.Models
         /// signed xpi format addons.</param>
         /// <param name="notes">A free text including any notes written by the
         /// user.</param>
+        /// <param name="folderId">Id of the folder the profile should be moved
+        /// to.</param>
         /// <param name="tags">Profile tags</param>
         /// <param name="storage">Possible values include: 'local',
         /// 'cloud'</param>
@@ -57,7 +59,7 @@ namespace Kameleo.LocalApiClient.Models
         /// before the first start. Possible values for Desktop profiles:
         /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.</param>
-        public UpdateProfileRequest(string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, string fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, string passwordManager, string name, DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice deviceMemory = default(DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice), string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), IList<string> tags = default(IList<string>), string storage = default(string), string launcher = default(string))
+        public UpdateProfileRequest(string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, string fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, string passwordManager, string name, DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice deviceMemory = default(DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice), string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), System.Guid? folderId = default(System.Guid?), IList<string> tags = default(IList<string>), string storage = default(string), string launcher = default(string))
         {
             Canvas = canvas;
             Webgl = webgl;
@@ -76,6 +78,7 @@ namespace Kameleo.LocalApiClient.Models
             Extensions = extensions;
             Notes = notes;
             Name = name;
+            FolderId = folderId;
             Tags = tags;
             Storage = storage;
             Launcher = launcher;
@@ -190,6 +193,12 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets id of the folder the profile should be moved to.
+        /// </summary>
+        [JsonProperty(PropertyName = "folderId")]
+        public System.Guid? FolderId { get; set; }
 
         /// <summary>
         /// Gets or sets profile tags

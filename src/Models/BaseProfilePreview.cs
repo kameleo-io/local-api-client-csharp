@@ -11,9 +11,10 @@ namespace Kameleo.LocalApiClient.Models
     using System.Linq;
 
     /// <summary>
-    /// A preview object of a searched base profile. This contains some
-    /// information about the base profile that will help you choose the right
-    /// one.
+    /// Provides a summarized view of a base profile, which encapsulates
+    /// real-world browser fingerprint configurations used to
+    /// instantiate virtual browser profiles. This preview aids in selecting
+    /// the appropriate base profile from hundreds of thousands available.
     /// </summary>
     public partial class BaseProfilePreview
     {
