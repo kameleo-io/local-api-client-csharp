@@ -316,6 +316,7 @@ namespace Kameleo.LocalApiClient
             _profileRequest.HardwareConcurrency.Value = "automatic";
             _profileRequest.DeviceMemory.Value = "automatic";
             _profileRequest.Launcher = "automatic";
+            _profileRequest.StartPage = "about:newtab";
 
             return this;
         }
@@ -337,7 +338,7 @@ namespace Kameleo.LocalApiClient
                 Screen = new ScreenSpoofingTypeScreenSizeMultiLevelChoice("off"),
                 HardwareConcurrency = new HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice("off"),
                 DeviceMemory = new DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice("off"),
-                PasswordManager = "disabled",
+                PasswordManager = "disabled"
             };
         }
     }

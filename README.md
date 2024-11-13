@@ -1,8 +1,9 @@
 # Kameleo Local API Client
-With [Kameleo](https://kameleo.io), you can easily create multiple virtual browser profiles to work with multiple accounts. It helps you hide your actual timezone, geolocation, language, IP address and creates natural browser fingerprints to prevent detection by anti-bot systems. Kameleo is compatible with [Selenium](https://www.selenium.dev/), [Playwright](https://playwright.dev/), and [Puppeteer](https://pptr.dev/) frameworks for automating web scraping tasks. This .NET Standard package provides convenient access to the [Local API](https://app.swaggerhub.com/apis/kameleo-team/kameleo-local-api/) REST interface of the Kameleo Client.  See the [article](https://help.kameleo.io/hc/en-us/articles/4418166326417) in our knowledge base for Getting Started with Kameleo Automation.
 
+With [Kameleo](https://kameleo.io), you can easily create multiple virtual browser profiles to work with multiple accounts. It helps you hide your actual timezone, geolocation, language, IP address and creates natural browser fingerprints to prevent detection by anti-bot systems. Kameleo is compatible with [Selenium](https://www.selenium.dev/), [Playwright](https://playwright.dev/), and [Puppeteer](https://pptr.dev/) frameworks for automating web scraping tasks. This .NET Standard package provides convenient access to the [Local API](https://app.swaggerhub.com/apis/kameleo-team/kameleo-local-api/) REST interface of the Kameleo Client. See the [article](https://help.kameleo.io/hc/en-us/articles/4418166326417) in our knowledge base for Getting Started with Kameleo Automation.
 
 # Features
+
 - Stay completely undetected, so websites won't be able to detect that you are using automation tools
 - Start unlimited number of profiles with different natural browser fingerprints
 - Use authenticated HTTP/SOCKS/SSH proxies in browsers
@@ -19,20 +20,22 @@ With [Kameleo](https://kameleo.io), you can easily create multiple virtual brows
 
 > Note: _You need [Automation package](https://kameleo.io/learn-more/automation/) of Kameleo to access the features described below._
 
-
 # Quickstart Guide
 
 ## 1. Install by NuGet
+
 ```
 Install-Package Kameleo.LocalApiClient
 ```
 
 ## 2. Start the Kameleo.CLI on your computer
+
 ```
-./Kameleo.CLI.exe email="your@email.com" password="Pa$$w0rd"
+./Kameleo.CLI email="your@email.com" password="Pa$$w0rd"
 ```
 
 ## 3. Start a browser with out-of-the-box fingerprinting protection
+
 ```csharp
 using System;
 using Kameleo.LocalApiClient;
@@ -64,9 +67,11 @@ await client.StartProfileAsync(profile.Id);
 ```
 
 # Automate Kameleo profiles with Selenium
+
 Kameleo gives you the ability to control any supported browser using Selenium. It uses the WebDriver protocol, a W3C specification, and industry-standard to interact with a browser.
 
 You need to install the official [Selenium package](https://www.nuget.org/packages/Selenium.WebDriver/).
+
 ```csharp
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
@@ -90,6 +95,7 @@ webdriver.Navigate().GoToUrl("https://google.com");
 The full example can be found [here](https://github.com/kameleo-io/local-api-examples/blob/master/dotnet-csharp/connect_to_selenium/Program.cs).
 
 # Automate Kameleo profiles with Puppeteer (Chromium-based)
+
 Kameleo lets you control Chromium-based browsers (sorry Firefox fans) using the [Puppeteer.Sharp package](https://www.nuget.org/packages/PuppeteerSharp/). In this simple example you can see how to connect to the browser that Kameleo starts.
 
 You need to import the [Puppeteer.Sharp](https://www.nuget.org/packages/PuppeteerSharp/).
@@ -117,6 +123,7 @@ await page.GoToAsync("https://google.com");
 The full example can be found [here](https://github.com/kameleo-io/local-api-examples/blob/master/dotnet-csharp/connect_with_puppeteer/Program.cs).
 
 # Automate Kameleo profiles with Playwright
+
 Kameleo allows you to control the browser with the official [Playwright package](https://www.nuget.org/packages/Microsoft.Playwright/). It works little bit different with Chromium-based browsers and Firefox, so we provide an example for both. Here we showcase how you can connect to the browser that is already started by Kameleo.
 
 You need to import the official [Playwright package](https://www.nuget.org/packages/Microsoft.Playwright/).
@@ -157,17 +164,27 @@ The full example can be found [here](https://github.com/kameleo-io/local-api-exa
 const int KameleoPort = 5050;
 
 var browserWsEndpoint = $"ws://localhost:{KameleoPort}/playwright/{profile.Id}";
+
+// The Playwright framework is not designed to connect to already running
+// browsers. To overcome this limitation, a tool bundled with Kameleo, named
+// pw-bridge will bridge the communication gap between the running Firefox
+// instance and this playwright script.
+// The exact path to the bridge executable is subject to change.
+var pwBridgePath = Environment.GetEnvironmentVariable("PW_BRIDGE_PATH");
+if (pwBridgePath is null && OperatingSystem.IsWindows())
+{
+    var localAppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+    pwBridgePath = Path.Combine(localAppDataFolder, "Programs", "Kameleo", "pw-bridge.exe");
+}
+else if (pwBridgePath is null && OperatingSystem.IsMacOS())
+{
+    pwBridgePath = "/Applications/Kameleo.app/Contents/MacOS/pw-bridge";
+}
+
 var playwright = await Playwright.CreateAsync();
-// The exact path to the bridge executable is subject to change. Here, we use %LOCALAPPDATA%\Programs\Kameleo\pw-bridge.exe
-var localAppDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-var executablePath = Path.Combine(localAppDataFolder, "Programs", "Kameleo", "pw-bridge.exe");
 var browser = await playwright.Firefox.LaunchPersistentContextAsync("", new BrowserTypeLaunchPersistentContextOptions
 {
-	// The Playwright framework is not designed to connect to already running
-	// browsers. To overcome this limitation, a tool bundled with Kameleo, named
-	// pw-bridge.exe will bridge the communication gap between the running Firefox
-	// instance and this playwright script.
-	ExecutablePath = executablePath,
+	ExecutablePath = pwBridgePath,
 	Args = new List<string> { $"-target {browserWsEndpoint}" },
 	ViewportSize = null,
 });
@@ -185,6 +202,7 @@ await page.GotoAsync("https://google.com");
 The full example can be found [here](https://github.com/kameleo-io/local-api-examples/blob/master/dotnet-csharp/connect_with_playwright_to_firefox/Program.cs).
 
 # Automate mobile profiles
+
 Kameleo can emulate mobile devices in the custom built Chromium.
 
 ```csharp
@@ -219,9 +237,11 @@ await client.StartProfileWithOptionsAsync(profile.Id, new WebDriverSettings()
 
 // At this point you can automate the browser with your favorite framework
 ```
+
 The full example can be found [here](https://github.com/kameleo-io/local-api-examples/blob/master/dotnet-csharp/automate_mobile_profiles_on_desktop/Program.cs).
 
 # Example codes
+
 [Several examples](https://github.com/kameleo-io/local-api-examples) have been prepared in a different repository to showcase the most interesting features. Feel free to create a pull request to add new example codes.
 
 - Finding base profiles
@@ -242,7 +262,9 @@ The full example can be found [here](https://github.com/kameleo-io/local-api-exa
 > Note: _If you are interested in more information about Kameleo, or have encountered an issue with using it, please check out our [Help Center](https://help.kameleo.io/)._
 
 # Package
+
 This package can be found on NuGet Gallery here: [Kameleo.LocalApiClient](https://www.nuget.org/packages/Kameleo.LocalApiClient).
 
 # License
+
 This project is released under MIT License. Please refer the LICENSE.txt for more details.

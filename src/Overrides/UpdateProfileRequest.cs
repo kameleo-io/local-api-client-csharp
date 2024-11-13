@@ -2,13 +2,17 @@
 
 namespace Kameleo.LocalApiClient.Models
 {
+    using Newtonsoft.Json;
+
     public partial class UpdateProfileRequest
     {
         public UpdateProfileRequest(ProfileResponse profile) : this()
         {
+            profile = JsonConvert.DeserializeObject<ProfileResponse>(JsonConvert.SerializeObject(profile));
+
             Canvas = profile.Canvas;
             Webgl = profile.Webgl;
-            WebglMeta = new WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice(profile.Webgl);
+            WebglMeta = profile.WebglMeta;
             Audio = profile.Audio;
             Timezone = profile.Timezone;
             Geolocation = profile.Geolocation;
