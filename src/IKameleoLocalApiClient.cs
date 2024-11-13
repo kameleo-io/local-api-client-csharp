@@ -164,6 +164,141 @@ namespace Kameleo.LocalApiClient
         Task<HttpOperationResponse> DeleteCookiesWithHttpMessagesAsync(System.Guid guid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Gets the list of folders including subfolders and profiles that are
+        /// loaded in the current workspace.
+        /// </summary>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<ListFoldersResponse>> ListFoldersWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Gets the folder with the sepcified Id from the current workspace.
+        /// </summary>
+        /// <param name='guid'>
+        /// The unique identifier of the folder.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<FolderResponse>> ReadFolderWithHttpMessagesAsync(System.Guid guid, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Updates the details of an existing folder, not including its
+        /// content.
+        /// </summary>
+        /// <param name='guid'>
+        /// The unique identifier of the folder.
+        /// </param>
+        /// <param name='body'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<FolderResponse>> UpdateFolderWithHttpMessagesAsync(System.Guid guid, UpdateFolderRequest body = default(UpdateFolderRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Deletes a folder along with all its subfolders. Profiles within the
+        /// folder will either be deleted or moved to the top-level based on
+        /// the query parameters.
+        /// </summary>
+        /// <param name='guid'>
+        /// The unique identifier of the folder.
+        /// </param>
+        /// <param name='includeProfiles'>
+        /// Flag to indicate if the contained profiles should be deleted (true)
+        /// or moved to the top-level (false).
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<DeleteFolderResponse>> DeleteFolderWithHttpMessagesAsync(System.Guid guid, bool? includeProfiles = false, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Creates a new folder.
+        /// </summary>
+        /// <param name='body'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<FolderResponse>> CreateFolderWithHttpMessagesAsync(CreateFolderRequest body = default(CreateFolderRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Adds the given profile to the specified folder.
+        /// </summary>
+        /// <param name='guid'>
+        /// The unique identifier of the folder.
+        /// </param>
+        /// <param name='body'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<ProfileResponse>> AddProfileToFolderWithHttpMessagesAsync(System.Guid guid, AddProfileToFolderRequest body = default(AddProfileToFolderRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Removes the given profile from the specified folder.
+        /// </summary>
+        /// <param name='guid'>
+        /// The unique identifier of the folder.
+        /// </param>
+        /// <param name='profileId'>
+        /// The unique identifier of the profile.
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<ProfileResponse>> RemoveProfileFromFolderWithHttpMessagesAsync(System.Guid guid, System.Guid profileId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Reads the sharing options (list of users and roles).
+        /// </summary>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<SharingOptionsResponse>> ReadSharingOptionsWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Updates the share access of the specified folder.
+        /// </summary>
+        /// <param name='guid'>
+        /// </param>
+        /// <param name='body'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<FolderResponse>> ShareGroupWithHttpMessagesAsync(System.Guid guid, ShareGroupRequest body = default(ShareGroupRequest), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Health check request to test if Kameleo has been started and
         /// accepting connections.
         /// </summary>

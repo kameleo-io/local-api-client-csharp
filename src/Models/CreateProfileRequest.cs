@@ -40,6 +40,8 @@ namespace Kameleo.LocalApiClient.Models
         /// 'disabled'</param>
         /// <param name="passwordManager">Possible values include: 'enabled',
         /// 'disabled'</param>
+        /// <param name="folderId">Id of the folder the profile should created
+        /// in.</param>
         /// <param name="tags">Use tags to categorize profiles by labeling them
         /// accordingly.</param>
         /// <param name="startPage">This website will be opened in the browser
@@ -57,10 +59,11 @@ namespace Kameleo.LocalApiClient.Models
         /// before the first start. Possible values for Desktop profiles:
         /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.</param>
-        public CreateProfileRequest(string baseProfileId, string name, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, string fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string passwordManager, IList<string> tags = default(IList<string>), HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency = default(HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice), DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice deviceMemory = default(DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice), string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), string storage = default(string), string launcher = default(string))
+        public CreateProfileRequest(string baseProfileId, string name, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, string fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, string passwordManager, System.Guid? folderId = default(System.Guid?), IList<string> tags = default(IList<string>), HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency = default(HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice), DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice deviceMemory = default(DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice), string startPage = default(string), IList<string> extensions = default(IList<string>), string notes = default(string), string storage = default(string), string launcher = default(string))
         {
             BaseProfileId = baseProfileId;
             Name = name;
+            FolderId = folderId;
             Tags = tags;
             Canvas = canvas;
             Webgl = webgl;
@@ -102,6 +105,12 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets id of the folder the profile should created in.
+        /// </summary>
+        [JsonProperty(PropertyName = "folderId")]
+        public System.Guid? FolderId { get; set; }
 
         /// <summary>
         /// Gets or sets use tags to categorize profiles by labeling them

@@ -54,9 +54,11 @@ namespace Kameleo.LocalApiClient.Models
         /// before the first start. Possible values for Desktop profiles:
         /// 'automatic'. Possible values for Mobile profiles: 'chromium',
         /// 'external'.</param>
+        /// <param name="folderId">A unique identifier of the containing folder
+        /// or null if it is not in folder.</param>
         /// <param name="storage">Possible values include: 'local',
         /// 'cloud'</param>
-        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, string fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice deviceMemory, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, string storage = default(string))
+        public ProfileResponse(System.Guid id, string name, IList<string> tags, System.DateTime createdAt, BaseProfile baseProfile, string canvas, string webgl, WebglMetaSpoofingTypeWebglMetaSpoofingOptionsMultiLevelChoice webglMeta, string audio, TimezoneSpoofingTypeTimezoneMultiLevelChoice timezone, GeolocationSpoofingTypeGeolocationSpoofingOptionsMultiLevelChoice geolocation, ProxyConnectionTypeServerMultiLevelChoice proxy, WebRtcSpoofingTypeWebRtcSpoofingOptionsMultiLevelChoice webRtc, string fonts, ScreenSpoofingTypeScreenSizeMultiLevelChoice screen, HardwareConcurrencySpoofingTypeInt32NullableMultiLevelChoice hardwareConcurrency, DeviceMemorySpoofingTypeDoubleNullableMultiLevelChoice deviceMemory, string startPage, string passwordManager, IList<string> extensions, string notes, string launcher, StatusResponse status, System.Guid folderId, string storage = default(string))
         {
             Id = id;
             Name = name;
@@ -82,6 +84,7 @@ namespace Kameleo.LocalApiClient.Models
             Launcher = launcher;
             Status = status;
             Storage = storage;
+            FolderId = folderId;
             CustomInit();
         }
 
@@ -233,6 +236,13 @@ namespace Kameleo.LocalApiClient.Models
         /// </summary>
         [JsonProperty(PropertyName = "storage")]
         public string Storage { get; set; }
+
+        /// <summary>
+        /// Gets or sets a unique identifier of the containing folder or null
+        /// if it is not in folder.
+        /// </summary>
+        [JsonProperty(PropertyName = "folderId")]
+        public System.Guid FolderId { get; set; }
 
         /// <summary>
         /// Validate the object.

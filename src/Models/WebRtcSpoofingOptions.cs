@@ -27,11 +27,11 @@ namespace Kameleo.LocalApiClient.Models
         /// <summary>
         /// Initializes a new instance of the WebRtcSpoofingOptions class.
         /// </summary>
-        /// <param name="privateIp">The WebRTC local IP address of the machine.
-        /// It can be an obfuscated value as well.</param>
         /// <param name="publicIp">The WebRTC public IP address of the
         /// machine.</param>
-        public WebRtcSpoofingOptions(string privateIp, string publicIp)
+        /// <param name="privateIp">The WebRTC local IP address of the machine.
+        /// It can be an obfuscated value as well.</param>
+        public WebRtcSpoofingOptions(string publicIp, string privateIp = default(string))
         {
             PrivateIp = privateIp;
             PublicIp = publicIp;
@@ -64,10 +64,6 @@ namespace Kameleo.LocalApiClient.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (PrivateIp == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "PrivateIp");
-            }
             if (PublicIp == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "PublicIp");

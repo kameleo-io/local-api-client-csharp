@@ -13,7 +13,9 @@ namespace Kameleo.LocalApiClient.Models
     using System.Linq;
 
     /// <summary>
-    /// Representation of a base profile which is used to build profiles from.
+    /// Provides a full view of a base profile, which encapsulates real-world
+    /// browser fingerprint configurations used to
+    /// instantiate virtual browser profiles.
     /// </summary>
     public partial class BaseProfile
     {

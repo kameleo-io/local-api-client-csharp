@@ -283,6 +283,328 @@ namespace Kameleo.LocalApiClient
             }
 
             /// <summary>
+            /// Gets the list of folders including subfolders and profiles that are loaded
+            /// in the current workspace.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            public static ListFoldersResponse ListFolders(this IKameleoLocalApiClient operations)
+            {
+                return operations.ListFoldersAsync().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the list of folders including subfolders and profiles that are loaded
+            /// in the current workspace.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ListFoldersResponse> ListFoldersAsync(this IKameleoLocalApiClient operations, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.ListFoldersWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Gets the folder with the sepcified Id from the current workspace.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the folder.
+            /// </param>
+            public static FolderResponse ReadFolder(this IKameleoLocalApiClient operations, System.Guid guid)
+            {
+                return operations.ReadFolderAsync(guid).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Gets the folder with the sepcified Id from the current workspace.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the folder.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<FolderResponse> ReadFolderAsync(this IKameleoLocalApiClient operations, System.Guid guid, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.ReadFolderWithHttpMessagesAsync(guid, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Updates the details of an existing folder, not including its content.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the folder.
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            public static FolderResponse UpdateFolder(this IKameleoLocalApiClient operations, System.Guid guid, UpdateFolderRequest body = default(UpdateFolderRequest))
+            {
+                return operations.UpdateFolderAsync(guid, body).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Updates the details of an existing folder, not including its content.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the folder.
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<FolderResponse> UpdateFolderAsync(this IKameleoLocalApiClient operations, System.Guid guid, UpdateFolderRequest body = default(UpdateFolderRequest), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.UpdateFolderWithHttpMessagesAsync(guid, body, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Deletes a folder along with all its subfolders. Profiles within the folder
+            /// will either be deleted or moved to the top-level based on the query
+            /// parameters.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the folder.
+            /// </param>
+            /// <param name='includeProfiles'>
+            /// Flag to indicate if the contained profiles should be deleted (true) or
+            /// moved to the top-level (false).
+            /// </param>
+            public static DeleteFolderResponse DeleteFolder(this IKameleoLocalApiClient operations, System.Guid guid, bool? includeProfiles = false)
+            {
+                return operations.DeleteFolderAsync(guid, includeProfiles).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Deletes a folder along with all its subfolders. Profiles within the folder
+            /// will either be deleted or moved to the top-level based on the query
+            /// parameters.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the folder.
+            /// </param>
+            /// <param name='includeProfiles'>
+            /// Flag to indicate if the contained profiles should be deleted (true) or
+            /// moved to the top-level (false).
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<DeleteFolderResponse> DeleteFolderAsync(this IKameleoLocalApiClient operations, System.Guid guid, bool? includeProfiles = false, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.DeleteFolderWithHttpMessagesAsync(guid, includeProfiles, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Creates a new folder.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            public static FolderResponse CreateFolder(this IKameleoLocalApiClient operations, CreateFolderRequest body = default(CreateFolderRequest))
+            {
+                return operations.CreateFolderAsync(body).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Creates a new folder.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<FolderResponse> CreateFolderAsync(this IKameleoLocalApiClient operations, CreateFolderRequest body = default(CreateFolderRequest), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.CreateFolderWithHttpMessagesAsync(body, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Adds the given profile to the specified folder.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the folder.
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            public static ProfileResponse AddProfileToFolder(this IKameleoLocalApiClient operations, System.Guid guid, AddProfileToFolderRequest body = default(AddProfileToFolderRequest))
+            {
+                return operations.AddProfileToFolderAsync(guid, body).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Adds the given profile to the specified folder.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the folder.
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ProfileResponse> AddProfileToFolderAsync(this IKameleoLocalApiClient operations, System.Guid guid, AddProfileToFolderRequest body = default(AddProfileToFolderRequest), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.AddProfileToFolderWithHttpMessagesAsync(guid, body, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Removes the given profile from the specified folder.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the folder.
+            /// </param>
+            /// <param name='profileId'>
+            /// The unique identifier of the profile.
+            /// </param>
+            public static ProfileResponse RemoveProfileFromFolder(this IKameleoLocalApiClient operations, System.Guid guid, System.Guid profileId)
+            {
+                return operations.RemoveProfileFromFolderAsync(guid, profileId).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Removes the given profile from the specified folder.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// The unique identifier of the folder.
+            /// </param>
+            /// <param name='profileId'>
+            /// The unique identifier of the profile.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<ProfileResponse> RemoveProfileFromFolderAsync(this IKameleoLocalApiClient operations, System.Guid guid, System.Guid profileId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.RemoveProfileFromFolderWithHttpMessagesAsync(guid, profileId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Reads the sharing options (list of users and roles).
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            public static SharingOptionsResponse ReadSharingOptions(this IKameleoLocalApiClient operations)
+            {
+                return operations.ReadSharingOptionsAsync().GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Reads the sharing options (list of users and roles).
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<SharingOptionsResponse> ReadSharingOptionsAsync(this IKameleoLocalApiClient operations, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.ReadSharingOptionsWithHttpMessagesAsync(null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Updates the share access of the specified folder.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            public static FolderResponse ShareGroup(this IKameleoLocalApiClient operations, System.Guid guid, ShareGroupRequest body = default(ShareGroupRequest))
+            {
+                return operations.ShareGroupAsync(guid, body).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Updates the share access of the specified folder.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='guid'>
+            /// </param>
+            /// <param name='body'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<FolderResponse> ShareGroupAsync(this IKameleoLocalApiClient operations, System.Guid guid, ShareGroupRequest body = default(ShareGroupRequest), CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.ShareGroupWithHttpMessagesAsync(guid, body, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Health check request to test if Kameleo has been started and accepting
             /// connections.
             /// </summary>
