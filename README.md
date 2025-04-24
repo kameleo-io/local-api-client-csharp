@@ -2,7 +2,7 @@
 
 With [Kameleo](https://kameleo.io), you can easily create multiple virtual browser profiles to work with multiple accounts. It helps you hide your actual timezone, geolocation, language, IP address and creates natural browser fingerprints to prevent detection by anti-bot systems. Kameleo is compatible with [Selenium](https://www.selenium.dev/), [Playwright](https://playwright.dev/), and [Puppeteer](https://pptr.dev/) frameworks for automating web scraping tasks. This .NET Standard package provides convenient access to the [Local API](https://app.swaggerhub.com/apis/kameleo-team/kameleo-local-api/) REST interface of the Kameleo Client. See the [article](https://help.kameleo.io/hc/en-us/articles/4418166326417) in our knowledge base for Getting Started with Kameleo Automation.
 
-# Features
+## Features
 
 - Stay completely undetected, so websites won't be able to detect that you are using automation tools
 - Start unlimited number of profiles with different natural browser fingerprints
@@ -20,45 +20,44 @@ With [Kameleo](https://kameleo.io), you can easily create multiple virtual brows
 
 > Note: _You need [Automation package](https://kameleo.io/learn-more/automation/) of Kameleo to access the features described below._
 
-# Quickstart Guide
+## Quickstart Guide
 
-## 1. Install by NuGet
+### 1. Install by NuGet
 
 ```
 Install-Package Kameleo.LocalApiClient
 ```
 
-## 2. Start the Kameleo.CLI on your computer
+### 2. Start the Kameleo.CLI on your computer
 
 ```
 ./Kameleo.CLI email="your@email.com" password="Pa$$w0rd"
 ```
 
-## 3. Start a browser with out-of-the-box fingerprinting protection
+### 3. Start a browser with out-of-the-box fingerprinting protection
 
 ```csharp
 using System;
 using Kameleo.LocalApiClient;
+using Kameleo.LocalApiClient.Model;
 
 const string KameleoBaseUrl = "http://localhost:5050";
 
 var client = new KameleoLocalApiClient(new Uri(KameleoBaseUrl));
-client.SetRetryPolicy(null);
 
-// Search Chrome Base Profiles
-var baseProfiles = await client.SearchBaseProfilesAsync(
+// Search Chrome fingerprints
+var fingerprints = await client.SearchFingerprintsAsync(
     deviceType: "desktop",
     browserProduct: "chrome");
 
 // Create a new profile with recommended settings
 // for browser fingerprint protection
-var requestBody = BuilderForCreateProfile
-    .ForBaseProfile(baseProfiles[0].Id)
-    .SetName("example profile")
-    .SetRecommendedDefaults()
-    .Build();
+var createProfileRequest = new CreateProfileRequest(fingerprints[0].Id)
+{
+    Name = "example profile",
+};
 
-var profile = await client.CreateProfileAsync(requestBody);
+var profile = await client.CreateProfileAsync(createProfileRequest);
 
 // Start the browser
 await client.StartProfileAsync(profile.Id);
@@ -66,7 +65,7 @@ await client.StartProfileAsync(profile.Id);
 // At this point you can automate the browser with your favorite framework
 ```
 
-# Automate Kameleo profiles with Selenium
+## Automate Kameleo profiles with Selenium
 
 Kameleo gives you the ability to control any supported browser using Selenium. It uses the WebDriver protocol, a W3C specification, and industry-standard to interact with a browser.
 
@@ -94,11 +93,11 @@ webdriver.Navigate().GoToUrl("https://google.com");
 
 The full example can be found [here](https://github.com/kameleo-io/local-api-examples/blob/master/dotnet-csharp/connect_to_selenium/Program.cs).
 
-# Automate Kameleo profiles with Puppeteer (Chromium-based)
+## Automate Kameleo profiles with Puppeteer (Chromium-based)
 
-Kameleo lets you control Chromium-based browsers (sorry Firefox fans) using the [Puppeteer.Sharp package](https://www.nuget.org/packages/PuppeteerSharp/). In this simple example you can see how to connect to the browser that Kameleo starts.
+Kameleo lets you control Chromium-based browsers (sorry Firefox fans) using the [PuppeteerSharp package](https://www.nuget.org/packages/PuppeteerSharp/). In this simple example you can see how to connect to the browser that Kameleo starts.
 
-You need to import the [Puppeteer.Sharp](https://www.nuget.org/packages/PuppeteerSharp/).
+You need to import the [PuppeteerSharp](https://www.nuget.org/packages/PuppeteerSharp/).
 
 ```csharp
 using PuppeteerSharp;
@@ -122,7 +121,7 @@ await page.GoToAsync("https://google.com");
 
 The full example can be found [here](https://github.com/kameleo-io/local-api-examples/blob/master/dotnet-csharp/connect_with_puppeteer/Program.cs).
 
-# Automate Kameleo profiles with Playwright
+## Automate Kameleo profiles with Playwright
 
 Kameleo allows you to control the browser with the official [Playwright package](https://www.nuget.org/packages/Microsoft.Playwright/). It works little bit different with Chromium-based browsers and Firefox, so we provide an example for both. Here we showcase how you can connect to the browser that is already started by Kameleo.
 
@@ -134,7 +133,7 @@ using Microsoft.Playwright;
 
 You can find more details here: [Using Kameleo with Playwright framework – Kameleo Support Center](https://help.kameleo.io/hc/en-us/articles/4419471627793-Using-Kameleo-with-Playwright-framework).
 
-## Chromium-based profiles with Playwright
+### Chromium-based profiles with Playwright
 
 ```csharp
 // Connect to the browser with Playwright through CDP
@@ -157,7 +156,7 @@ await page.GotoAsync("https://google.com");
 
 The full example can be found [here](https://github.com/kameleo-io/local-api-examples/blob/master/dotnet-csharp/connect_with_playwright_to_chrome/Program.cs).
 
-## Firefox-based profiles with Playwright
+### Firefox-based profiles with Playwright
 
 ```csharp
 // Connect to the browser with Playwright
@@ -178,15 +177,15 @@ if (pwBridgePath is null && OperatingSystem.IsWindows())
 }
 else if (pwBridgePath is null && OperatingSystem.IsMacOS())
 {
-    pwBridgePath = "/Applications/Kameleo.app/Contents/MacOS/pw-bridge";
+    pwBridgePath = "/Applications/Kameleo.app/Contents/Resources/CLI/pw-bridge";
 }
 
 var playwright = await Playwright.CreateAsync();
 var browser = await playwright.Firefox.LaunchPersistentContextAsync("", new BrowserTypeLaunchPersistentContextOptions
 {
-	ExecutablePath = pwBridgePath,
-	Args = new List<string> { $"-target {browserWsEndpoint}" },
-	ViewportSize = null,
+ ExecutablePath = pwBridgePath,
+ Args = new List<string> { $"-target {browserWsEndpoint}" },
+ ViewportSize = null,
 });
 
 // Kameleo will open the a new page in the default browser context.
@@ -201,38 +200,32 @@ await page.GotoAsync("https://google.com");
 
 The full example can be found [here](https://github.com/kameleo-io/local-api-examples/blob/master/dotnet-csharp/connect_with_playwright_to_firefox/Program.cs).
 
-# Automate mobile profiles
+## Automate mobile profiles
 
-Kameleo can emulate mobile devices in the custom built Chromium.
+Kameleo can emulate mobile devices with Chroma, our custom built Chromium variant.
 
 ```csharp
-var baseProfileList = await client.SearchBaseProfilesAsync(
-	"mobile",
-	"ios",
-	"safari",
-	"en-us");
+var fingerprints = await client.SearchFingerprintsAsync("mobile", "ios", "safari");
 
-// Create a new profile with recommended settings
-// Choose one of the Base Profiles
-// Set the launcher to 'chromium' so the mobile profile will be started in Chroma browser
-var createProfileRequest = BuilderForCreateProfile
-	.ForBaseProfile(baseProfileList[0].Id)
-    .SetName("automate mobile profiles on desktop example")
-	.SetRecommendedDefaults()
-	.SetLauncher("chromium")
-	.Build();
+// Create a new profile with automatic recommended settings
+// Choose one of the fingerprints
+// Kameleo launches mobile profiles with our Chroma browser
+var createProfileRequest = new CreateProfileRequest(fingerprints[0].Id)
+{
+    Name = "automate mobile profiles on desktop example",
+};
 
 var profile = await client.CreateProfileAsync(createProfileRequest);
 
 // Start the profile with a couple of extra parameters, so Selenium automation can be done fluently
-await client.StartProfileWithOptionsAsync(profile.Id, new WebDriverSettings()
+await client.StartProfileAsync(profile.Id, new BrowserSettings()
 {
-	AdditionalOptions = new List<Preference>
-	{
-		// This allows you to click on elements using the cursor when emulating a touch screen in the brower.
-		// If you leave this out, your script may time out after clicks and fail.
-		new Preference("disableTouchEmulation", true),
-	}
+    AdditionalOptions = new List<Preference>
+    {
+        // This allows you to click on elements using the cursor when emulating a touch screen in the brower.
+        // If you leave this out, your script may time out after clicks and fail.
+        new Preference("disableTouchEmulation", true),
+    }
 });
 
 // At this point you can automate the browser with your favorite framework
@@ -240,11 +233,11 @@ await client.StartProfileWithOptionsAsync(profile.Id, new WebDriverSettings()
 
 The full example can be found [here](https://github.com/kameleo-io/local-api-examples/blob/master/dotnet-csharp/automate_mobile_profiles_on_desktop/Program.cs).
 
-# Example codes
+## Example codes
 
 [Several examples](https://github.com/kameleo-io/local-api-examples) have been prepared in a different repository to showcase the most interesting features. Feel free to create a pull request to add new example codes.
 
-- Finding base profiles
+- Finding fingerprints
 - Creating profiles with custom options
 - Updating profiles with new settings
 - How to start a profile
@@ -261,10 +254,14 @@ The full example can be found [here](https://github.com/kameleo-io/local-api-exa
 
 > Note: _If you are interested in more information about Kameleo, or have encountered an issue with using it, please check out our [Help Center](https://help.kameleo.io/)._
 
-# Package
+## Package
 
 This package can be found on NuGet Gallery here: [Kameleo.LocalApiClient](https://www.nuget.org/packages/Kameleo.LocalApiClient).
 
-# License
+## Endpoints
+
+Available API endpoints with exhaustive descriptions and example values are documented on this [SwaggerHub](https://app.swaggerhub.com/apis/kameleo-team/kameleo-local-api/) page. This package has built-in [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense) support in Visual Studio Code, no extra package installation needed.
+
+## License
 
 This project is released under MIT License. Please refer the LICENSE.txt for more details.
