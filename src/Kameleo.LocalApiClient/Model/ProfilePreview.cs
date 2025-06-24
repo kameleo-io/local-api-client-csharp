@@ -33,8 +33,9 @@ namespace Kameleo.LocalApiClient.Model
     {
 
         /// <summary>
-        /// Gets or Sets Storage
+        /// Profile storage property which determines where the profile is stored. The default value is &#39;local&#39;. When the value is changed the profile  will be migrated.
         /// </summary>
+        /// <value>Profile storage property which determines where the profile is stored. The default value is &#39;local&#39;. When the value is changed the profile  will be migrated.</value>
         [DataMember(Name = "storage", EmitDefaultValue = false)]
         public ProfileStorageLocation? Storage { get; set; }
         /// <summary>
@@ -48,16 +49,16 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="id">A unique identifier of the profile (required).</param>
         /// <param name="name">The name of the profile (required).</param>
         /// <param name="tags">Profile tags (required).</param>
-        /// <param name="proxy">proxy (required).</param>
+        /// <param name="proxy">Proxy connection settings of the profiles. Values can be &#39;none&#39;, &#39;http&#39;, &#39;socks5&#39;, &#39;ssh&#39;. When it is not set to none, a server is provided. (required).</param>
         /// <param name="createdAt">Date when the profile was created. (required).</param>
-        /// <param name="device">device (required).</param>
-        /// <param name="os">os (required).</param>
-        /// <param name="browser">browser (required).</param>
+        /// <param name="device">Device information about the profile. This is derived from the fingerprint. (required).</param>
+        /// <param name="os">Information about the OS of the profile. This is derived from the fingerprint. (required).</param>
+        /// <param name="browser">Information about the browser of the profile. This is derived from the fingerprint. (required).</param>
         /// <param name="language">Language of the profile as ISO 639-1 language and optionally ISO 3166-1 region code. (required).</param>
-        /// <param name="status">status (required).</param>
-        /// <param name="storage">storage.</param>
-        /// <param name="folderId">A unique identifier of the containing folder, or null if not in a folder. This will always be null for locally stored profiles, as only  cloud profiles can be added to folders..</param>
-        public ProfilePreview(Guid id = default(Guid), string name = default(string), List<string> tags = default(List<string>), ProxyChoice proxy = default(ProxyChoice), DateTime createdAt = default(DateTime), Device device = default(Device), Os os = default(Os), Browser browser = default(Browser), string language = default(string), StatusResponse status = default(StatusResponse), ProfileStorageLocation? storage = default(ProfileStorageLocation?), Guid? folderId = default(Guid?))
+        /// <param name="status">Status information about the profile. (required).</param>
+        /// <param name="storage">Profile storage property which determines where the profile is stored. The default value is &#39;local&#39;. When the value is changed the profile  will be migrated..</param>
+        /// <param name="folderId">A unique identifier of the containing folder, or empty (00000000-0000-0000-0000-000000000000) if not in a folder.  This will always be empty for locally stored profiles, as only cloud profiles can be added to folders..</param>
+        public ProfilePreview(Guid id = default, string name = default, List<string> tags = default, ProxyChoice proxy = default, DateTime createdAt = default, Device device = default, Os os = default, Browser browser = default, string language = default, StatusResponse status = default, ProfileStorageLocation? storage = default, Guid? folderId = default)
         {
             this.Id = id;
             // to ensure "name" is required (not null)
@@ -144,8 +145,9 @@ namespace Kameleo.LocalApiClient.Model
         public List<string> Tags { get; set; }
 
         /// <summary>
-        /// Gets or Sets Proxy
+        /// Proxy connection settings of the profiles. Values can be &#39;none&#39;, &#39;http&#39;, &#39;socks5&#39;, &#39;ssh&#39;. When it is not set to none, a server is provided.
         /// </summary>
+        /// <value>Proxy connection settings of the profiles. Values can be &#39;none&#39;, &#39;http&#39;, &#39;socks5&#39;, &#39;ssh&#39;. When it is not set to none, a server is provided.</value>
         [DataMember(Name = "proxy", IsRequired = true, EmitDefaultValue = true)]
         public ProxyChoice Proxy { get; set; }
 
@@ -160,20 +162,23 @@ namespace Kameleo.LocalApiClient.Model
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Device
+        /// Device information about the profile. This is derived from the fingerprint.
         /// </summary>
+        /// <value>Device information about the profile. This is derived from the fingerprint.</value>
         [DataMember(Name = "device", IsRequired = true, EmitDefaultValue = true)]
         public Device Device { get; set; }
 
         /// <summary>
-        /// Gets or Sets Os
+        /// Information about the OS of the profile. This is derived from the fingerprint.
         /// </summary>
+        /// <value>Information about the OS of the profile. This is derived from the fingerprint.</value>
         [DataMember(Name = "os", IsRequired = true, EmitDefaultValue = true)]
         public Os Os { get; set; }
 
         /// <summary>
-        /// Gets or Sets Browser
+        /// Information about the browser of the profile. This is derived from the fingerprint.
         /// </summary>
+        /// <value>Information about the browser of the profile. This is derived from the fingerprint.</value>
         [DataMember(Name = "browser", IsRequired = true, EmitDefaultValue = true)]
         public Browser Browser { get; set; }
 
@@ -188,15 +193,16 @@ namespace Kameleo.LocalApiClient.Model
         public string Language { get; set; }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// Status information about the profile.
         /// </summary>
+        /// <value>Status information about the profile.</value>
         [DataMember(Name = "status", IsRequired = true, EmitDefaultValue = true)]
         public StatusResponse Status { get; set; }
 
         /// <summary>
-        /// A unique identifier of the containing folder, or null if not in a folder. This will always be null for locally stored profiles, as only  cloud profiles can be added to folders.
+        /// A unique identifier of the containing folder, or empty (00000000-0000-0000-0000-000000000000) if not in a folder.  This will always be empty for locally stored profiles, as only cloud profiles can be added to folders.
         /// </summary>
-        /// <value>A unique identifier of the containing folder, or null if not in a folder. This will always be null for locally stored profiles, as only  cloud profiles can be added to folders.</value>
+        /// <value>A unique identifier of the containing folder, or empty (00000000-0000-0000-0000-000000000000) if not in a folder.  This will always be empty for locally stored profiles, as only cloud profiles can be added to folders.</value>
         /*
         <example>c7aafbbe-b6c0-5475-c66e-1fadf39180f1</example>
         */

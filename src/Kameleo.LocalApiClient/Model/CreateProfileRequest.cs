@@ -33,38 +33,44 @@ namespace Kameleo.LocalApiClient.Model
     {
 
         /// <summary>
-        /// Gets or Sets Canvas
+        /// Specifies how the canvas will be spoofed. Possible values:  &#39;intelligent&#39;: Use intelligent canvas spoofing. This will result non-unique canvas fingerprints.  &#39;noise&#39;: Add some noise to canvas generation.  &#39;block&#39;: Completely block the 2D API.  &#39;off&#39;: Turn off the spoofing, use the original settings.
         /// </summary>
+        /// <value>Specifies how the canvas will be spoofed. Possible values:  &#39;intelligent&#39;: Use intelligent canvas spoofing. This will result non-unique canvas fingerprints.  &#39;noise&#39;: Add some noise to canvas generation.  &#39;block&#39;: Completely block the 2D API.  &#39;off&#39;: Turn off the spoofing, use the original settings.</value>
         [DataMember(Name = "canvas", EmitDefaultValue = false)]
         public CanvasSpoofingType? Canvas { get; set; }
 
         /// <summary>
-        /// Gets or Sets Webgl
+        /// Specifies how the WebGL will be spoofed. Possible values:  &#39;noise&#39;: Add some noise to the WebGL generation  &#39;block&#39;: Completely block the 3D API  &#39;off&#39;: Turn off the spoofing, use the original settings
         /// </summary>
+        /// <value>Specifies how the WebGL will be spoofed. Possible values:  &#39;noise&#39;: Add some noise to the WebGL generation  &#39;block&#39;: Completely block the 3D API  &#39;off&#39;: Turn off the spoofing, use the original settings</value>
         [DataMember(Name = "webgl", EmitDefaultValue = false)]
         public WebglSpoofingType? Webgl { get; set; }
 
         /// <summary>
-        /// Gets or Sets Audio
+        /// Specifies how the audio will be spoofed. Possible values:  &#39;noise&#39;: Add some noise to the Audio generation  &#39;block&#39;: Completely block the Audio API  &#39;off&#39;: Turn off the spoofing, use the original settings
         /// </summary>
+        /// <value>Specifies how the audio will be spoofed. Possible values:  &#39;noise&#39;: Add some noise to the Audio generation  &#39;block&#39;: Completely block the Audio API  &#39;off&#39;: Turn off the spoofing, use the original settings</value>
         [DataMember(Name = "audio", EmitDefaultValue = false)]
         public AudioSpoofingType? Audio { get; set; }
 
         /// <summary>
-        /// Gets or Sets Fonts
+        /// Specifies how the fonts will be spoofed. Possible values:  &#39;automatic&#39;: Spoof fonts based on the browser fingerpint.  &#39;off&#39;: Don&#39;t spoof fonts, use the real fonts of your machine.
         /// </summary>
+        /// <value>Specifies how the fonts will be spoofed. Possible values:  &#39;automatic&#39;: Spoof fonts based on the browser fingerpint.  &#39;off&#39;: Don&#39;t spoof fonts, use the real fonts of your machine.</value>
         [DataMember(Name = "fonts", EmitDefaultValue = false)]
         public FontSpoofingType? Fonts { get; set; }
 
         /// <summary>
-        /// Gets or Sets PasswordManager
+        /// Defines whether the browser can save login credentials. Possible values are:  &#39;enabled&#39;: Credential saving is allowed.  &#39;disabled&#39;: Credential saving is blocked.
         /// </summary>
+        /// <value>Defines whether the browser can save login credentials. Possible values are:  &#39;enabled&#39;: Credential saving is allowed.  &#39;disabled&#39;: Credential saving is blocked.</value>
         [DataMember(Name = "passwordManager", EmitDefaultValue = false)]
         public PasswordManagerType? PasswordManager { get; set; }
 
         /// <summary>
-        /// Gets or Sets Storage
+        /// Profile storage property which determines where the profile is stored. The default value is &#39;local&#39;. When the value is changed the profile  will be migrated.
         /// </summary>
+        /// <value>Profile storage property which determines where the profile is stored. The default value is &#39;local&#39;. When the value is changed the profile  will be migrated.</value>
         [DataMember(Name = "storage", EmitDefaultValue = false)]
         public ProfileStorageLocation? Storage { get; set; }
         /// <summary>
@@ -77,27 +83,27 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="fingerprintId">The unique identifier of the fingerprint. This references the fingerprint which should be used to build the new profile. (required).</param>
         /// <param name="name">Sets a human-readable name for the profile, which is modifiable at any time..</param>
-        /// <param name="folderId">Id of the folder the profile should be created in..</param>
+        /// <param name="folderId">Id of the folder the profile should be created in. If null or empty (00000000-0000-0000-0000-000000000000) the profile will be created in root..</param>
         /// <param name="tags">Use tags to categorize profiles by labeling them accordingly..</param>
-        /// <param name="canvas">canvas.</param>
-        /// <param name="webgl">webgl.</param>
-        /// <param name="webglMeta">webglMeta.</param>
-        /// <param name="audio">audio.</param>
-        /// <param name="timezone">timezone.</param>
-        /// <param name="geolocation">geolocation.</param>
-        /// <param name="proxy">proxy.</param>
-        /// <param name="webRtc">webRtc.</param>
-        /// <param name="fonts">fonts.</param>
-        /// <param name="screen">screen.</param>
-        /// <param name="hardwareConcurrency">hardwareConcurrency.</param>
-        /// <param name="deviceMemory">deviceMemory.</param>
+        /// <param name="canvas">Specifies how the canvas will be spoofed. Possible values:  &#39;intelligent&#39;: Use intelligent canvas spoofing. This will result non-unique canvas fingerprints.  &#39;noise&#39;: Add some noise to canvas generation.  &#39;block&#39;: Completely block the 2D API.  &#39;off&#39;: Turn off the spoofing, use the original settings..</param>
+        /// <param name="webgl">Specifies how the WebGL will be spoofed. Possible values:  &#39;noise&#39;: Add some noise to the WebGL generation  &#39;block&#39;: Completely block the 3D API  &#39;off&#39;: Turn off the spoofing, use the original settings.</param>
+        /// <param name="webglMeta">Sets how the WebGL Vendor and Renderer will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;..</param>
+        /// <param name="audio">Specifies how the audio will be spoofed. Possible values:  &#39;noise&#39;: Add some noise to the Audio generation  &#39;block&#39;: Completely block the Audio API  &#39;off&#39;: Turn off the spoofing, use the original settings.</param>
+        /// <param name="timezone">Sets how the Timezone will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;..</param>
+        /// <param name="geolocation">Sets how the Geolocation will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;block&#39;, &#39;off&#39;..</param>
+        /// <param name="proxy">Sets the Proxy connection settings of the profile. Values can be &#39;none&#39;, &#39;http&#39;, &#39;socks5&#39;, &#39;ssh&#39;. When it is not set to none, a server must  be provided..</param>
+        /// <param name="webRtc">Sets how the WebRTC will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;block&#39;, &#39;off&#39;..</param>
+        /// <param name="fonts">Specifies how the fonts will be spoofed. Possible values:  &#39;automatic&#39;: Spoof fonts based on the browser fingerpint.  &#39;off&#39;: Don&#39;t spoof fonts, use the real fonts of your machine..</param>
+        /// <param name="screen">Sets how the Screen will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;. When value is set to manual, a ScreenSize must be  provided..</param>
+        /// <param name="hardwareConcurrency">Sets how the Hardware Concurrency will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;. When value is set to manual, a numeric value  (1, 2, 4, 8, 12 or 16) must be provided..</param>
+        /// <param name="deviceMemory">Sets how the Device Memory will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;. When value is set to manual, a numeric value (0.25,  0.5, 1, 2, 4, 8) must be provided..</param>
         /// <param name="language">Language of the profile as ISO 639-1 language and optionally ISO 3166-1 region code..</param>
         /// <param name="startPage">This website will be opened in the browser when the profile launches..</param>
-        /// <param name="passwordManager">passwordManager.</param>
+        /// <param name="passwordManager">Defines whether the browser can save login credentials. Possible values are:  &#39;enabled&#39;: Credential saving is allowed.  &#39;disabled&#39;: Credential saving is blocked..</param>
         /// <param name="extensions">A list of abolute paths from where the profile should load extensions or addons when starting the browser. For chrome and edge use CRX3  format extensions. For firefox use signed xpi format addons..</param>
         /// <param name="notes">A free text including any notes written by the user..</param>
-        /// <param name="storage">storage.</param>
-        public CreateProfileRequest(string fingerprintId = default(string), string name = default(string), Guid? folderId = default(Guid?), List<string> tags = default(List<string>), CanvasSpoofingType? canvas = default(CanvasSpoofingType?), WebglSpoofingType? webgl = default(WebglSpoofingType?), WebglMetaChoice webglMeta = default(WebglMetaChoice), AudioSpoofingType? audio = default(AudioSpoofingType?), TimezoneChoice timezone = default(TimezoneChoice), GeolocationChoice geolocation = default(GeolocationChoice), ProxyChoice proxy = default(ProxyChoice), WebRtcChoice webRtc = default(WebRtcChoice), FontSpoofingType? fonts = default(FontSpoofingType?), ScreenChoice screen = default(ScreenChoice), HardwareConcurrencyChoice hardwareConcurrency = default(HardwareConcurrencyChoice), DeviceMemoryChoice deviceMemory = default(DeviceMemoryChoice), string language = default(string), string startPage = default(string), PasswordManagerType? passwordManager = default(PasswordManagerType?), List<string> extensions = default(List<string>), string notes = default(string), ProfileStorageLocation? storage = default(ProfileStorageLocation?))
+        /// <param name="storage">Profile storage property which determines where the profile is stored. The default value is &#39;local&#39;. When the value is changed the profile  will be migrated..</param>
+        public CreateProfileRequest(string fingerprintId = default, string name = default, Guid? folderId = default, List<string> tags = default, CanvasSpoofingType? canvas = default, WebglSpoofingType? webgl = default, WebglMetaChoice webglMeta = default, AudioSpoofingType? audio = default, TimezoneChoice timezone = default, GeolocationChoice geolocation = default, ProxyChoice proxy = default, WebRtcChoice webRtc = default, FontSpoofingType? fonts = default, ScreenChoice screen = default, HardwareConcurrencyChoice hardwareConcurrency = default, DeviceMemoryChoice deviceMemory = default, string language = default, string startPage = default, PasswordManagerType? passwordManager = default, List<string> extensions = default, string notes = default, ProfileStorageLocation? storage = default)
         {
             // to ensure "fingerprintId" is required (not null)
             if (fingerprintId == null)
@@ -146,9 +152,9 @@ namespace Kameleo.LocalApiClient.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Id of the folder the profile should be created in.
+        /// Id of the folder the profile should be created in. If null or empty (00000000-0000-0000-0000-000000000000) the profile will be created in root.
         /// </summary>
-        /// <value>Id of the folder the profile should be created in.</value>
+        /// <value>Id of the folder the profile should be created in. If null or empty (00000000-0000-0000-0000-000000000000) the profile will be created in root.</value>
         /*
         <example>0036135c-6f62-429b-a9db-fd541aca96a7</example>
         */
@@ -166,51 +172,59 @@ namespace Kameleo.LocalApiClient.Model
         public List<string> Tags { get; set; }
 
         /// <summary>
-        /// Gets or Sets WebglMeta
+        /// Sets how the WebGL Vendor and Renderer will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;.
         /// </summary>
-        [DataMember(Name = "webglMeta", EmitDefaultValue = false)]
+        /// <value>Sets how the WebGL Vendor and Renderer will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;.</value>
+        [DataMember(Name = "webglMeta", EmitDefaultValue = true)]
         public WebglMetaChoice WebglMeta { get; set; }
 
         /// <summary>
-        /// Gets or Sets Timezone
+        /// Sets how the Timezone will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;.
         /// </summary>
-        [DataMember(Name = "timezone", EmitDefaultValue = false)]
+        /// <value>Sets how the Timezone will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;.</value>
+        [DataMember(Name = "timezone", EmitDefaultValue = true)]
         public TimezoneChoice Timezone { get; set; }
 
         /// <summary>
-        /// Gets or Sets Geolocation
+        /// Sets how the Geolocation will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;block&#39;, &#39;off&#39;.
         /// </summary>
-        [DataMember(Name = "geolocation", EmitDefaultValue = false)]
+        /// <value>Sets how the Geolocation will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;block&#39;, &#39;off&#39;.</value>
+        [DataMember(Name = "geolocation", EmitDefaultValue = true)]
         public GeolocationChoice Geolocation { get; set; }
 
         /// <summary>
-        /// Gets or Sets Proxy
+        /// Sets the Proxy connection settings of the profile. Values can be &#39;none&#39;, &#39;http&#39;, &#39;socks5&#39;, &#39;ssh&#39;. When it is not set to none, a server must  be provided.
         /// </summary>
-        [DataMember(Name = "proxy", EmitDefaultValue = false)]
+        /// <value>Sets the Proxy connection settings of the profile. Values can be &#39;none&#39;, &#39;http&#39;, &#39;socks5&#39;, &#39;ssh&#39;. When it is not set to none, a server must  be provided.</value>
+        [DataMember(Name = "proxy", EmitDefaultValue = true)]
         public ProxyChoice Proxy { get; set; }
 
         /// <summary>
-        /// Gets or Sets WebRtc
+        /// Sets how the WebRTC will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;block&#39;, &#39;off&#39;.
         /// </summary>
-        [DataMember(Name = "webRtc", EmitDefaultValue = false)]
+        /// <value>Sets how the WebRTC will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;block&#39;, &#39;off&#39;.</value>
+        [DataMember(Name = "webRtc", EmitDefaultValue = true)]
         public WebRtcChoice WebRtc { get; set; }
 
         /// <summary>
-        /// Gets or Sets Screen
+        /// Sets how the Screen will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;. When value is set to manual, a ScreenSize must be  provided.
         /// </summary>
-        [DataMember(Name = "screen", EmitDefaultValue = false)]
+        /// <value>Sets how the Screen will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;. When value is set to manual, a ScreenSize must be  provided.</value>
+        [DataMember(Name = "screen", EmitDefaultValue = true)]
         public ScreenChoice Screen { get; set; }
 
         /// <summary>
-        /// Gets or Sets HardwareConcurrency
+        /// Sets how the Hardware Concurrency will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;. When value is set to manual, a numeric value  (1, 2, 4, 8, 12 or 16) must be provided.
         /// </summary>
-        [DataMember(Name = "hardwareConcurrency", EmitDefaultValue = false)]
+        /// <value>Sets how the Hardware Concurrency will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;. When value is set to manual, a numeric value  (1, 2, 4, 8, 12 or 16) must be provided.</value>
+        [DataMember(Name = "hardwareConcurrency", EmitDefaultValue = true)]
         public HardwareConcurrencyChoice HardwareConcurrency { get; set; }
 
         /// <summary>
-        /// Gets or Sets DeviceMemory
+        /// Sets how the Device Memory will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;. When value is set to manual, a numeric value (0.25,  0.5, 1, 2, 4, 8) must be provided.
         /// </summary>
-        [DataMember(Name = "deviceMemory", EmitDefaultValue = false)]
+        /// <value>Sets how the Device Memory will be spoofed. Values can be &#39;automatic&#39;, &#39;manual&#39;, &#39;off&#39;. When value is set to manual, a numeric value (0.25,  0.5, 1, 2, 4, 8) must be provided.</value>
+        [DataMember(Name = "deviceMemory", EmitDefaultValue = true)]
         public DeviceMemoryChoice DeviceMemory { get; set; }
 
         /// <summary>

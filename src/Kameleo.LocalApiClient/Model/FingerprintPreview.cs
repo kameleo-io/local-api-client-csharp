@@ -40,11 +40,13 @@ namespace Kameleo.LocalApiClient.Model
         /// Initializes a new instance of the <see cref="FingerprintPreview" /> class.
         /// </summary>
         /// <param name="id">The unique identifier of the fingerprint. You can use this as a reference to create a new profile from this fingerprint. (required).</param>
-        /// <param name="device">device (required).</param>
-        /// <param name="os">os (required).</param>
-        /// <param name="browser">browser (required).</param>
-        /// <param name="webglMeta">webglMeta (required).</param>
-        public FingerprintPreview(string id = default(string), Device device = default(Device), Os os = default(Os), Browser browser = default(Browser), WebglMeta webglMeta = default(WebglMeta))
+        /// <param name="device">Information about the device of the fingerprint. (required).</param>
+        /// <param name="os">Information about the OS of the fingerprint. (required).</param>
+        /// <param name="browser">Information about the browser of the fingerprint. (required).</param>
+        /// <param name="webglMeta">The GPU details of the fingerprint extracted from WebGL parameters. (required).</param>
+        /// <param name="userAgent">The user agent of the fingerprint. (required).</param>
+        /// <param name="fontsCount">The number of fonts in the fingerprint. (required).</param>
+        public FingerprintPreview(string id = default, Device device = default, Os os = default, Browser browser = default, WebglMeta webglMeta = default, string userAgent = default, int fontsCount = default)
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -76,6 +78,13 @@ namespace Kameleo.LocalApiClient.Model
                 throw new ArgumentNullException("webglMeta is a required property for FingerprintPreview and cannot be null");
             }
             this.WebglMeta = webglMeta;
+            // to ensure "userAgent" is required (not null)
+            if (userAgent == null)
+            {
+                throw new ArgumentNullException("userAgent is a required property for FingerprintPreview and cannot be null");
+            }
+            this.UserAgent = userAgent;
+            this.FontsCount = fontsCount;
         }
 
         /// <summary>
@@ -89,28 +98,46 @@ namespace Kameleo.LocalApiClient.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Device
+        /// Information about the device of the fingerprint.
         /// </summary>
+        /// <value>Information about the device of the fingerprint.</value>
         [DataMember(Name = "device", IsRequired = true, EmitDefaultValue = true)]
         public Device Device { get; set; }
 
         /// <summary>
-        /// Gets or Sets Os
+        /// Information about the OS of the fingerprint.
         /// </summary>
+        /// <value>Information about the OS of the fingerprint.</value>
         [DataMember(Name = "os", IsRequired = true, EmitDefaultValue = true)]
         public Os Os { get; set; }
 
         /// <summary>
-        /// Gets or Sets Browser
+        /// Information about the browser of the fingerprint.
         /// </summary>
+        /// <value>Information about the browser of the fingerprint.</value>
         [DataMember(Name = "browser", IsRequired = true, EmitDefaultValue = true)]
         public Browser Browser { get; set; }
 
         /// <summary>
-        /// Gets or Sets WebglMeta
+        /// The GPU details of the fingerprint extracted from WebGL parameters.
         /// </summary>
+        /// <value>The GPU details of the fingerprint extracted from WebGL parameters.</value>
         [DataMember(Name = "webglMeta", IsRequired = true, EmitDefaultValue = true)]
         public WebglMeta WebglMeta { get; set; }
+
+        /// <summary>
+        /// The user agent of the fingerprint.
+        /// </summary>
+        /// <value>The user agent of the fingerprint.</value>
+        [DataMember(Name = "userAgent", IsRequired = true, EmitDefaultValue = true)]
+        public string UserAgent { get; set; }
+
+        /// <summary>
+        /// The number of fonts in the fingerprint.
+        /// </summary>
+        /// <value>The number of fonts in the fingerprint.</value>
+        [DataMember(Name = "fontsCount", IsRequired = true, EmitDefaultValue = true)]
+        public int FontsCount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -125,6 +152,8 @@ namespace Kameleo.LocalApiClient.Model
             sb.Append("  Os: ").Append(Os).Append("\n");
             sb.Append("  Browser: ").Append(Browser).Append("\n");
             sb.Append("  WebglMeta: ").Append(WebglMeta).Append("\n");
+            sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
+            sb.Append("  FontsCount: ").Append(FontsCount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

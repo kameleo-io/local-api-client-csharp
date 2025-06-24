@@ -41,7 +41,7 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="latitude">From -90 to 90 (required).</param>
         /// <param name="longitude">From -180 to 180 (required).</param>
-        public GeolocationSpoofingOptions(float latitude = default(float), float longitude = default(float))
+        public GeolocationSpoofingOptions(float latitude = default, float longitude = default)
         {
             this.Latitude = latitude;
             this.Longitude = longitude;

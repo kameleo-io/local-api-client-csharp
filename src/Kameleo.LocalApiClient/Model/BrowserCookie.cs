@@ -50,7 +50,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="expirationDate">This unix timestamp formatted attribute is used to set persistent cookies. It signifies how long the browser should use the persistent  cookie and when the cookie should be deleted.  If this attribute is not specified, then the lifetime of the cookie is the same as that of browser session, i.e.it will be a non-persistent  cookie..</param>
         /// <param name="session">Session cookies are deleted when the current session ends. The browser defines when the \&quot;current session\&quot; ends, and some browsers use  session restoring when restarting, which can cause session cookies to last indefinitely long..</param>
         /// <param name="storeId">The ID of the cookie store containing this cookie..</param>
-        public BrowserCookie(string domain = default(string), string name = default(string), string path = default(string), string value = default(string), bool hostOnly = default(bool), bool httpOnly = default(bool), bool secure = default(bool), string sameSite = default(string), long? expirationDate = default(long?), bool session = default(bool), string storeId = default(string))
+        public BrowserCookie(string domain = default, string name = default, string path = default, string value = default, bool hostOnly = default, bool httpOnly = default, bool secure = default, string sameSite = default, long? expirationDate = default, bool session = default, string storeId = default)
         {
             // to ensure "domain" is required (not null)
             if (domain == null)

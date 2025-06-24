@@ -33,8 +33,9 @@ namespace Kameleo.LocalApiClient.Model
     {
 
         /// <summary>
-        /// Gets or Sets Value
+        /// Specifies how the screen will be spoofed. Possible values:  &#39;automatic&#39;: Automatically override the screen resolution based on the fingerprint.  &#39;manual&#39;: Manually override the screen resolution.  &#39;off&#39;: Turn off the spoofing, use the original settings.
         /// </summary>
+        /// <value>Specifies how the screen will be spoofed. Possible values:  &#39;automatic&#39;: Automatically override the screen resolution based on the fingerprint.  &#39;manual&#39;: Manually override the screen resolution.  &#39;off&#39;: Turn off the spoofing, use the original settings.</value>
         [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
         public ScreenSpoofingType Value { get; set; }
         /// <summary>
@@ -45,9 +46,9 @@ namespace Kameleo.LocalApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ScreenChoice" /> class.
         /// </summary>
-        /// <param name="value">value (required).</param>
+        /// <param name="value">Specifies how the screen will be spoofed. Possible values:  &#39;automatic&#39;: Automatically override the screen resolution based on the fingerprint.  &#39;manual&#39;: Manually override the screen resolution.  &#39;off&#39;: Turn off the spoofing, use the original settings. (required).</param>
         /// <param name="extra">The screen size of the device in pixels. For example: 1920x1080.</param>
-        public ScreenChoice(ScreenSpoofingType value = default(ScreenSpoofingType), string extra = default(string))
+        public ScreenChoice(ScreenSpoofingType value = default, string extra = default)
         {
             this.Value = value;
             this.Extra = extra;

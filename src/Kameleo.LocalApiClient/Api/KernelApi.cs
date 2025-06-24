@@ -104,7 +104,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of KernelResponse</returns>
-        System.Threading.Tasks.Task<KernelResponse> InstallKernelAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<KernelResponse> InstallKernelAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Installs a kernel to the local file system.
@@ -117,7 +117,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (KernelResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<KernelResponse>> InstallKernelWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<KernelResponse>> InstallKernelWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Gets the list of all the available kernels.
         /// </summary>
@@ -128,7 +128,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;KernelResponse&gt;</returns>
-        System.Threading.Tasks.Task<List<KernelResponse>> ListKernelsAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<KernelResponse>> ListKernelsAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Gets the list of all the available kernels.
@@ -140,7 +140,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;KernelResponse&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<KernelResponse>>> ListKernelsWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<KernelResponse>>> ListKernelsWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Removes a kernel from the local file system.
         /// </summary>
@@ -152,7 +152,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of KernelResponse</returns>
-        System.Threading.Tasks.Task<KernelResponse> RemoveKernelAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<KernelResponse> RemoveKernelAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Removes a kernel from the local file system.
@@ -165,7 +165,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (KernelResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<KernelResponse>> RemoveKernelWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<KernelResponse>> RemoveKernelWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -359,7 +359,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of KernelResponse</returns>
-        public async System.Threading.Tasks.Task<KernelResponse> InstallKernelAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<KernelResponse> InstallKernelAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<KernelResponse> localVarResponse = await InstallKernelWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -373,7 +373,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (KernelResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<KernelResponse>> InstallKernelWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<KernelResponse>> InstallKernelWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -488,7 +488,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;KernelResponse&gt;</returns>
-        public async System.Threading.Tasks.Task<List<KernelResponse>> ListKernelsAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<KernelResponse>> ListKernelsAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<List<KernelResponse>> localVarResponse = await ListKernelsWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -501,7 +501,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;KernelResponse&gt;)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<List<KernelResponse>>> ListKernelsWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<List<KernelResponse>>> ListKernelsWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -619,7 +619,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of KernelResponse</returns>
-        public async System.Threading.Tasks.Task<KernelResponse> RemoveKernelAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<KernelResponse> RemoveKernelAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<KernelResponse> localVarResponse = await RemoveKernelWithHttpInfoAsync(id, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -633,7 +633,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (KernelResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<KernelResponse>> RemoveKernelWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<KernelResponse>> RemoveKernelWithHttpInfoAsync(Guid id, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();

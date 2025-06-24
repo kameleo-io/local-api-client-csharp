@@ -33,8 +33,9 @@ namespace Kameleo.LocalApiClient.Model
     {
 
         /// <summary>
-        /// Gets or Sets Value
+        /// Specifies how the timezone will be spoofed. Possble values:  &#39;automatic&#39;: Timezone is automatically set by the IP  &#39;manual&#39;: Timezone is manually overridden in the profile  &#39;off&#39;: Turn off the spoofing, use the original settings
         /// </summary>
+        /// <value>Specifies how the timezone will be spoofed. Possble values:  &#39;automatic&#39;: Timezone is automatically set by the IP  &#39;manual&#39;: Timezone is manually overridden in the profile  &#39;off&#39;: Turn off the spoofing, use the original settings</value>
         [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
         public TimezoneSpoofingType Value { get; set; }
         /// <summary>
@@ -45,9 +46,9 @@ namespace Kameleo.LocalApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TimezoneChoice" /> class.
         /// </summary>
-        /// <param name="value">value (required).</param>
+        /// <param name="value">Specifies how the timezone will be spoofed. Possble values:  &#39;automatic&#39;: Timezone is automatically set by the IP  &#39;manual&#39;: Timezone is manually overridden in the profile  &#39;off&#39;: Turn off the spoofing, use the original settings (required).</param>
         /// <param name="extra">When the Timezone spoofing is set to manual the timezone in Iana format is required. For example: America/Grenada.</param>
-        public TimezoneChoice(TimezoneSpoofingType value = default(TimezoneSpoofingType), string extra = default(string))
+        public TimezoneChoice(TimezoneSpoofingType value = default, string extra = default)
         {
             this.Value = value;
             this.Extra = extra;

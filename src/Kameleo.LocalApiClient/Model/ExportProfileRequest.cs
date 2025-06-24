@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Model
         /// Initializes a new instance of the <see cref="ExportProfileRequest" /> class.
         /// </summary>
         /// <param name="path">Specifies the file path for exporting the profile. (required).</param>
-        public ExportProfileRequest(string path = default(string))
+        public ExportProfileRequest(string path = default)
         {
             // to ensure "path" is required (not null)
             if (path == null)

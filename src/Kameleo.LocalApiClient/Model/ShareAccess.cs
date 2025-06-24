@@ -39,10 +39,10 @@ namespace Kameleo.LocalApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ShareAccess" /> class.
         /// </summary>
-        /// <param name="user">user (required).</param>
-        /// <param name="role">role (required).</param>
+        /// <param name="user">User accessing this folder. (required).</param>
+        /// <param name="role">Level of access to the folder. (required).</param>
         /// <param name="sharedAt">Timestamp when the acess was granted to the user. (required).</param>
-        public ShareAccess(User user = default(User), GroupRole role = default(GroupRole), DateTime sharedAt = default(DateTime))
+        public ShareAccess(User user = default, GroupRole role = default, DateTime sharedAt = default)
         {
             // to ensure "user" is required (not null)
             if (user == null)
@@ -60,14 +60,16 @@ namespace Kameleo.LocalApiClient.Model
         }
 
         /// <summary>
-        /// Gets or Sets User
+        /// User accessing this folder.
         /// </summary>
+        /// <value>User accessing this folder.</value>
         [DataMember(Name = "user", IsRequired = true, EmitDefaultValue = true)]
         public User User { get; set; }
 
         /// <summary>
-        /// Gets or Sets Role
+        /// Level of access to the folder.
         /// </summary>
+        /// <value>Level of access to the folder.</value>
         [DataMember(Name = "role", IsRequired = true, EmitDefaultValue = true)]
         public GroupRole Role { get; set; }
 

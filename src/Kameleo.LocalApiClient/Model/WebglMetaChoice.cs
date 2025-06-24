@@ -33,8 +33,9 @@ namespace Kameleo.LocalApiClient.Model
     {
 
         /// <summary>
-        /// Gets or Sets Value
+        /// Specifies how the WebGL vendor and renderer will be spoofed. Possible values:  &#39;automatic&#39;: The vendor and renderer values comes from the fingerprint.  &#39;manual&#39;: Manually configure WebGL metadata. For optimal results, choose a video card model similar to your device&#39;s to ensure realistic  profile masking.  &#39;off&#39;: Turn off the spoofing, use the original settings
         /// </summary>
+        /// <value>Specifies how the WebGL vendor and renderer will be spoofed. Possible values:  &#39;automatic&#39;: The vendor and renderer values comes from the fingerprint.  &#39;manual&#39;: Manually configure WebGL metadata. For optimal results, choose a video card model similar to your device&#39;s to ensure realistic  profile masking.  &#39;off&#39;: Turn off the spoofing, use the original settings</value>
         [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
         public WebglMetaSpoofingType Value { get; set; }
         /// <summary>
@@ -45,18 +46,19 @@ namespace Kameleo.LocalApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebglMetaChoice" /> class.
         /// </summary>
-        /// <param name="value">value (required).</param>
-        /// <param name="extra">extra.</param>
-        public WebglMetaChoice(WebglMetaSpoofingType value = default(WebglMetaSpoofingType), WebglMetaSpoofingOptions extra = default(WebglMetaSpoofingOptions))
+        /// <param name="value">Specifies how the WebGL vendor and renderer will be spoofed. Possible values:  &#39;automatic&#39;: The vendor and renderer values comes from the fingerprint.  &#39;manual&#39;: Manually configure WebGL metadata. For optimal results, choose a video card model similar to your device&#39;s to ensure realistic  profile masking.  &#39;off&#39;: Turn off the spoofing, use the original settings (required).</param>
+        /// <param name="extra">When the WebGL Meta spoofing is used, these settings can override the values in the fingerprint..</param>
+        public WebglMetaChoice(WebglMetaSpoofingType value = default, WebglMetaSpoofingOptions extra = default)
         {
             this.Value = value;
             this.Extra = extra;
         }
 
         /// <summary>
-        /// Gets or Sets Extra
+        /// When the WebGL Meta spoofing is used, these settings can override the values in the fingerprint.
         /// </summary>
-        [DataMember(Name = "extra", EmitDefaultValue = false)]
+        /// <value>When the WebGL Meta spoofing is used, these settings can override the values in the fingerprint.</value>
+        [DataMember(Name = "extra", EmitDefaultValue = true)]
         public WebglMetaSpoofingOptions Extra { get; set; }
 
         /// <summary>

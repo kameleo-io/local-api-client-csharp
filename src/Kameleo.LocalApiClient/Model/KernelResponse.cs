@@ -49,7 +49,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="isInstalled">Flag indicating if the kernel is locally available (true) or it has to be installed before usage (false). (required).</param>
         /// <param name="isInUse">Flag indicating if the kernel is currently in use. (required).</param>
         /// <param name="isMarkedForRemoval">Flag indicating that the kernel will be removed from the local file system when it is not in use. (required).</param>
-        public KernelResponse(Guid id = default(Guid), string platform = default(string), string browser = default(string), string varVersion = default(string), DateTime builtAt = default(DateTime), long downloadSize = default(long), long? diskSize = default(long?), bool isInstalled = default(bool), bool isInUse = default(bool), bool isMarkedForRemoval = default(bool))
+        public KernelResponse(Guid id = default, string platform = default, string browser = default, string varVersion = default, DateTime builtAt = default, long downloadSize = default, long? diskSize = default, bool isInstalled = default, bool isInUse = default, bool isMarkedForRemoval = default)
         {
             this.Id = id;
             // to ensure "platform" is required (not null)

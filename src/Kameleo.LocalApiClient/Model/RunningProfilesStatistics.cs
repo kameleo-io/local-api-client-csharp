@@ -34,25 +34,36 @@ namespace Kameleo.LocalApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RunningProfilesStatistics" /> class.
         /// </summary>
-        /// <param name="automated">automated.</param>
-        /// <param name="manual">manual.</param>
-        public RunningProfilesStatistics(QuotaStatistics automated = default(QuotaStatistics), QuotaStatistics manual = default(QuotaStatistics))
+        /// <param name="automated">Quota usage of the profiles that are running with an automation framework..</param>
+        /// <param name="manual">Quota usage of the profiles that are running manually (were started from GUI or API)..</param>
+        /// <param name="total">Quota usage of the profiles that are running either manually or with an automation framework..</param>
+        public RunningProfilesStatistics(QuotaStatistics automated = default, QuotaStatistics manual = default, QuotaStatistics total = default)
         {
             this.Automated = automated;
             this.Manual = manual;
+            this.Total = total;
         }
 
         /// <summary>
-        /// Gets or Sets Automated
+        /// Quota usage of the profiles that are running with an automation framework.
         /// </summary>
-        [DataMember(Name = "automated", EmitDefaultValue = false)]
+        /// <value>Quota usage of the profiles that are running with an automation framework.</value>
+        [DataMember(Name = "automated", EmitDefaultValue = true)]
         public QuotaStatistics Automated { get; set; }
 
         /// <summary>
-        /// Gets or Sets Manual
+        /// Quota usage of the profiles that are running manually (were started from GUI or API).
         /// </summary>
-        [DataMember(Name = "manual", EmitDefaultValue = false)]
+        /// <value>Quota usage of the profiles that are running manually (were started from GUI or API).</value>
+        [DataMember(Name = "manual", EmitDefaultValue = true)]
         public QuotaStatistics Manual { get; set; }
+
+        /// <summary>
+        /// Quota usage of the profiles that are running either manually or with an automation framework.
+        /// </summary>
+        /// <value>Quota usage of the profiles that are running either manually or with an automation framework.</value>
+        [DataMember(Name = "total", EmitDefaultValue = true)]
+        public QuotaStatistics Total { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,6 +75,7 @@ namespace Kameleo.LocalApiClient.Model
             sb.Append("class RunningProfilesStatistics {\n");
             sb.Append("  Automated: ").Append(Automated).Append("\n");
             sb.Append("  Manual: ").Append(Manual).Append("\n");
+            sb.Append("  Total: ").Append(Total).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

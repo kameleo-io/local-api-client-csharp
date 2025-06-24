@@ -41,7 +41,7 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="key">Key of the preference (required).</param>
         /// <param name="value">Value of the preference. It can a string or a boolean or an integer (required).</param>
-        public Preference(string key = default(string), Object value = default(Object))
+        public Preference(string key = default, Object value = default)
         {
             // to ensure "key" is required (not null)
             if (key == null)

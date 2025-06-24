@@ -33,8 +33,9 @@ namespace Kameleo.LocalApiClient.Model
     {
 
         /// <summary>
-        /// Gets or Sets Value
+        /// Proxy connection settings of the profiles. Possible values:  &#39;none&#39;: Direct connection without any proxy.  &#39;http&#39;: Use a HTTP proxy for upstream communication.  &#39;socks5&#39;: Use a SOCKS5 proxy for upstream communication.  &#39;ssh&#39;: Use an SSH connection for upstream communication. Basically a SOCKS5 proxy created at the given SSH host.
         /// </summary>
+        /// <value>Proxy connection settings of the profiles. Possible values:  &#39;none&#39;: Direct connection without any proxy.  &#39;http&#39;: Use a HTTP proxy for upstream communication.  &#39;socks5&#39;: Use a SOCKS5 proxy for upstream communication.  &#39;ssh&#39;: Use an SSH connection for upstream communication. Basically a SOCKS5 proxy created at the given SSH host.</value>
         [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
         public ProxyConnectionType Value { get; set; }
         /// <summary>
@@ -45,18 +46,19 @@ namespace Kameleo.LocalApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ProxyChoice" /> class.
         /// </summary>
-        /// <param name="value">value (required).</param>
-        /// <param name="extra">extra.</param>
-        public ProxyChoice(ProxyConnectionType value = default(ProxyConnectionType), Server extra = default(Server))
+        /// <param name="value">Proxy connection settings of the profiles. Possible values:  &#39;none&#39;: Direct connection without any proxy.  &#39;http&#39;: Use a HTTP proxy for upstream communication.  &#39;socks5&#39;: Use a SOCKS5 proxy for upstream communication.  &#39;ssh&#39;: Use an SSH connection for upstream communication. Basically a SOCKS5 proxy created at the given SSH host. (required).</param>
+        /// <param name="extra">Represents a server connection. It can be used as a proxy server connection as well..</param>
+        public ProxyChoice(ProxyConnectionType value = default, Server extra = default)
         {
             this.Value = value;
             this.Extra = extra;
         }
 
         /// <summary>
-        /// Gets or Sets Extra
+        /// Represents a server connection. It can be used as a proxy server connection as well.
         /// </summary>
-        [DataMember(Name = "extra", EmitDefaultValue = false)]
+        /// <value>Represents a server connection. It can be used as a proxy server connection as well.</value>
+        [DataMember(Name = "extra", EmitDefaultValue = true)]
         public Server Extra { get; set; }
 
         /// <summary>
