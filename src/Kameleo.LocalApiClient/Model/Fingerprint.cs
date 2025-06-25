@@ -41,13 +41,14 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="varVersion">The version of the fingerprint. As time passes new fingerprint versions will be introduced. It is recommended to use the latest one. (required).</param>
         /// <param name="id">The unique identifier of the fingerprint. You can use this as a reference to create a new profile from this fingerprint. (required).</param>
-        /// <param name="device">device (required).</param>
-        /// <param name="os">os (required).</param>
-        /// <param name="browser">browser (required).</param>
-        /// <param name="webglMeta">webglMeta (required).</param>
-        /// <param name="resolution">The screen size of the device in pixels (required).</param>
-        /// <param name="fonts">A list of font types included in the profile (required).</param>
-        public Fingerprint(string varVersion = default(string), string id = default(string), Device device = default(Device), Os os = default(Os), Browser browser = default(Browser), WebglMeta webglMeta = default(WebglMeta), string resolution = default(string), List<string> fonts = default(List<string>))
+        /// <param name="userAgent">The user agent of the browser fingerprint. (required).</param>
+        /// <param name="device">Information about the device of the fingerprint. (required).</param>
+        /// <param name="os">Information about the OS of the fingerprint. (required).</param>
+        /// <param name="browser">Information about the browser of the fingerprint. (required).</param>
+        /// <param name="webglMeta">The GPU details extracted from WebGL parameters. (required).</param>
+        /// <param name="resolution">The screen size of the device in pixels. (required).</param>
+        /// <param name="fonts">A list of font types included in the profile. (required).</param>
+        public Fingerprint(string varVersion = default, string id = default, string userAgent = default, Device device = default, Os os = default, Browser browser = default, WebglMeta webglMeta = default, string resolution = default, List<string> fonts = default)
         {
             // to ensure "varVersion" is required (not null)
             if (varVersion == null)
@@ -61,6 +62,12 @@ namespace Kameleo.LocalApiClient.Model
                 throw new ArgumentNullException("id is a required property for Fingerprint and cannot be null");
             }
             this.Id = id;
+            // to ensure "userAgent" is required (not null)
+            if (userAgent == null)
+            {
+                throw new ArgumentNullException("userAgent is a required property for Fingerprint and cannot be null");
+            }
+            this.UserAgent = userAgent;
             // to ensure "device" is required (not null)
             if (device == null)
             {
@@ -117,33 +124,47 @@ namespace Kameleo.LocalApiClient.Model
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Device
+        /// The user agent of the browser fingerprint.
         /// </summary>
+        /// <value>The user agent of the browser fingerprint.</value>
+        /*
+        <example>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36</example>
+        */
+        [DataMember(Name = "userAgent", IsRequired = true, EmitDefaultValue = true)]
+        public string UserAgent { get; set; }
+
+        /// <summary>
+        /// Information about the device of the fingerprint.
+        /// </summary>
+        /// <value>Information about the device of the fingerprint.</value>
         [DataMember(Name = "device", IsRequired = true, EmitDefaultValue = true)]
         public Device Device { get; set; }
 
         /// <summary>
-        /// Gets or Sets Os
+        /// Information about the OS of the fingerprint.
         /// </summary>
+        /// <value>Information about the OS of the fingerprint.</value>
         [DataMember(Name = "os", IsRequired = true, EmitDefaultValue = true)]
         public Os Os { get; set; }
 
         /// <summary>
-        /// Gets or Sets Browser
+        /// Information about the browser of the fingerprint.
         /// </summary>
+        /// <value>Information about the browser of the fingerprint.</value>
         [DataMember(Name = "browser", IsRequired = true, EmitDefaultValue = true)]
         public Browser Browser { get; set; }
 
         /// <summary>
-        /// Gets or Sets WebglMeta
+        /// The GPU details extracted from WebGL parameters.
         /// </summary>
+        /// <value>The GPU details extracted from WebGL parameters.</value>
         [DataMember(Name = "webglMeta", IsRequired = true, EmitDefaultValue = true)]
         public WebglMeta WebglMeta { get; set; }
 
         /// <summary>
-        /// The screen size of the device in pixels
+        /// The screen size of the device in pixels.
         /// </summary>
-        /// <value>The screen size of the device in pixels</value>
+        /// <value>The screen size of the device in pixels.</value>
         /*
         <example>1920x1080</example>
         */
@@ -151,9 +172,9 @@ namespace Kameleo.LocalApiClient.Model
         public string Resolution { get; set; }
 
         /// <summary>
-        /// A list of font types included in the profile
+        /// A list of font types included in the profile.
         /// </summary>
-        /// <value>A list of font types included in the profile</value>
+        /// <value>A list of font types included in the profile.</value>
         /*
         <example>[&quot;Arial&quot;,&quot;Tahoma&quot;]</example>
         */
@@ -170,6 +191,7 @@ namespace Kameleo.LocalApiClient.Model
             sb.Append("class Fingerprint {\n");
             sb.Append("  VarVersion: ").Append(VarVersion).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  UserAgent: ").Append(UserAgent).Append("\n");
             sb.Append("  Device: ").Append(Device).Append("\n");
             sb.Append("  Os: ").Append(Os).Append("\n");
             sb.Append("  Browser: ").Append(Browser).Append("\n");

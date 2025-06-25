@@ -47,7 +47,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="createdBy">Name of the user who created the folder. (required).</param>
         /// <param name="profiles">List of profiles in the current folder. (required).</param>
         /// <param name="shareAccesses">List of users accessing this folder. (required).</param>
-        public FolderResponse(Guid id = default(Guid), string name = default(string), DateTime lastModifiedAt = default(DateTime), string lastModifiedBy = default(string), DateTime createdAt = default(DateTime), string createdBy = default(string), List<ProfilePreview> profiles = default(List<ProfilePreview>), List<ShareAccess> shareAccesses = default(List<ShareAccess>))
+        public FolderResponse(Guid id = default, string name = default, DateTime lastModifiedAt = default, string lastModifiedBy = default, DateTime createdAt = default, string createdBy = default, List<ProfilePreview> profiles = default, List<ShareAccess> shareAccesses = default)
         {
             this.Id = id;
             // to ensure "name" is required (not null)

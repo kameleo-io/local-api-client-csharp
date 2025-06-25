@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Model
         /// Initializes a new instance of the <see cref="ImportProfileRequest" /> class.
         /// </summary>
         /// <param name="path">The file path from which the profile will be imported. (required).</param>
-        public ImportProfileRequest(string path = default(string))
+        public ImportProfileRequest(string path = default)
         {
             // to ensure "path" is required (not null)
             if (path == null)

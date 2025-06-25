@@ -36,7 +36,7 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="vendor">Unmasked vendor.</param>
         /// <param name="renderer">Unmasked renderer.</param>
-        public WebglMetaSpoofingOptions(string vendor = default(string), string renderer = default(string))
+        public WebglMetaSpoofingOptions(string vendor = default, string renderer = default)
         {
             this.Vendor = vendor;
             this.Renderer = renderer;

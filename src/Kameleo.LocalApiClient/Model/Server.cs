@@ -43,7 +43,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="port">Gets or sets the port where the service is provided from. (required).</param>
         /// <param name="id">Gets or sets the identity information provided for the service. This could be a custom id or username or anything which identifies a  resource on the remote service. Use it as a proxy username. This field is optional..</param>
         /// <param name="secret">Gets or sets the shared secret between the client and the service provider. Use it as a proxy password. This field is optional..</param>
-        public Server(string host = default(string), int port = default(int), string id = default(string), string secret = default(string))
+        public Server(string host = default, int port = default, string id = default, string secret = default)
         {
             // to ensure "host" is required (not null)
             if (host == null)

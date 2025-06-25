@@ -33,8 +33,9 @@ namespace Kameleo.LocalApiClient.Model
     {
 
         /// <summary>
-        /// Gets or Sets Value
+        /// Specifies how the deviceMemory will be spoofed. Possible values:  &#39;automatic&#39;: Automatically set the values based on the fingerprint.  &#39;manual&#39;: Manually set the value in the profile. Valid values: 0.25, 0.5, 1, 2, 4, 8.  &#39;off&#39;: Turn off the spoofing, use the original settings.
         /// </summary>
+        /// <value>Specifies how the deviceMemory will be spoofed. Possible values:  &#39;automatic&#39;: Automatically set the values based on the fingerprint.  &#39;manual&#39;: Manually set the value in the profile. Valid values: 0.25, 0.5, 1, 2, 4, 8.  &#39;off&#39;: Turn off the spoofing, use the original settings.</value>
         [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
         public DeviceMemorySpoofingType Value { get; set; }
         /// <summary>
@@ -45,9 +46,9 @@ namespace Kameleo.LocalApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceMemoryChoice" /> class.
         /// </summary>
-        /// <param name="value">value (required).</param>
+        /// <param name="value">Specifies how the deviceMemory will be spoofed. Possible values:  &#39;automatic&#39;: Automatically set the values based on the fingerprint.  &#39;manual&#39;: Manually set the value in the profile. Valid values: 0.25, 0.5, 1, 2, 4, 8.  &#39;off&#39;: Turn off the spoofing, use the original settings. (required).</param>
         /// <param name="extra">extra.</param>
-        public DeviceMemoryChoice(DeviceMemorySpoofingType value = default(DeviceMemorySpoofingType), double? extra = default(double?))
+        public DeviceMemoryChoice(DeviceMemorySpoofingType value = default, double? extra = default)
         {
             this.Value = value;
             this.Extra = extra;

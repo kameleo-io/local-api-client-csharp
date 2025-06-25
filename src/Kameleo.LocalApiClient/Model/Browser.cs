@@ -42,7 +42,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="product">Product of the browser. Possible values are &#39;chrome&#39;, &#39;firefox&#39;, &#39;edge&#39;, &#39;safari&#39;. (required).</param>
         /// <param name="major">Major version of the browser. (required).</param>
         /// <param name="varVersion">Exact version of the browser. (required).</param>
-        public Browser(string product = default(string), int major = default(int), string varVersion = default(string))
+        public Browser(string product = default, int major = default, string varVersion = default)
         {
             // to ensure "product" is required (not null)
             if (product == null)

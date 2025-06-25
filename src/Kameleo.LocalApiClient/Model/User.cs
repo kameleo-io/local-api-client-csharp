@@ -42,7 +42,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="id">Unique identifier of the user. (required).</param>
         /// <param name="name">Dispaly name of the user. (required).</param>
         /// <param name="email">Email address of the user. (required).</param>
-        public User(Guid id = default(Guid), string name = default(string), string email = default(string))
+        public User(Guid id = default, string name = default, string email = default)
         {
             this.Id = id;
             // to ensure "name" is required (not null)

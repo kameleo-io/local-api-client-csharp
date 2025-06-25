@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Model
         /// Initializes a new instance of the <see cref="ShareGroupRequest" /> class.
         /// </summary>
         /// <param name="shareAccesses">List of share accesses to the folder. (required).</param>
-        public ShareGroupRequest(List<ShareAccessRequest> shareAccesses = default(List<ShareAccessRequest>))
+        public ShareGroupRequest(List<ShareAccessRequest> shareAccesses = default)
         {
             // to ensure "shareAccesses" is required (not null)
             if (shareAccesses == null)

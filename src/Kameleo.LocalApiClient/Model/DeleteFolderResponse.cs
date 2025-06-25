@@ -42,7 +42,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="deletedFolders">Ids of the deleted folders. (required).</param>
         /// <param name="deletedProfiles">Ids of the deleted profiles. (required).</param>
         /// <param name="movedProfiles">Ids of the profiles moved to top-level. (required).</param>
-        public DeleteFolderResponse(List<Guid> deletedFolders = default(List<Guid>), List<Guid> deletedProfiles = default(List<Guid>), List<ProfilePreview> movedProfiles = default(List<ProfilePreview>))
+        public DeleteFolderResponse(List<Guid> deletedFolders = default, List<Guid> deletedProfiles = default, List<ProfilePreview> movedProfiles = default)
         {
             // to ensure "deletedFolders" is required (not null)
             if (deletedFolders == null)

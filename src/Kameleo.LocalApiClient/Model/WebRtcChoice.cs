@@ -33,8 +33,9 @@ namespace Kameleo.LocalApiClient.Model
     {
 
         /// <summary>
-        /// Gets or Sets Value
+        /// Specifies how the WebRTC will be spoofed. Possible values:  &#39;automatic&#39;: Automatically set the webRTC public IP by the IP  &#39;manual&#39;: Manually override the webRTC public IP and private IP in the profile  &#39;block&#39;: Block the WebRTC functionality  &#39;off&#39;: Turn off the spoofing, use the original settings
         /// </summary>
+        /// <value>Specifies how the WebRTC will be spoofed. Possible values:  &#39;automatic&#39;: Automatically set the webRTC public IP by the IP  &#39;manual&#39;: Manually override the webRTC public IP and private IP in the profile  &#39;block&#39;: Block the WebRTC functionality  &#39;off&#39;: Turn off the spoofing, use the original settings</value>
         [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
         public WebRtcSpoofingType Value { get; set; }
         /// <summary>
@@ -45,18 +46,19 @@ namespace Kameleo.LocalApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="WebRtcChoice" /> class.
         /// </summary>
-        /// <param name="value">value (required).</param>
-        /// <param name="extra">extra.</param>
-        public WebRtcChoice(WebRtcSpoofingType value = default(WebRtcSpoofingType), WebRtcSpoofingOptions extra = default(WebRtcSpoofingOptions))
+        /// <param name="value">Specifies how the WebRTC will be spoofed. Possible values:  &#39;automatic&#39;: Automatically set the webRTC public IP by the IP  &#39;manual&#39;: Manually override the webRTC public IP and private IP in the profile  &#39;block&#39;: Block the WebRTC functionality  &#39;off&#39;: Turn off the spoofing, use the original settings (required).</param>
+        /// <param name="extra">When the WebRTC spoofing is set to manual these extra settings will be used as well..</param>
+        public WebRtcChoice(WebRtcSpoofingType value = default, WebRtcSpoofingOptions extra = default)
         {
             this.Value = value;
             this.Extra = extra;
         }
 
         /// <summary>
-        /// Gets or Sets Extra
+        /// When the WebRTC spoofing is set to manual these extra settings will be used as well.
         /// </summary>
-        [DataMember(Name = "extra", EmitDefaultValue = false)]
+        /// <value>When the WebRTC spoofing is set to manual these extra settings will be used as well.</value>
+        [DataMember(Name = "extra", EmitDefaultValue = true)]
         public WebRtcSpoofingOptions Extra { get; set; }
 
         /// <summary>

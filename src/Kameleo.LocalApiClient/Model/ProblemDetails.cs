@@ -39,7 +39,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="status">status.</param>
         /// <param name="detail">detail.</param>
         /// <param name="instance">instance.</param>
-        public ProblemDetails(string type = default(string), string title = default(string), int? status = default(int?), string detail = default(string), string instance = default(string))
+        public ProblemDetails(string type = default, string title = default, int? status = default, string detail = default, string instance = default)
         {
             this.Type = type;
             this.Title = title;

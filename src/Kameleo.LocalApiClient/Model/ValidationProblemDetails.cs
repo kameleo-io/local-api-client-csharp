@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="detail">detail.</param>
         /// <param name="instance">instance.</param>
         /// <param name="errors">errors.</param>
-        public ValidationProblemDetails(string type = default(string), string title = default(string), int? status = default(int?), string detail = default(string), string instance = default(string), Dictionary<string, List<string>> errors = default(Dictionary<string, List<string>>))
+        public ValidationProblemDetails(string type = default, string title = default, int? status = default, string detail = default, string instance = default, Dictionary<string, List<string>> errors = default)
         {
             this.Type = type;
             this.Title = title;

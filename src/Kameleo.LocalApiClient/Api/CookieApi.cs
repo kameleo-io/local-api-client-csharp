@@ -34,7 +34,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="cookieRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;BrowserCookie&gt;</returns>
-        List<BrowserCookie> AddCookies(Guid guid, List<CookieRequest> cookieRequest = default(List<CookieRequest>), int operationIndex = 0);
+        List<BrowserCookie> AddCookies(Guid guid, List<CookieRequest> cookieRequest = default, int operationIndex = 0);
 
         /// <summary>
         /// Adds a list of cookies to the profile, allowing you to inject cookies before starting the profile. If cookies already exist for a domain,  they will be replaced with the new ones.
@@ -47,7 +47,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="cookieRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;BrowserCookie&gt;</returns>
-        ApiResponse<List<BrowserCookie>> AddCookiesWithHttpInfo(Guid guid, List<CookieRequest> cookieRequest = default(List<CookieRequest>), int operationIndex = 0);
+        ApiResponse<List<BrowserCookie>> AddCookiesWithHttpInfo(Guid guid, List<CookieRequest> cookieRequest = default, int operationIndex = 0);
         /// <summary>
         /// Deletes all the cookies stored in the profile, which will likely log the profile out of all websites.
         /// </summary>
@@ -109,7 +109,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;BrowserCookie&gt;</returns>
-        System.Threading.Tasks.Task<List<BrowserCookie>> AddCookiesAsync(Guid guid, List<CookieRequest> cookieRequest = default(List<CookieRequest>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<BrowserCookie>> AddCookiesAsync(Guid guid, List<CookieRequest> cookieRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Adds a list of cookies to the profile, allowing you to inject cookies before starting the profile. If cookies already exist for a domain,  they will be replaced with the new ones.
@@ -123,7 +123,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;BrowserCookie&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<BrowserCookie>>> AddCookiesWithHttpInfoAsync(Guid guid, List<CookieRequest> cookieRequest = default(List<CookieRequest>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<BrowserCookie>>> AddCookiesWithHttpInfoAsync(Guid guid, List<CookieRequest> cookieRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Deletes all the cookies stored in the profile, which will likely log the profile out of all websites.
         /// </summary>
@@ -135,7 +135,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteCookiesAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task DeleteCookiesAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes all the cookies stored in the profile, which will likely log the profile out of all websites.
@@ -148,7 +148,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteCookiesWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteCookiesWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Retrieves the list of cookies stored in the profile&#39;s browser. Note that this list does not include session cookies, which are not  persisted between browser launches.
         /// </summary>
@@ -160,7 +160,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;BrowserCookie&gt;</returns>
-        System.Threading.Tasks.Task<List<BrowserCookie>> ListCookiesAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<BrowserCookie>> ListCookiesAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieves the list of cookies stored in the profile&#39;s browser. Note that this list does not include session cookies, which are not  persisted between browser launches.
@@ -173,7 +173,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;BrowserCookie&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<BrowserCookie>>> ListCookiesWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<BrowserCookie>>> ListCookiesWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -302,7 +302,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="cookieRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;BrowserCookie&gt;</returns>
-        public List<BrowserCookie> AddCookies(Guid guid, List<CookieRequest> cookieRequest = default(List<CookieRequest>), int operationIndex = 0)
+        public List<BrowserCookie> AddCookies(Guid guid, List<CookieRequest> cookieRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<List<BrowserCookie>> localVarResponse = AddCookiesWithHttpInfo(guid, cookieRequest);
             return localVarResponse.Data;
@@ -316,7 +316,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="cookieRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;BrowserCookie&gt;</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<List<BrowserCookie>> AddCookiesWithHttpInfo(Guid guid, List<CookieRequest> cookieRequest = default(List<CookieRequest>), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<List<BrowserCookie>> AddCookiesWithHttpInfo(Guid guid, List<CookieRequest> cookieRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -372,7 +372,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;BrowserCookie&gt;</returns>
-        public async System.Threading.Tasks.Task<List<BrowserCookie>> AddCookiesAsync(Guid guid, List<CookieRequest> cookieRequest = default(List<CookieRequest>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<BrowserCookie>> AddCookiesAsync(Guid guid, List<CookieRequest> cookieRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<List<BrowserCookie>> localVarResponse = await AddCookiesWithHttpInfoAsync(guid, cookieRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -387,7 +387,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;BrowserCookie&gt;)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<List<BrowserCookie>>> AddCookiesWithHttpInfoAsync(Guid guid, List<CookieRequest> cookieRequest = default(List<CookieRequest>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<List<BrowserCookie>>> AddCookiesWithHttpInfoAsync(Guid guid, List<CookieRequest> cookieRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -507,7 +507,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteCookiesAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task DeleteCookiesAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             await DeleteCookiesWithHttpInfoAsync(guid, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -520,7 +520,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<Object>> DeleteCookiesWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<Object>> DeleteCookiesWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -639,7 +639,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;BrowserCookie&gt;</returns>
-        public async System.Threading.Tasks.Task<List<BrowserCookie>> ListCookiesAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<BrowserCookie>> ListCookiesAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<List<BrowserCookie>> localVarResponse = await ListCookiesWithHttpInfoAsync(guid, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -653,7 +653,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;BrowserCookie&gt;)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<List<BrowserCookie>>> ListCookiesWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<List<BrowserCookie>>> ListCookiesWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();

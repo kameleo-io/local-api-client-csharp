@@ -30,10 +30,10 @@ namespace Kameleo.LocalApiClient.Api
         /// Create a new profile based on a selected fingerprint. Supply the required configuration in the request body, then receive the newly  created profile’s full details.
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createProfileRequest"> (optional)</param>
+        /// <param name="createProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ProfileResponse</returns>
-        ProfileResponse CreateProfile(CreateProfileRequest createProfileRequest = default(CreateProfileRequest), int operationIndex = 0);
+        ProfileResponse CreateProfile(CreateProfileRequest createProfileRequest, int operationIndex = 0);
 
         /// <summary>
         /// Create a new profile based on a selected fingerprint. Supply the required configuration in the request body, then receive the newly  created profile’s full details.
@@ -42,10 +42,10 @@ namespace Kameleo.LocalApiClient.Api
         /// 
         /// </remarks>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createProfileRequest"> (optional)</param>
+        /// <param name="createProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ProfileResponse</returns>
-        ApiResponse<ProfileResponse> CreateProfileWithHttpInfo(CreateProfileRequest createProfileRequest = default(CreateProfileRequest), int operationIndex = 0);
+        ApiResponse<ProfileResponse> CreateProfileWithHttpInfo(CreateProfileRequest createProfileRequest, int operationIndex = 0);
         /// <summary>
         /// Permanently delete a profile from your workspace.
         /// </summary>
@@ -91,10 +91,10 @@ namespace Kameleo.LocalApiClient.Api
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="exportProfileRequest"> (optional)</param>
+        /// <param name="exportProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ProfileResponse</returns>
-        ProfileResponse ExportProfile(Guid profileId, ExportProfileRequest exportProfileRequest = default(ExportProfileRequest), int operationIndex = 0);
+        ProfileResponse ExportProfile(Guid profileId, ExportProfileRequest exportProfileRequest, int operationIndex = 0);
 
         /// <summary>
         /// Export a profile to a .kameleo file by providing the target file path in the request body. Use this to back up all profile attributes —  including settings, browsing data, cookies, history, bookmarks, and extensions — for later restoration or migration.
@@ -104,10 +104,10 @@ namespace Kameleo.LocalApiClient.Api
         /// </remarks>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="exportProfileRequest"> (optional)</param>
+        /// <param name="exportProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ProfileResponse</returns>
-        ApiResponse<ProfileResponse> ExportProfileWithHttpInfo(Guid profileId, ExportProfileRequest exportProfileRequest = default(ExportProfileRequest), int operationIndex = 0);
+        ApiResponse<ProfileResponse> ExportProfileWithHttpInfo(Guid profileId, ExportProfileRequest exportProfileRequest, int operationIndex = 0);
         /// <summary>
         /// Check the current status of a profile, including its lifecycle and persistence states.
         /// </summary>
@@ -135,7 +135,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="importProfileRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ProfileResponse</returns>
-        ProfileResponse ImportProfile(ImportProfileRequest importProfileRequest = default(ImportProfileRequest), int operationIndex = 0);
+        ProfileResponse ImportProfile(ImportProfileRequest importProfileRequest = default, int operationIndex = 0);
 
         /// <summary>
         /// Imports a profile from a .kameleo file, effectively recreating the profile with all its attributes, including settings, browsing data,  cookies, history, bookmarks, and any installed extensions/addons. If the profile is already loaded, the import process will fail.
@@ -147,7 +147,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="importProfileRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ProfileResponse</returns>
-        ApiResponse<ProfileResponse> ImportProfileWithHttpInfo(ImportProfileRequest importProfileRequest = default(ImportProfileRequest), int operationIndex = 0);
+        ApiResponse<ProfileResponse> ImportProfileWithHttpInfo(ImportProfileRequest importProfileRequest = default, int operationIndex = 0);
         /// <summary>
         /// Retrieve a list of all profiles loaded in your workspace. Use this endpoint to view a preview of each profile so you can quickly assess  available profiles.
         /// </summary>
@@ -194,7 +194,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="browserSettings"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>StatusResponse</returns>
-        StatusResponse StartProfile(Guid profileId, BrowserSettings browserSettings = default(BrowserSettings), int operationIndex = 0);
+        StatusResponse StartProfile(Guid profileId, BrowserSettings browserSettings = default, int operationIndex = 0);
 
         /// <summary>
         /// Starts the selected profile by transitioning its status to &#39;starting&#39;, launching the kernel (Chroma or Junglefox) associated with the  profile, and then changing its status to &#39;running&#39;.  If there is an error during start-up, it will be &#39;terminated&#39;. Note that the required kernel might not be available locally, so it may be  downloaded during the profile start.  Optional command line arguments or settings can be passed to the browser engines.
@@ -207,7 +207,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="browserSettings"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of StatusResponse</returns>
-        ApiResponse<StatusResponse> StartProfileWithHttpInfo(Guid profileId, BrowserSettings browserSettings = default(BrowserSettings), int operationIndex = 0);
+        ApiResponse<StatusResponse> StartProfileWithHttpInfo(Guid profileId, BrowserSettings browserSettings = default, int operationIndex = 0);
         /// <summary>
         /// Stop a running profile by gracefully shutting down its browser engine and releasing allocated resources. Use this endpoint to transition  the profile from &#39;running&#39; to &#39;terminated&#39; state.
         /// </summary>
@@ -233,10 +233,10 @@ namespace Kameleo.LocalApiClient.Api
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="updateProfileRequest"> (optional)</param>
+        /// <param name="updateProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ProfileResponse</returns>
-        ProfileResponse UpdateProfile(Guid profileId, UpdateProfileRequest updateProfileRequest = default(UpdateProfileRequest), int operationIndex = 0);
+        ProfileResponse UpdateProfile(Guid profileId, UpdateProfileRequest updateProfileRequest, int operationIndex = 0);
 
         /// <summary>
         /// Update an existing profile’s settings by providing the new configuration options in the request body. Use this to modify aspects like  spoofing options or proxy settings, then receive the updated profile details.
@@ -246,10 +246,10 @@ namespace Kameleo.LocalApiClient.Api
         /// </remarks>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="updateProfileRequest"> (optional)</param>
+        /// <param name="updateProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ProfileResponse</returns>
-        ApiResponse<ProfileResponse> UpdateProfileWithHttpInfo(Guid profileId, UpdateProfileRequest updateProfileRequest = default(UpdateProfileRequest), int operationIndex = 0);
+        ApiResponse<ProfileResponse> UpdateProfileWithHttpInfo(Guid profileId, UpdateProfileRequest updateProfileRequest, int operationIndex = 0);
         /// <summary>
         /// Upgrades the profile&#39;s fingerprint to the most recent browser version available from the server.  This also updates the profile&#39;s corresponding kernel if there&#39;s a better match available for the new fingerprint.  The new fingerprint is tailored to the profile&#39;s current device, browser and operating system. Note that upgrading a profile&#39;s kernel will alter its browser fingerprint.
         /// </summary>
@@ -286,11 +286,11 @@ namespace Kameleo.LocalApiClient.Api
         /// 
         /// </remarks>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createProfileRequest"> (optional)</param>
+        /// <param name="createProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        System.Threading.Tasks.Task<ProfileResponse> CreateProfileAsync(CreateProfileRequest createProfileRequest = default(CreateProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProfileResponse> CreateProfileAsync(CreateProfileRequest createProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a new profile based on a selected fingerprint. Supply the required configuration in the request body, then receive the newly  created profile’s full details.
@@ -299,11 +299,11 @@ namespace Kameleo.LocalApiClient.Api
         /// 
         /// </remarks>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createProfileRequest"> (optional)</param>
+        /// <param name="createProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> CreateProfileWithHttpInfoAsync(CreateProfileRequest createProfileRequest = default(CreateProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> CreateProfileWithHttpInfoAsync(CreateProfileRequest createProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Permanently delete a profile from your workspace.
         /// </summary>
@@ -315,7 +315,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task DeleteProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Permanently delete a profile from your workspace.
@@ -328,7 +328,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Duplicate an existing profile by creating an exact copy with a new unique identifier. Use this endpoint to clone a profile while preserving  all its configuration details and data.
         /// </summary>
@@ -340,7 +340,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        System.Threading.Tasks.Task<ProfileResponse> DuplicateProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProfileResponse> DuplicateProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Duplicate an existing profile by creating an exact copy with a new unique identifier. Use this endpoint to clone a profile while preserving  all its configuration details and data.
@@ -353,7 +353,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> DuplicateProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> DuplicateProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Export a profile to a .kameleo file by providing the target file path in the request body. Use this to back up all profile attributes —  including settings, browsing data, cookies, history, bookmarks, and extensions — for later restoration or migration.
         /// </summary>
@@ -362,11 +362,11 @@ namespace Kameleo.LocalApiClient.Api
         /// </remarks>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="exportProfileRequest"> (optional)</param>
+        /// <param name="exportProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        System.Threading.Tasks.Task<ProfileResponse> ExportProfileAsync(Guid profileId, ExportProfileRequest exportProfileRequest = default(ExportProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProfileResponse> ExportProfileAsync(Guid profileId, ExportProfileRequest exportProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Export a profile to a .kameleo file by providing the target file path in the request body. Use this to back up all profile attributes —  including settings, browsing data, cookies, history, bookmarks, and extensions — for later restoration or migration.
@@ -376,11 +376,11 @@ namespace Kameleo.LocalApiClient.Api
         /// </remarks>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="exportProfileRequest"> (optional)</param>
+        /// <param name="exportProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> ExportProfileWithHttpInfoAsync(Guid profileId, ExportProfileRequest exportProfileRequest = default(ExportProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> ExportProfileWithHttpInfoAsync(Guid profileId, ExportProfileRequest exportProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Check the current status of a profile, including its lifecycle and persistence states.
         /// </summary>
@@ -392,7 +392,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of StatusResponse</returns>
-        System.Threading.Tasks.Task<StatusResponse> GetProfileStatusAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<StatusResponse> GetProfileStatusAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Check the current status of a profile, including its lifecycle and persistence states.
@@ -405,7 +405,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (StatusResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<StatusResponse>> GetProfileStatusWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<StatusResponse>> GetProfileStatusWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Imports a profile from a .kameleo file, effectively recreating the profile with all its attributes, including settings, browsing data,  cookies, history, bookmarks, and any installed extensions/addons. If the profile is already loaded, the import process will fail.
         /// </summary>
@@ -417,7 +417,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        System.Threading.Tasks.Task<ProfileResponse> ImportProfileAsync(ImportProfileRequest importProfileRequest = default(ImportProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProfileResponse> ImportProfileAsync(ImportProfileRequest importProfileRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Imports a profile from a .kameleo file, effectively recreating the profile with all its attributes, including settings, browsing data,  cookies, history, bookmarks, and any installed extensions/addons. If the profile is already loaded, the import process will fail.
@@ -430,7 +430,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> ImportProfileWithHttpInfoAsync(ImportProfileRequest importProfileRequest = default(ImportProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> ImportProfileWithHttpInfoAsync(ImportProfileRequest importProfileRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Retrieve a list of all profiles loaded in your workspace. Use this endpoint to view a preview of each profile so you can quickly assess  available profiles.
         /// </summary>
@@ -441,7 +441,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;ProfilePreview&gt;</returns>
-        System.Threading.Tasks.Task<List<ProfilePreview>> ListProfilesAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<ProfilePreview>> ListProfilesAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve a list of all profiles loaded in your workspace. Use this endpoint to view a preview of each profile so you can quickly assess  available profiles.
@@ -453,7 +453,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;ProfilePreview&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<ProfilePreview>>> ListProfilesWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<ProfilePreview>>> ListProfilesWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Gets the profile with the specified GUID from the current workspace. On startup, Kameleo will automatically scan and load profiles stored  in your workspace folder on startup.
         /// </summary>
@@ -465,7 +465,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        System.Threading.Tasks.Task<ProfileResponse> ReadProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProfileResponse> ReadProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Gets the profile with the specified GUID from the current workspace. On startup, Kameleo will automatically scan and load profiles stored  in your workspace folder on startup.
@@ -478,7 +478,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> ReadProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> ReadProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Starts the selected profile by transitioning its status to &#39;starting&#39;, launching the kernel (Chroma or Junglefox) associated with the  profile, and then changing its status to &#39;running&#39;.  If there is an error during start-up, it will be &#39;terminated&#39;. Note that the required kernel might not be available locally, so it may be  downloaded during the profile start.  Optional command line arguments or settings can be passed to the browser engines.
         /// </summary>
@@ -491,7 +491,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of StatusResponse</returns>
-        System.Threading.Tasks.Task<StatusResponse> StartProfileAsync(Guid profileId, BrowserSettings browserSettings = default(BrowserSettings), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<StatusResponse> StartProfileAsync(Guid profileId, BrowserSettings browserSettings = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Starts the selected profile by transitioning its status to &#39;starting&#39;, launching the kernel (Chroma or Junglefox) associated with the  profile, and then changing its status to &#39;running&#39;.  If there is an error during start-up, it will be &#39;terminated&#39;. Note that the required kernel might not be available locally, so it may be  downloaded during the profile start.  Optional command line arguments or settings can be passed to the browser engines.
@@ -505,7 +505,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (StatusResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<StatusResponse>> StartProfileWithHttpInfoAsync(Guid profileId, BrowserSettings browserSettings = default(BrowserSettings), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<StatusResponse>> StartProfileWithHttpInfoAsync(Guid profileId, BrowserSettings browserSettings = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Stop a running profile by gracefully shutting down its browser engine and releasing allocated resources. Use this endpoint to transition  the profile from &#39;running&#39; to &#39;terminated&#39; state.
         /// </summary>
@@ -517,7 +517,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of StatusResponse</returns>
-        System.Threading.Tasks.Task<StatusResponse> StopProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<StatusResponse> StopProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Stop a running profile by gracefully shutting down its browser engine and releasing allocated resources. Use this endpoint to transition  the profile from &#39;running&#39; to &#39;terminated&#39; state.
@@ -530,7 +530,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (StatusResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<StatusResponse>> StopProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<StatusResponse>> StopProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update an existing profile’s settings by providing the new configuration options in the request body. Use this to modify aspects like  spoofing options or proxy settings, then receive the updated profile details.
         /// </summary>
@@ -539,11 +539,11 @@ namespace Kameleo.LocalApiClient.Api
         /// </remarks>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="updateProfileRequest"> (optional)</param>
+        /// <param name="updateProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        System.Threading.Tasks.Task<ProfileResponse> UpdateProfileAsync(Guid profileId, UpdateProfileRequest updateProfileRequest = default(UpdateProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProfileResponse> UpdateProfileAsync(Guid profileId, UpdateProfileRequest updateProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update an existing profile’s settings by providing the new configuration options in the request body. Use this to modify aspects like  spoofing options or proxy settings, then receive the updated profile details.
@@ -553,11 +553,11 @@ namespace Kameleo.LocalApiClient.Api
         /// </remarks>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="updateProfileRequest"> (optional)</param>
+        /// <param name="updateProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> UpdateProfileWithHttpInfoAsync(Guid profileId, UpdateProfileRequest updateProfileRequest = default(UpdateProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> UpdateProfileWithHttpInfoAsync(Guid profileId, UpdateProfileRequest updateProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Upgrades the profile&#39;s fingerprint to the most recent browser version available from the server.  This also updates the profile&#39;s corresponding kernel if there&#39;s a better match available for the new fingerprint.  The new fingerprint is tailored to the profile&#39;s current device, browser and operating system. Note that upgrading a profile&#39;s kernel will alter its browser fingerprint.
         /// </summary>
@@ -569,7 +569,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        System.Threading.Tasks.Task<ProfileResponse> UpgradeProfileKernelAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProfileResponse> UpgradeProfileKernelAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Upgrades the profile&#39;s fingerprint to the most recent browser version available from the server.  This also updates the profile&#39;s corresponding kernel if there&#39;s a better match available for the new fingerprint.  The new fingerprint is tailored to the profile&#39;s current device, browser and operating system. Note that upgrading a profile&#39;s kernel will alter its browser fingerprint.
@@ -582,7 +582,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> UpgradeProfileKernelWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> UpgradeProfileKernelWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -707,10 +707,10 @@ namespace Kameleo.LocalApiClient.Api
         /// Create a new profile based on a selected fingerprint. Supply the required configuration in the request body, then receive the newly  created profile’s full details. 
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createProfileRequest"> (optional)</param>
+        /// <param name="createProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ProfileResponse</returns>
-        public ProfileResponse CreateProfile(CreateProfileRequest createProfileRequest = default(CreateProfileRequest), int operationIndex = 0)
+        public ProfileResponse CreateProfile(CreateProfileRequest createProfileRequest, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = CreateProfileWithHttpInfo(createProfileRequest);
             return localVarResponse.Data;
@@ -720,11 +720,17 @@ namespace Kameleo.LocalApiClient.Api
         /// Create a new profile based on a selected fingerprint. Supply the required configuration in the request body, then receive the newly  created profile’s full details. 
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createProfileRequest"> (optional)</param>
+        /// <param name="createProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ProfileResponse</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> CreateProfileWithHttpInfo(CreateProfileRequest createProfileRequest = default(CreateProfileRequest), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> CreateProfileWithHttpInfo(CreateProfileRequest createProfileRequest, int operationIndex = 0)
         {
+            // verify the required parameter 'createProfileRequest' is set
+            if (createProfileRequest == null)
+            {
+                throw new Kameleo.LocalApiClient.Client.ApiException(400, "Missing required parameter 'createProfileRequest' when calling ProfileApi->CreateProfile");
+            }
+
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -773,11 +779,11 @@ namespace Kameleo.LocalApiClient.Api
         /// Create a new profile based on a selected fingerprint. Supply the required configuration in the request body, then receive the newly  created profile’s full details. 
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createProfileRequest"> (optional)</param>
+        /// <param name="createProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        public async System.Threading.Tasks.Task<ProfileResponse> CreateProfileAsync(CreateProfileRequest createProfileRequest = default(CreateProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProfileResponse> CreateProfileAsync(CreateProfileRequest createProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = await CreateProfileWithHttpInfoAsync(createProfileRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -787,12 +793,18 @@ namespace Kameleo.LocalApiClient.Api
         /// Create a new profile based on a selected fingerprint. Supply the required configuration in the request body, then receive the newly  created profile’s full details. 
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="createProfileRequest"> (optional)</param>
+        /// <param name="createProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> CreateProfileWithHttpInfoAsync(CreateProfileRequest createProfileRequest = default(CreateProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> CreateProfileWithHttpInfoAsync(CreateProfileRequest createProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
+            // verify the required parameter 'createProfileRequest' is set
+            if (createProfileRequest == null)
+            {
+                throw new Kameleo.LocalApiClient.Client.ApiException(400, "Missing required parameter 'createProfileRequest' when calling ProfileApi->CreateProfile");
+            }
+
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -910,7 +922,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task DeleteProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             await DeleteProfileWithHttpInfoAsync(profileId, operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -923,7 +935,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<Object>> DeleteProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<Object>> DeleteProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1042,7 +1054,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        public async System.Threading.Tasks.Task<ProfileResponse> DuplicateProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProfileResponse> DuplicateProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = await DuplicateProfileWithHttpInfoAsync(profileId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1056,7 +1068,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> DuplicateProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> DuplicateProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1107,10 +1119,10 @@ namespace Kameleo.LocalApiClient.Api
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="exportProfileRequest"> (optional)</param>
+        /// <param name="exportProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ProfileResponse</returns>
-        public ProfileResponse ExportProfile(Guid profileId, ExportProfileRequest exportProfileRequest = default(ExportProfileRequest), int operationIndex = 0)
+        public ProfileResponse ExportProfile(Guid profileId, ExportProfileRequest exportProfileRequest, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = ExportProfileWithHttpInfo(profileId, exportProfileRequest);
             return localVarResponse.Data;
@@ -1121,11 +1133,17 @@ namespace Kameleo.LocalApiClient.Api
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="exportProfileRequest"> (optional)</param>
+        /// <param name="exportProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ProfileResponse</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> ExportProfileWithHttpInfo(Guid profileId, ExportProfileRequest exportProfileRequest = default(ExportProfileRequest), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> ExportProfileWithHttpInfo(Guid profileId, ExportProfileRequest exportProfileRequest, int operationIndex = 0)
         {
+            // verify the required parameter 'exportProfileRequest' is set
+            if (exportProfileRequest == null)
+            {
+                throw new Kameleo.LocalApiClient.Client.ApiException(400, "Missing required parameter 'exportProfileRequest' when calling ProfileApi->ExportProfile");
+            }
+
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -1176,11 +1194,11 @@ namespace Kameleo.LocalApiClient.Api
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="exportProfileRequest"> (optional)</param>
+        /// <param name="exportProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        public async System.Threading.Tasks.Task<ProfileResponse> ExportProfileAsync(Guid profileId, ExportProfileRequest exportProfileRequest = default(ExportProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProfileResponse> ExportProfileAsync(Guid profileId, ExportProfileRequest exportProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = await ExportProfileWithHttpInfoAsync(profileId, exportProfileRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1191,12 +1209,18 @@ namespace Kameleo.LocalApiClient.Api
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="exportProfileRequest"> (optional)</param>
+        /// <param name="exportProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> ExportProfileWithHttpInfoAsync(Guid profileId, ExportProfileRequest exportProfileRequest = default(ExportProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> ExportProfileWithHttpInfoAsync(Guid profileId, ExportProfileRequest exportProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
+            // verify the required parameter 'exportProfileRequest' is set
+            if (exportProfileRequest == null)
+            {
+                throw new Kameleo.LocalApiClient.Client.ApiException(400, "Missing required parameter 'exportProfileRequest' when calling ProfileApi->ExportProfile");
+            }
+
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -1316,7 +1340,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of StatusResponse</returns>
-        public async System.Threading.Tasks.Task<StatusResponse> GetProfileStatusAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<StatusResponse> GetProfileStatusAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse> localVarResponse = await GetProfileStatusWithHttpInfoAsync(profileId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1330,7 +1354,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (StatusResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse>> GetProfileStatusWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse>> GetProfileStatusWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1383,7 +1407,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="importProfileRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ProfileResponse</returns>
-        public ProfileResponse ImportProfile(ImportProfileRequest importProfileRequest = default(ImportProfileRequest), int operationIndex = 0)
+        public ProfileResponse ImportProfile(ImportProfileRequest importProfileRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = ImportProfileWithHttpInfo(importProfileRequest);
             return localVarResponse.Data;
@@ -1396,7 +1420,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="importProfileRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ProfileResponse</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> ImportProfileWithHttpInfo(ImportProfileRequest importProfileRequest = default(ImportProfileRequest), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> ImportProfileWithHttpInfo(ImportProfileRequest importProfileRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -1450,7 +1474,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        public async System.Threading.Tasks.Task<ProfileResponse> ImportProfileAsync(ImportProfileRequest importProfileRequest = default(ImportProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProfileResponse> ImportProfileAsync(ImportProfileRequest importProfileRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = await ImportProfileWithHttpInfoAsync(importProfileRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1464,7 +1488,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> ImportProfileWithHttpInfoAsync(ImportProfileRequest importProfileRequest = default(ImportProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> ImportProfileWithHttpInfoAsync(ImportProfileRequest importProfileRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1580,7 +1604,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;ProfilePreview&gt;</returns>
-        public async System.Threading.Tasks.Task<List<ProfilePreview>> ListProfilesAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<ProfilePreview>> ListProfilesAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<List<ProfilePreview>> localVarResponse = await ListProfilesWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1593,7 +1617,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;ProfilePreview&gt;)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<List<ProfilePreview>>> ListProfilesWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<List<ProfilePreview>>> ListProfilesWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1711,7 +1735,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        public async System.Threading.Tasks.Task<ProfileResponse> ReadProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProfileResponse> ReadProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = await ReadProfileWithHttpInfoAsync(profileId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1725,7 +1749,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> ReadProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> ReadProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1779,7 +1803,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="browserSettings"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>StatusResponse</returns>
-        public StatusResponse StartProfile(Guid profileId, BrowserSettings browserSettings = default(BrowserSettings), int operationIndex = 0)
+        public StatusResponse StartProfile(Guid profileId, BrowserSettings browserSettings = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse> localVarResponse = StartProfileWithHttpInfo(profileId, browserSettings);
             return localVarResponse.Data;
@@ -1793,7 +1817,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="browserSettings"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of StatusResponse</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse> StartProfileWithHttpInfo(Guid profileId, BrowserSettings browserSettings = default(BrowserSettings), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse> StartProfileWithHttpInfo(Guid profileId, BrowserSettings browserSettings = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -1849,7 +1873,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of StatusResponse</returns>
-        public async System.Threading.Tasks.Task<StatusResponse> StartProfileAsync(Guid profileId, BrowserSettings browserSettings = default(BrowserSettings), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<StatusResponse> StartProfileAsync(Guid profileId, BrowserSettings browserSettings = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse> localVarResponse = await StartProfileWithHttpInfoAsync(profileId, browserSettings, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1864,7 +1888,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (StatusResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse>> StartProfileWithHttpInfoAsync(Guid profileId, BrowserSettings browserSettings = default(BrowserSettings), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse>> StartProfileWithHttpInfoAsync(Guid profileId, BrowserSettings browserSettings = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1985,7 +2009,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of StatusResponse</returns>
-        public async System.Threading.Tasks.Task<StatusResponse> StopProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<StatusResponse> StopProfileAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse> localVarResponse = await StopProfileWithHttpInfoAsync(profileId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1999,7 +2023,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (StatusResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse>> StopProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<StatusResponse>> StopProfileWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -2050,10 +2074,10 @@ namespace Kameleo.LocalApiClient.Api
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="updateProfileRequest"> (optional)</param>
+        /// <param name="updateProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ProfileResponse</returns>
-        public ProfileResponse UpdateProfile(Guid profileId, UpdateProfileRequest updateProfileRequest = default(UpdateProfileRequest), int operationIndex = 0)
+        public ProfileResponse UpdateProfile(Guid profileId, UpdateProfileRequest updateProfileRequest, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = UpdateProfileWithHttpInfo(profileId, updateProfileRequest);
             return localVarResponse.Data;
@@ -2064,11 +2088,17 @@ namespace Kameleo.LocalApiClient.Api
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="updateProfileRequest"> (optional)</param>
+        /// <param name="updateProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ProfileResponse</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> UpdateProfileWithHttpInfo(Guid profileId, UpdateProfileRequest updateProfileRequest = default(UpdateProfileRequest), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> UpdateProfileWithHttpInfo(Guid profileId, UpdateProfileRequest updateProfileRequest, int operationIndex = 0)
         {
+            // verify the required parameter 'updateProfileRequest' is set
+            if (updateProfileRequest == null)
+            {
+                throw new Kameleo.LocalApiClient.Client.ApiException(400, "Missing required parameter 'updateProfileRequest' when calling ProfileApi->UpdateProfile");
+            }
+
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
@@ -2119,11 +2149,11 @@ namespace Kameleo.LocalApiClient.Api
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="updateProfileRequest"> (optional)</param>
+        /// <param name="updateProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        public async System.Threading.Tasks.Task<ProfileResponse> UpdateProfileAsync(Guid profileId, UpdateProfileRequest updateProfileRequest = default(UpdateProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProfileResponse> UpdateProfileAsync(Guid profileId, UpdateProfileRequest updateProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = await UpdateProfileWithHttpInfoAsync(profileId, updateProfileRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -2134,12 +2164,18 @@ namespace Kameleo.LocalApiClient.Api
         /// </summary>
         /// <exception cref="Kameleo.LocalApiClient.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="profileId">The unique identifier of the profile</param>
-        /// <param name="updateProfileRequest"> (optional)</param>
+        /// <param name="updateProfileRequest"></param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> UpdateProfileWithHttpInfoAsync(Guid profileId, UpdateProfileRequest updateProfileRequest = default(UpdateProfileRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> UpdateProfileWithHttpInfoAsync(Guid profileId, UpdateProfileRequest updateProfileRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
+            // verify the required parameter 'updateProfileRequest' is set
+            if (updateProfileRequest == null)
+            {
+                throw new Kameleo.LocalApiClient.Client.ApiException(400, "Missing required parameter 'updateProfileRequest' when calling ProfileApi->UpdateProfile");
+            }
+
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -2259,7 +2295,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        public async System.Threading.Tasks.Task<ProfileResponse> UpgradeProfileKernelAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProfileResponse> UpgradeProfileKernelAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = await UpgradeProfileKernelWithHttpInfoAsync(profileId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -2273,7 +2309,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> UpgradeProfileKernelWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> UpgradeProfileKernelWithHttpInfoAsync(Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();

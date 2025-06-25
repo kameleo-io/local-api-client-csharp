@@ -41,7 +41,7 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="vendor">The UnmaskedVendor field from WebGL context (required).</param>
         /// <param name="renderer">The UnmaskedRenderer field from WebGL context.</param>
-        public WebglMeta(string vendor = default(string), string renderer = default(string))
+        public WebglMeta(string vendor = default, string renderer = default)
         {
             // to ensure "vendor" is required (not null)
             if (vendor == null)
