@@ -26,34 +26,41 @@ using OpenAPIDateConverter = Kameleo.LocalApiClient.Client.OpenAPIDateConverter;
 namespace Kameleo.LocalApiClient.Model
 {
     /// <summary>
-    /// AddProfileToFolderRequest
+    /// ProfileMinutesQuota
     /// </summary>
-    [DataContract(Name = "AddProfileToFolderRequest")]
-    public partial class AddProfileToFolderRequest : IValidatableObject
+    [DataContract(Name = "ProfileMinutesQuota")]
+    public partial class ProfileMinutesQuota : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AddProfileToFolderRequest" /> class.
+        /// Initializes a new instance of the <see cref="ProfileMinutesQuota" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected AddProfileToFolderRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AddProfileToFolderRequest" /> class.
-        /// </summary>
-        /// <param name="profileId">Unique identifier of the profile. (required).</param>
-        public AddProfileToFolderRequest(Guid profileId = default)
+        /// <param name="currentUsage">currentUsage.</param>
+        /// <param name="maximumLimit">maximumLimit.</param>
+        /// <param name="nextResetAt">nextResetAt.</param>
+        public ProfileMinutesQuota(string currentUsage = default, string maximumLimit = default, DateTime nextResetAt = default)
         {
-            this.ProfileId = profileId;
+            this.CurrentUsage = currentUsage;
+            this.MaximumLimit = maximumLimit;
+            this.NextResetAt = nextResetAt;
         }
 
         /// <summary>
-        /// Unique identifier of the profile.
+        /// Gets or Sets CurrentUsage
         /// </summary>
-        /// <value>Unique identifier of the profile.</value>
-        /*
-        <example>0036135c-6f62-429b-a9db-fd541aca96a7</example>
-        */
-        [DataMember(Name = "profileId", IsRequired = true, EmitDefaultValue = true)]
-        public Guid ProfileId { get; set; }
+        [DataMember(Name = "currentUsage", EmitDefaultValue = false)]
+        public string CurrentUsage { get; set; }
+
+        /// <summary>
+        /// Gets or Sets MaximumLimit
+        /// </summary>
+        [DataMember(Name = "maximumLimit", EmitDefaultValue = true)]
+        public string MaximumLimit { get; set; }
+
+        /// <summary>
+        /// Gets or Sets NextResetAt
+        /// </summary>
+        [DataMember(Name = "nextResetAt", EmitDefaultValue = false)]
+        public DateTime NextResetAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,8 +69,10 @@ namespace Kameleo.LocalApiClient.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AddProfileToFolderRequest {\n");
-            sb.Append("  ProfileId: ").Append(ProfileId).Append("\n");
+            sb.Append("class ProfileMinutesQuota {\n");
+            sb.Append("  CurrentUsage: ").Append(CurrentUsage).Append("\n");
+            sb.Append("  MaximumLimit: ").Append(MaximumLimit).Append("\n");
+            sb.Append("  NextResetAt: ").Append(NextResetAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

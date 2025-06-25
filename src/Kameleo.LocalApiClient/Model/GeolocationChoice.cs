@@ -33,8 +33,9 @@ namespace Kameleo.LocalApiClient.Model
     {
 
         /// <summary>
-        /// Gets or Sets Value
+        /// Specifies how the geolocation will be spoofed. Possible values:  &#39;automatic&#39;: Automatically set the values based on the IP address  &#39;manual&#39;: Manually set the longitude and latitude in the profile  &#39;block&#39;: Completely block the Geolocation API  &#39;off&#39;: Turn off the spoofing, use the original settings
         /// </summary>
+        /// <value>Specifies how the geolocation will be spoofed. Possible values:  &#39;automatic&#39;: Automatically set the values based on the IP address  &#39;manual&#39;: Manually set the longitude and latitude in the profile  &#39;block&#39;: Completely block the Geolocation API  &#39;off&#39;: Turn off the spoofing, use the original settings</value>
         [DataMember(Name = "value", IsRequired = true, EmitDefaultValue = true)]
         public GeolocationSpoofingType Value { get; set; }
         /// <summary>
@@ -45,18 +46,19 @@ namespace Kameleo.LocalApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="GeolocationChoice" /> class.
         /// </summary>
-        /// <param name="value">value (required).</param>
-        /// <param name="extra">extra.</param>
-        public GeolocationChoice(GeolocationSpoofingType value = default(GeolocationSpoofingType), GeolocationSpoofingOptions extra = default(GeolocationSpoofingOptions))
+        /// <param name="value">Specifies how the geolocation will be spoofed. Possible values:  &#39;automatic&#39;: Automatically set the values based on the IP address  &#39;manual&#39;: Manually set the longitude and latitude in the profile  &#39;block&#39;: Completely block the Geolocation API  &#39;off&#39;: Turn off the spoofing, use the original settings (required).</param>
+        /// <param name="extra">When the Geolocation spoofing is set to manual these extra settings will be used as well..</param>
+        public GeolocationChoice(GeolocationSpoofingType value = default, GeolocationSpoofingOptions extra = default)
         {
             this.Value = value;
             this.Extra = extra;
         }
 
         /// <summary>
-        /// Gets or Sets Extra
+        /// When the Geolocation spoofing is set to manual these extra settings will be used as well.
         /// </summary>
-        [DataMember(Name = "extra", EmitDefaultValue = false)]
+        /// <value>When the Geolocation spoofing is set to manual these extra settings will be used as well.</value>
+        [DataMember(Name = "extra", EmitDefaultValue = true)]
         public GeolocationSpoofingOptions Extra { get; set; }
 
         /// <summary>

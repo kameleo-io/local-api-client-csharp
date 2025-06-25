@@ -42,7 +42,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="family">Specifies the operating system family. Possible values are &#39;windows&#39;, &#39;macos&#39;, &#39;linux&#39;, &#39;android&#39;, &#39;ios&#39;. (required).</param>
         /// <param name="varVersion">The specific version of the OS. For example it helps you determine the exact version of the macOS. (required).</param>
         /// <param name="platform">The OS&#39;s platform, indicating the processor architecture (e.g., 64-bit, 32-bit) (required).</param>
-        public Os(string family = default(string), string varVersion = default(string), string platform = default(string))
+        public Os(string family = default, string varVersion = default, string platform = default)
         {
             // to ensure "family" is required (not null)
             if (family == null)

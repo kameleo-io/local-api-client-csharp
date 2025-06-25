@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Model
         /// Initializes a new instance of the <see cref="WebRtcSpoofingOptions" /> class.
         /// </summary>
         /// <param name="publicIp">The WebRTC public IP address of the machine. (required).</param>
-        public WebRtcSpoofingOptions(string publicIp = default(string))
+        public WebRtcSpoofingOptions(string publicIp = default)
         {
             // to ensure "publicIp" is required (not null)
             if (publicIp == null)

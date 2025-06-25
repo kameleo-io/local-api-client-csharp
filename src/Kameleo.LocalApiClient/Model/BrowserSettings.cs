@@ -37,7 +37,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="arguments">Command line arguments that can be passed to the browser at startup. This applies to both Chroma and Junglefox browsers. Do not include the  starting double dash (- -)..</param>
         /// <param name="preferences">List of preferences for browsers that can be passed at startup. In case of Chromium based options it will be a user profile preference. In  case of Firefox profiles it will be a preference..</param>
         /// <param name="additionalOptions">Special options available only in Kameleo, such as device scale factor for mobile emulated profiles. See the docs for more details..</param>
-        public BrowserSettings(List<string> arguments = default(List<string>), List<Preference> preferences = default(List<Preference>), List<Preference> additionalOptions = default(List<Preference>))
+        public BrowserSettings(List<string> arguments = default, List<Preference> preferences = default, List<Preference> additionalOptions = default)
         {
             this.Arguments = arguments;
             this.Preferences = preferences;

@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Model
         /// Initializes a new instance of the <see cref="CreateFolderRequest" /> class.
         /// </summary>
         /// <param name="name">Human readable name of the new folder. (required).</param>
-        public CreateFolderRequest(string name = default(string))
+        public CreateFolderRequest(string name = default)
         {
             // to ensure "name" is required (not null)
             if (name == null)

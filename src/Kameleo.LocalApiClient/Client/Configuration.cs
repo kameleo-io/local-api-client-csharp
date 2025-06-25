@@ -33,7 +33,7 @@ namespace Kameleo.LocalApiClient.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "4.0.0";
+        public const string Version = "4.1.0";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -115,7 +115,7 @@ namespace Kameleo.LocalApiClient.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("KameleoLocalApiClient/v4.0.0/csharp");
+            UserAgent = WebUtility.UrlEncode("KameleoLocalApiClient/v4.1.0/csharp");
             BasePath = "http://localhost:5050";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
@@ -134,7 +134,7 @@ namespace Kameleo.LocalApiClient.Client
             };
 
             // Setting Timeout has side effects (forces ApiClient creation).
-            Timeout = TimeSpan.FromSeconds(100);
+            Timeout = TimeSpan.FromSeconds(60);
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace Kameleo.LocalApiClient.Client
         public virtual IDictionary<string, string> DefaultHeaders { get; set; }
 
         /// <summary>
-        /// Gets or sets the HTTP timeout of ApiClient. Defaults to 100 seconds.
+        /// Gets or sets the HTTP timeout of ApiClient. Defaults to 60 seconds.
         /// </summary>
         public virtual TimeSpan Timeout { get; set; }
 
@@ -500,7 +500,7 @@ namespace Kameleo.LocalApiClient.Client
 
                     if (inputVariables.ContainsKey(variable.Key))
                     {
-                        if (((List<string>)serverVariables["enum_values"]).Contains(inputVariables[variable.Key]))
+                        if (!serverVariables.ContainsKey("enum_values") || ((List<string>)serverVariables["enum_values"]).Contains(inputVariables[variable.Key]))
                         {
                             url = url.Replace("{" + variable.Key + "}", inputVariables[variable.Key]);
                         }
@@ -538,7 +538,7 @@ namespace Kameleo.LocalApiClient.Client
             report += "    OS: " + System.Environment.OSVersion + "\n";
             report += "    .NET Framework Version: " + System.Environment.Version + "\n";
             report += "    Version of the API: v1\n";
-            report += "    SDK Package Version: 4.0.0\n";
+            report += "    SDK Package Version: 4.1.0\n";
 
             return report;
         }

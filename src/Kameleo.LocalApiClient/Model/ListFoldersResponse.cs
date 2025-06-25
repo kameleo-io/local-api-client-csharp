@@ -41,7 +41,7 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="folders">List of top-level folders, each folder may contain nested folders and cloud profiles. (required).</param>
         /// <param name="profiles">List of profiles not associated with any folder. This includes both cloud and local profiles. (required).</param>
-        public ListFoldersResponse(List<FolderResponse> folders = default(List<FolderResponse>), List<ProfilePreview> profiles = default(List<ProfilePreview>))
+        public ListFoldersResponse(List<FolderResponse> folders = default, List<ProfilePreview> profiles = default)
         {
             // to ensure "folders" is required (not null)
             if (folders == null)

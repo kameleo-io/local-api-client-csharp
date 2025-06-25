@@ -41,7 +41,7 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="type">Type of the device. Possible values are: &#39;desktop&#39;, &#39;mobile&#39;. (required).</param>
         /// <param name="name">Name of the device. This is only available for mobile profiles..</param>
-        public Device(string type = default(string), string name = default(string))
+        public Device(string type = default, string name = default)
         {
             // to ensure "type" is required (not null)
             if (type == null)

@@ -41,7 +41,7 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="roleId">Id of the selected role. (required).</param>
         /// <param name="userId">Id of the selected user. (required).</param>
-        public ShareAccessRequest(Guid roleId = default(Guid), Guid userId = default(Guid))
+        public ShareAccessRequest(Guid roleId = default, Guid userId = default)
         {
             this.RoleId = roleId;
             this.UserId = userId;

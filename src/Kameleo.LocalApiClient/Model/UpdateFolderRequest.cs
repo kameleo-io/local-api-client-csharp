@@ -40,7 +40,7 @@ namespace Kameleo.LocalApiClient.Model
         /// Initializes a new instance of the <see cref="UpdateFolderRequest" /> class.
         /// </summary>
         /// <param name="name">Human readable name of the folder. (required).</param>
-        public UpdateFolderRequest(string name = default(string))
+        public UpdateFolderRequest(string name = default)
         {
             // to ensure "name" is required (not null)
             if (name == null)

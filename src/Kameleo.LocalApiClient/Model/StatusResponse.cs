@@ -33,8 +33,9 @@ namespace Kameleo.LocalApiClient.Model
     {
 
         /// <summary>
-        /// Gets or Sets LifetimeState
+        /// Represents the lifetime states of a profile, indicating which actions  can be performed with the associated browser engine at each state. Possible values are:  - Created: Profile is created; the associated browser engine is not started.  - Starting: The associated browser engine is starting.  - Running: The associated browser engine is currently running.  - Terminating: The associated browser engine is in the process of terminating.  - Terminated: The associated browser engine is not running but has been started at least once.  - Locked: The profile is currently being used by another user.  - Loading: The profile data or the browser engine is syncing with the cloud storage.  - Unknown: State of the profile is undefined.
         /// </summary>
+        /// <value>Represents the lifetime states of a profile, indicating which actions  can be performed with the associated browser engine at each state. Possible values are:  - Created: Profile is created; the associated browser engine is not started.  - Starting: The associated browser engine is starting.  - Running: The associated browser engine is currently running.  - Terminating: The associated browser engine is in the process of terminating.  - Terminated: The associated browser engine is not running but has been started at least once.  - Locked: The profile is currently being used by another user.  - Loading: The profile data or the browser engine is syncing with the cloud storage.  - Unknown: State of the profile is undefined.</value>
         [DataMember(Name = "lifetimeState", IsRequired = true, EmitDefaultValue = true)]
         public ProfileLifetimeState LifetimeState { get; set; }
         /// <summary>
@@ -45,8 +46,8 @@ namespace Kameleo.LocalApiClient.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="StatusResponse" /> class.
         /// </summary>
-        /// <param name="lifetimeState">lifetimeState (required).</param>
-        public StatusResponse(ProfileLifetimeState lifetimeState = default(ProfileLifetimeState))
+        /// <param name="lifetimeState">Represents the lifetime states of a profile, indicating which actions  can be performed with the associated browser engine at each state. Possible values are:  - Created: Profile is created; the associated browser engine is not started.  - Starting: The associated browser engine is starting.  - Running: The associated browser engine is currently running.  - Terminating: The associated browser engine is in the process of terminating.  - Terminated: The associated browser engine is not running but has been started at least once.  - Locked: The profile is currently being used by another user.  - Loading: The profile data or the browser engine is syncing with the cloud storage.  - Unknown: State of the profile is undefined. (required).</param>
+        public StatusResponse(ProfileLifetimeState lifetimeState = default)
         {
             this.LifetimeState = lifetimeState;
         }

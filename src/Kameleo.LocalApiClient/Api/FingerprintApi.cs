@@ -36,7 +36,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="browserVersion">Filter option for the browser version.  Includes an optional sign (&lt;, &gt;&#x3D;, etc.) and a major version number (e.g. 135) (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;FingerprintPreview&gt;</returns>
-        List<FingerprintPreview> SearchFingerprints(string deviceType = default(string), string osFamily = default(string), string browserProduct = default(string), string browserVersion = default(string), int operationIndex = 0);
+        List<FingerprintPreview> SearchFingerprints(string deviceType = default, string osFamily = default, string browserProduct = default, string browserVersion = default, int operationIndex = 0);
 
         /// <summary>
         /// Retrieves a set of 25 fingerprints based on specified criteria, with the most recent browser versions at the beginning of the list. Note  that calling this method multiple times will return different sets of fingerprints.
@@ -51,7 +51,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="browserVersion">Filter option for the browser version.  Includes an optional sign (&lt;, &gt;&#x3D;, etc.) and a major version number (e.g. 135) (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;FingerprintPreview&gt;</returns>
-        ApiResponse<List<FingerprintPreview>> SearchFingerprintsWithHttpInfo(string deviceType = default(string), string osFamily = default(string), string browserProduct = default(string), string browserVersion = default(string), int operationIndex = 0);
+        ApiResponse<List<FingerprintPreview>> SearchFingerprintsWithHttpInfo(string deviceType = default, string osFamily = default, string browserProduct = default, string browserVersion = default, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -75,7 +75,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;FingerprintPreview&gt;</returns>
-        System.Threading.Tasks.Task<List<FingerprintPreview>> SearchFingerprintsAsync(string deviceType = default(string), string osFamily = default(string), string browserProduct = default(string), string browserVersion = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<List<FingerprintPreview>> SearchFingerprintsAsync(string deviceType = default, string osFamily = default, string browserProduct = default, string browserVersion = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieves a set of 25 fingerprints based on specified criteria, with the most recent browser versions at the beginning of the list. Note  that calling this method multiple times will return different sets of fingerprints.
@@ -91,7 +91,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;FingerprintPreview&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<FingerprintPreview>>> SearchFingerprintsWithHttpInfoAsync(string deviceType = default(string), string osFamily = default(string), string browserProduct = default(string), string browserVersion = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<List<FingerprintPreview>>> SearchFingerprintsWithHttpInfoAsync(string deviceType = default, string osFamily = default, string browserProduct = default, string browserVersion = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -222,7 +222,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="browserVersion">Filter option for the browser version.  Includes an optional sign (&lt;, &gt;&#x3D;, etc.) and a major version number (e.g. 135) (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>List&lt;FingerprintPreview&gt;</returns>
-        public List<FingerprintPreview> SearchFingerprints(string deviceType = default(string), string osFamily = default(string), string browserProduct = default(string), string browserVersion = default(string), int operationIndex = 0)
+        public List<FingerprintPreview> SearchFingerprints(string deviceType = default, string osFamily = default, string browserProduct = default, string browserVersion = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<List<FingerprintPreview>> localVarResponse = SearchFingerprintsWithHttpInfo(deviceType, osFamily, browserProduct, browserVersion);
             return localVarResponse.Data;
@@ -238,7 +238,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="browserVersion">Filter option for the browser version.  Includes an optional sign (&lt;, &gt;&#x3D;, etc.) and a major version number (e.g. 135) (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of List&lt;FingerprintPreview&gt;</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<List<FingerprintPreview>> SearchFingerprintsWithHttpInfo(string deviceType = default(string), string osFamily = default(string), string browserProduct = default(string), string browserVersion = default(string), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<List<FingerprintPreview>> SearchFingerprintsWithHttpInfo(string deviceType = default, string osFamily = default, string browserProduct = default, string browserVersion = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -309,7 +309,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of List&lt;FingerprintPreview&gt;</returns>
-        public async System.Threading.Tasks.Task<List<FingerprintPreview>> SearchFingerprintsAsync(string deviceType = default(string), string osFamily = default(string), string browserProduct = default(string), string browserVersion = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<List<FingerprintPreview>> SearchFingerprintsAsync(string deviceType = default, string osFamily = default, string browserProduct = default, string browserVersion = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<List<FingerprintPreview>> localVarResponse = await SearchFingerprintsWithHttpInfoAsync(deviceType, osFamily, browserProduct, browserVersion, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -326,7 +326,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (List&lt;FingerprintPreview&gt;)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<List<FingerprintPreview>>> SearchFingerprintsWithHttpInfoAsync(string deviceType = default(string), string osFamily = default(string), string browserProduct = default(string), string browserVersion = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<List<FingerprintPreview>>> SearchFingerprintsWithHttpInfoAsync(string deviceType = default, string osFamily = default, string browserProduct = default, string browserVersion = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();

@@ -99,7 +99,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserInfoResponse</returns>
-        System.Threading.Tasks.Task<UserInfoResponse> GetUserInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<UserInfoResponse> GetUserInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Fetch detailed information about your user account.
@@ -111,7 +111,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserInfoResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<UserInfoResponse>> GetUserInfoWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<UserInfoResponse>> GetUserInfoWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Health check request to test if Kameleo has been started and accepting connections.
         /// </summary>
@@ -122,7 +122,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task HealthcheckAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task HealthcheckAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Health check request to test if Kameleo has been started and accepting connections.
@@ -134,7 +134,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> HealthcheckWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> HealthcheckWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Terminate your current Kameleo session by deauthenticating and exiting the CLI. Use this to safely close your session and release any  associated resources.
         /// </summary>
@@ -145,7 +145,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task TerminateApplicationAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task TerminateApplicationAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Terminate your current Kameleo session by deauthenticating and exiting the CLI. Use this to safely close your session and release any  associated resources.
@@ -157,7 +157,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> TerminateApplicationWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<Object>> TerminateApplicationWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -347,7 +347,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserInfoResponse</returns>
-        public async System.Threading.Tasks.Task<UserInfoResponse> GetUserInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<UserInfoResponse> GetUserInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<UserInfoResponse> localVarResponse = await GetUserInfoWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -360,7 +360,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserInfoResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<UserInfoResponse>> GetUserInfoWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<UserInfoResponse>> GetUserInfoWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -473,7 +473,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task HealthcheckAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task HealthcheckAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             await HealthcheckWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -485,7 +485,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<Object>> HealthcheckWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<Object>> HealthcheckWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -598,7 +598,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task TerminateApplicationAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task TerminateApplicationAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             await TerminateApplicationWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
         }
@@ -610,7 +610,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<Object>> TerminateApplicationWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<Object>> TerminateApplicationWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();

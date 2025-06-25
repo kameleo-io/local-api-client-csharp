@@ -34,7 +34,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="addProfileToFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ProfileResponse</returns>
-        ProfileResponse AddProfileToFolder(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default(AddProfileToFolderRequest), int operationIndex = 0);
+        ProfileResponse AddProfileToFolder(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default, int operationIndex = 0);
 
         /// <summary>
         /// Adds the given profile to the specified folder.
@@ -47,7 +47,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="addProfileToFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ProfileResponse</returns>
-        ApiResponse<ProfileResponse> AddProfileToFolderWithHttpInfo(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default(AddProfileToFolderRequest), int operationIndex = 0);
+        ApiResponse<ProfileResponse> AddProfileToFolderWithHttpInfo(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default, int operationIndex = 0);
         /// <summary>
         /// Create a new folder in your workspace by providing a human-readable name in the request body. Use this to organize your profiles  effectively.
         /// </summary>
@@ -55,7 +55,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="createFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>FolderResponse</returns>
-        FolderResponse CreateFolder(CreateFolderRequest createFolderRequest = default(CreateFolderRequest), int operationIndex = 0);
+        FolderResponse CreateFolder(CreateFolderRequest createFolderRequest = default, int operationIndex = 0);
 
         /// <summary>
         /// Create a new folder in your workspace by providing a human-readable name in the request body. Use this to organize your profiles  effectively.
@@ -67,7 +67,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="createFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FolderResponse</returns>
-        ApiResponse<FolderResponse> CreateFolderWithHttpInfo(CreateFolderRequest createFolderRequest = default(CreateFolderRequest), int operationIndex = 0);
+        ApiResponse<FolderResponse> CreateFolderWithHttpInfo(CreateFolderRequest createFolderRequest = default, int operationIndex = 0);
         /// <summary>
         /// Deletes a folder along with all its subfolders. Profiles within the folder will either be deleted or moved to the top-level based on the  query parameters.
         /// </summary>
@@ -76,7 +76,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="includeProfiles">Flag to indicate if the contained profiles should be deleted (true) or moved to the top-level (false). (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>DeleteFolderResponse</returns>
-        DeleteFolderResponse DeleteFolder(Guid guid, bool? includeProfiles = default(bool?), int operationIndex = 0);
+        DeleteFolderResponse DeleteFolder(Guid guid, bool? includeProfiles = default, int operationIndex = 0);
 
         /// <summary>
         /// Deletes a folder along with all its subfolders. Profiles within the folder will either be deleted or moved to the top-level based on the  query parameters.
@@ -89,7 +89,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="includeProfiles">Flag to indicate if the contained profiles should be deleted (true) or moved to the top-level (false). (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of DeleteFolderResponse</returns>
-        ApiResponse<DeleteFolderResponse> DeleteFolderWithHttpInfo(Guid guid, bool? includeProfiles = default(bool?), int operationIndex = 0);
+        ApiResponse<DeleteFolderResponse> DeleteFolderWithHttpInfo(Guid guid, bool? includeProfiles = default, int operationIndex = 0);
         /// <summary>
         /// Retrieve the complete list of folders in your workspace. Use this endpoint to see the entire folder hierarchy - including subfolders and  unassigned profiles.
         /// </summary>
@@ -176,7 +176,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="shareGroupRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>FolderResponse</returns>
-        FolderResponse ShareGroup(Guid guid, ShareGroupRequest shareGroupRequest = default(ShareGroupRequest), int operationIndex = 0);
+        FolderResponse ShareGroup(Guid guid, ShareGroupRequest shareGroupRequest = default, int operationIndex = 0);
 
         /// <summary>
         /// Update the sharing settings for a folder by submitting a list of share access rules (user and role details) in the request body. Use this  to adjust access permissions as needed.
@@ -189,7 +189,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="shareGroupRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FolderResponse</returns>
-        ApiResponse<FolderResponse> ShareGroupWithHttpInfo(Guid guid, ShareGroupRequest shareGroupRequest = default(ShareGroupRequest), int operationIndex = 0);
+        ApiResponse<FolderResponse> ShareGroupWithHttpInfo(Guid guid, ShareGroupRequest shareGroupRequest = default, int operationIndex = 0);
         /// <summary>
         /// Updates the details of an existing folder, not including its content.
         /// </summary>
@@ -198,7 +198,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="updateFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>FolderResponse</returns>
-        FolderResponse UpdateFolder(Guid guid, UpdateFolderRequest updateFolderRequest = default(UpdateFolderRequest), int operationIndex = 0);
+        FolderResponse UpdateFolder(Guid guid, UpdateFolderRequest updateFolderRequest = default, int operationIndex = 0);
 
         /// <summary>
         /// Updates the details of an existing folder, not including its content.
@@ -211,7 +211,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="updateFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FolderResponse</returns>
-        ApiResponse<FolderResponse> UpdateFolderWithHttpInfo(Guid guid, UpdateFolderRequest updateFolderRequest = default(UpdateFolderRequest), int operationIndex = 0);
+        ApiResponse<FolderResponse> UpdateFolderWithHttpInfo(Guid guid, UpdateFolderRequest updateFolderRequest = default, int operationIndex = 0);
         #endregion Synchronous Operations
     }
 
@@ -233,7 +233,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        System.Threading.Tasks.Task<ProfileResponse> AddProfileToFolderAsync(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default(AddProfileToFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProfileResponse> AddProfileToFolderAsync(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Adds the given profile to the specified folder.
@@ -247,7 +247,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> AddProfileToFolderWithHttpInfoAsync(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default(AddProfileToFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> AddProfileToFolderWithHttpInfoAsync(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Create a new folder in your workspace by providing a human-readable name in the request body. Use this to organize your profiles  effectively.
         /// </summary>
@@ -259,7 +259,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FolderResponse</returns>
-        System.Threading.Tasks.Task<FolderResponse> CreateFolderAsync(CreateFolderRequest createFolderRequest = default(CreateFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FolderResponse> CreateFolderAsync(CreateFolderRequest createFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a new folder in your workspace by providing a human-readable name in the request body. Use this to organize your profiles  effectively.
@@ -272,7 +272,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FolderResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FolderResponse>> CreateFolderWithHttpInfoAsync(CreateFolderRequest createFolderRequest = default(CreateFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FolderResponse>> CreateFolderWithHttpInfoAsync(CreateFolderRequest createFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Deletes a folder along with all its subfolders. Profiles within the folder will either be deleted or moved to the top-level based on the  query parameters.
         /// </summary>
@@ -285,7 +285,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteFolderResponse</returns>
-        System.Threading.Tasks.Task<DeleteFolderResponse> DeleteFolderAsync(Guid guid, bool? includeProfiles = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<DeleteFolderResponse> DeleteFolderAsync(Guid guid, bool? includeProfiles = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes a folder along with all its subfolders. Profiles within the folder will either be deleted or moved to the top-level based on the  query parameters.
@@ -299,7 +299,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteFolderResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<DeleteFolderResponse>> DeleteFolderWithHttpInfoAsync(Guid guid, bool? includeProfiles = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<DeleteFolderResponse>> DeleteFolderWithHttpInfoAsync(Guid guid, bool? includeProfiles = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Retrieve the complete list of folders in your workspace. Use this endpoint to see the entire folder hierarchy - including subfolders and  unassigned profiles.
         /// </summary>
@@ -310,7 +310,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListFoldersResponse</returns>
-        System.Threading.Tasks.Task<ListFoldersResponse> ListFoldersAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ListFoldersResponse> ListFoldersAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve the complete list of folders in your workspace. Use this endpoint to see the entire folder hierarchy - including subfolders and  unassigned profiles.
@@ -322,7 +322,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListFoldersResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ListFoldersResponse>> ListFoldersWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ListFoldersResponse>> ListFoldersWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Fetch detailed information for a specific folder by its unique GUID. Use this to review the folder’s metadata, contained profiles, and  sharing settings.
         /// </summary>
@@ -334,7 +334,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FolderResponse</returns>
-        System.Threading.Tasks.Task<FolderResponse> ReadFolderAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FolderResponse> ReadFolderAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Fetch detailed information for a specific folder by its unique GUID. Use this to review the folder’s metadata, contained profiles, and  sharing settings.
@@ -347,7 +347,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FolderResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FolderResponse>> ReadFolderWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FolderResponse>> ReadFolderWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Retrieve the sharing options available for folders. Use this endpoint to review the list of users and roles that can access your folder  resources.
         /// </summary>
@@ -358,7 +358,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SharingOptionsResponse</returns>
-        System.Threading.Tasks.Task<SharingOptionsResponse> ReadSharingOptionsAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SharingOptionsResponse> ReadSharingOptionsAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Retrieve the sharing options available for folders. Use this endpoint to review the list of users and roles that can access your folder  resources.
@@ -370,7 +370,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SharingOptionsResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SharingOptionsResponse>> ReadSharingOptionsWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SharingOptionsResponse>> ReadSharingOptionsWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Removes the given profile from the specified folder.
         /// </summary>
@@ -383,7 +383,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        System.Threading.Tasks.Task<ProfileResponse> RemoveProfileFromFolderAsync(Guid guid, Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ProfileResponse> RemoveProfileFromFolderAsync(Guid guid, Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Removes the given profile from the specified folder.
@@ -397,7 +397,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> RemoveProfileFromFolderWithHttpInfoAsync(Guid guid, Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<ProfileResponse>> RemoveProfileFromFolderWithHttpInfoAsync(Guid guid, Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Update the sharing settings for a folder by submitting a list of share access rules (user and role details) in the request body. Use this  to adjust access permissions as needed.
         /// </summary>
@@ -410,7 +410,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FolderResponse</returns>
-        System.Threading.Tasks.Task<FolderResponse> ShareGroupAsync(Guid guid, ShareGroupRequest shareGroupRequest = default(ShareGroupRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FolderResponse> ShareGroupAsync(Guid guid, ShareGroupRequest shareGroupRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update the sharing settings for a folder by submitting a list of share access rules (user and role details) in the request body. Use this  to adjust access permissions as needed.
@@ -424,7 +424,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FolderResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FolderResponse>> ShareGroupWithHttpInfoAsync(Guid guid, ShareGroupRequest shareGroupRequest = default(ShareGroupRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FolderResponse>> ShareGroupWithHttpInfoAsync(Guid guid, ShareGroupRequest shareGroupRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Updates the details of an existing folder, not including its content.
         /// </summary>
@@ -437,7 +437,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FolderResponse</returns>
-        System.Threading.Tasks.Task<FolderResponse> UpdateFolderAsync(Guid guid, UpdateFolderRequest updateFolderRequest = default(UpdateFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FolderResponse> UpdateFolderAsync(Guid guid, UpdateFolderRequest updateFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates the details of an existing folder, not including its content.
@@ -451,7 +451,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FolderResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FolderResponse>> UpdateFolderWithHttpInfoAsync(Guid guid, UpdateFolderRequest updateFolderRequest = default(UpdateFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FolderResponse>> UpdateFolderWithHttpInfoAsync(Guid guid, UpdateFolderRequest updateFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default);
         #endregion Asynchronous Operations
     }
 
@@ -580,7 +580,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="addProfileToFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ProfileResponse</returns>
-        public ProfileResponse AddProfileToFolder(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default(AddProfileToFolderRequest), int operationIndex = 0)
+        public ProfileResponse AddProfileToFolder(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = AddProfileToFolderWithHttpInfo(guid, addProfileToFolderRequest);
             return localVarResponse.Data;
@@ -594,7 +594,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="addProfileToFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of ProfileResponse</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> AddProfileToFolderWithHttpInfo(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default(AddProfileToFolderRequest), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> AddProfileToFolderWithHttpInfo(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -650,7 +650,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        public async System.Threading.Tasks.Task<ProfileResponse> AddProfileToFolderAsync(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default(AddProfileToFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProfileResponse> AddProfileToFolderAsync(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = await AddProfileToFolderWithHttpInfoAsync(guid, addProfileToFolderRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -665,7 +665,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> AddProfileToFolderWithHttpInfoAsync(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default(AddProfileToFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> AddProfileToFolderWithHttpInfoAsync(Guid guid, AddProfileToFolderRequest addProfileToFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -720,7 +720,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="createFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>FolderResponse</returns>
-        public FolderResponse CreateFolder(CreateFolderRequest createFolderRequest = default(CreateFolderRequest), int operationIndex = 0)
+        public FolderResponse CreateFolder(CreateFolderRequest createFolderRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> localVarResponse = CreateFolderWithHttpInfo(createFolderRequest);
             return localVarResponse.Data;
@@ -733,7 +733,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="createFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FolderResponse</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> CreateFolderWithHttpInfo(CreateFolderRequest createFolderRequest = default(CreateFolderRequest), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> CreateFolderWithHttpInfo(CreateFolderRequest createFolderRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -787,7 +787,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FolderResponse</returns>
-        public async System.Threading.Tasks.Task<FolderResponse> CreateFolderAsync(CreateFolderRequest createFolderRequest = default(CreateFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FolderResponse> CreateFolderAsync(CreateFolderRequest createFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> localVarResponse = await CreateFolderWithHttpInfoAsync(createFolderRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -801,7 +801,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FolderResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse>> CreateFolderWithHttpInfoAsync(CreateFolderRequest createFolderRequest = default(CreateFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse>> CreateFolderWithHttpInfoAsync(CreateFolderRequest createFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -856,7 +856,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="includeProfiles">Flag to indicate if the contained profiles should be deleted (true) or moved to the top-level (false). (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>DeleteFolderResponse</returns>
-        public DeleteFolderResponse DeleteFolder(Guid guid, bool? includeProfiles = default(bool?), int operationIndex = 0)
+        public DeleteFolderResponse DeleteFolder(Guid guid, bool? includeProfiles = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<DeleteFolderResponse> localVarResponse = DeleteFolderWithHttpInfo(guid, includeProfiles);
             return localVarResponse.Data;
@@ -870,7 +870,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="includeProfiles">Flag to indicate if the contained profiles should be deleted (true) or moved to the top-level (false). (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of DeleteFolderResponse</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<DeleteFolderResponse> DeleteFolderWithHttpInfo(Guid guid, bool? includeProfiles = default(bool?), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<DeleteFolderResponse> DeleteFolderWithHttpInfo(Guid guid, bool? includeProfiles = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -928,7 +928,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of DeleteFolderResponse</returns>
-        public async System.Threading.Tasks.Task<DeleteFolderResponse> DeleteFolderAsync(Guid guid, bool? includeProfiles = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<DeleteFolderResponse> DeleteFolderAsync(Guid guid, bool? includeProfiles = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<DeleteFolderResponse> localVarResponse = await DeleteFolderWithHttpInfoAsync(guid, includeProfiles, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -943,7 +943,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (DeleteFolderResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<DeleteFolderResponse>> DeleteFolderWithHttpInfoAsync(Guid guid, bool? includeProfiles = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<DeleteFolderResponse>> DeleteFolderWithHttpInfoAsync(Guid guid, bool? includeProfiles = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1062,7 +1062,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ListFoldersResponse</returns>
-        public async System.Threading.Tasks.Task<ListFoldersResponse> ListFoldersAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ListFoldersResponse> ListFoldersAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ListFoldersResponse> localVarResponse = await ListFoldersWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1075,7 +1075,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ListFoldersResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ListFoldersResponse>> ListFoldersWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ListFoldersResponse>> ListFoldersWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1193,7 +1193,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FolderResponse</returns>
-        public async System.Threading.Tasks.Task<FolderResponse> ReadFolderAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FolderResponse> ReadFolderAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> localVarResponse = await ReadFolderWithHttpInfoAsync(guid, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1207,7 +1207,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FolderResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse>> ReadFolderWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse>> ReadFolderWithHttpInfoAsync(Guid guid, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1322,7 +1322,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SharingOptionsResponse</returns>
-        public async System.Threading.Tasks.Task<SharingOptionsResponse> ReadSharingOptionsAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SharingOptionsResponse> ReadSharingOptionsAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<SharingOptionsResponse> localVarResponse = await ReadSharingOptionsWithHttpInfoAsync(operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1335,7 +1335,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SharingOptionsResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<SharingOptionsResponse>> ReadSharingOptionsWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<SharingOptionsResponse>> ReadSharingOptionsWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1457,7 +1457,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ProfileResponse</returns>
-        public async System.Threading.Tasks.Task<ProfileResponse> RemoveProfileFromFolderAsync(Guid guid, Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ProfileResponse> RemoveProfileFromFolderAsync(Guid guid, Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse> localVarResponse = await RemoveProfileFromFolderWithHttpInfoAsync(guid, profileId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1472,7 +1472,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ProfileResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> RemoveProfileFromFolderWithHttpInfoAsync(Guid guid, Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<ProfileResponse>> RemoveProfileFromFolderWithHttpInfoAsync(Guid guid, Guid profileId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1527,7 +1527,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="shareGroupRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>FolderResponse</returns>
-        public FolderResponse ShareGroup(Guid guid, ShareGroupRequest shareGroupRequest = default(ShareGroupRequest), int operationIndex = 0)
+        public FolderResponse ShareGroup(Guid guid, ShareGroupRequest shareGroupRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> localVarResponse = ShareGroupWithHttpInfo(guid, shareGroupRequest);
             return localVarResponse.Data;
@@ -1541,7 +1541,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="shareGroupRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FolderResponse</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> ShareGroupWithHttpInfo(Guid guid, ShareGroupRequest shareGroupRequest = default(ShareGroupRequest), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> ShareGroupWithHttpInfo(Guid guid, ShareGroupRequest shareGroupRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -1597,7 +1597,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FolderResponse</returns>
-        public async System.Threading.Tasks.Task<FolderResponse> ShareGroupAsync(Guid guid, ShareGroupRequest shareGroupRequest = default(ShareGroupRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FolderResponse> ShareGroupAsync(Guid guid, ShareGroupRequest shareGroupRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> localVarResponse = await ShareGroupWithHttpInfoAsync(guid, shareGroupRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1612,7 +1612,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FolderResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse>> ShareGroupWithHttpInfoAsync(Guid guid, ShareGroupRequest shareGroupRequest = default(ShareGroupRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse>> ShareGroupWithHttpInfoAsync(Guid guid, ShareGroupRequest shareGroupRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
@@ -1668,7 +1668,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="updateFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>FolderResponse</returns>
-        public FolderResponse UpdateFolder(Guid guid, UpdateFolderRequest updateFolderRequest = default(UpdateFolderRequest), int operationIndex = 0)
+        public FolderResponse UpdateFolder(Guid guid, UpdateFolderRequest updateFolderRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> localVarResponse = UpdateFolderWithHttpInfo(guid, updateFolderRequest);
             return localVarResponse.Data;
@@ -1682,7 +1682,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="updateFolderRequest"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FolderResponse</returns>
-        public Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> UpdateFolderWithHttpInfo(Guid guid, UpdateFolderRequest updateFolderRequest = default(UpdateFolderRequest), int operationIndex = 0)
+        public Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> UpdateFolderWithHttpInfo(Guid guid, UpdateFolderRequest updateFolderRequest = default, int operationIndex = 0)
         {
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();
 
@@ -1738,7 +1738,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FolderResponse</returns>
-        public async System.Threading.Tasks.Task<FolderResponse> UpdateFolderAsync(Guid guid, UpdateFolderRequest updateFolderRequest = default(UpdateFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FolderResponse> UpdateFolderAsync(Guid guid, UpdateFolderRequest updateFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
             Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse> localVarResponse = await UpdateFolderWithHttpInfoAsync(guid, updateFolderRequest, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1753,7 +1753,7 @@ namespace Kameleo.LocalApiClient.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FolderResponse)</returns>
-        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse>> UpdateFolderWithHttpInfoAsync(Guid guid, UpdateFolderRequest updateFolderRequest = default(UpdateFolderRequest), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kameleo.LocalApiClient.Client.ApiResponse<FolderResponse>> UpdateFolderWithHttpInfoAsync(Guid guid, UpdateFolderRequest updateFolderRequest = default, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default)
         {
 
             Kameleo.LocalApiClient.Client.RequestOptions localVarRequestOptions = new Kameleo.LocalApiClient.Client.RequestOptions();

@@ -56,6 +56,7 @@ src/Kameleo.LocalApiClient/Model/Preference.cs
 src/Kameleo.LocalApiClient/Model/ProblemDetails.cs
 src/Kameleo.LocalApiClient/Model/ProblemResponse.cs
 src/Kameleo.LocalApiClient/Model/ProfileLifetimeState.cs
+src/Kameleo.LocalApiClient/Model/ProfileMinutesQuota.cs
 src/Kameleo.LocalApiClient/Model/ProfilePreview.cs
 src/Kameleo.LocalApiClient/Model/ProfileResponse.cs
 src/Kameleo.LocalApiClient/Model/ProfileStorageLocation.cs

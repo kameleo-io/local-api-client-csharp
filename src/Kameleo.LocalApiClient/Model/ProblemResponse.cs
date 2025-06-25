@@ -36,7 +36,7 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="code">code.</param>
         /// <param name="error">error.</param>
-        public ProblemResponse(int? code = default(int?), Dictionary<string, List<string>> error = default(Dictionary<string, List<string>>))
+        public ProblemResponse(int? code = default, Dictionary<string, List<string>> error = default)
         {
             this.Code = code;
             this.Error = error;

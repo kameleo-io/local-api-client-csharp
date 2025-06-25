@@ -36,7 +36,7 @@ namespace Kameleo.LocalApiClient.Model
         /// </summary>
         /// <param name="users">List of users in your team..</param>
         /// <param name="roles">List of roles you can give the users..</param>
-        public SharingOptionsResponse(List<User> users = default(List<User>), List<GroupRole> roles = default(List<GroupRole>))
+        public SharingOptionsResponse(List<User> users = default, List<GroupRole> roles = default)
         {
             this.Users = users;
             this.Roles = roles;

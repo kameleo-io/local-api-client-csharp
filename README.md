@@ -25,7 +25,7 @@ With [Kameleo](https://kameleo.io), you can easily create multiple virtual brows
 ### 1. Install by NuGet
 
 ```
-Install-Package Kameleo.LocalApiClient
+dotnet add package Kameleo.LocalApiClient
 ```
 
 ### 2. Start the Kameleo.CLI on your computer
@@ -88,7 +88,7 @@ var webdriver = new RemoteWebDriver(uri, opts);
 
 // Use any WebDriver command to drive the browser
 // and enjoy full protection from bot detection products
-webdriver.Navigate().GoToUrl("https://google.com");
+await webdriver.Navigate().GoToUrlAsync("https://google.com");
 ```
 
 The full example can be found [here](https://github.com/kameleo-io/local-api-examples/blob/master/dotnet-csharp/connect_to_selenium/Program.cs).

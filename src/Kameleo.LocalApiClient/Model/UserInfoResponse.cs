@@ -48,14 +48,16 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="gracePeriod">Indicates if the user&#39;s subscription is currently in a grace period and requires instant renewal. (required).</param>
         /// <param name="lastAppLogin">The date and time of the user&#39;s last login via the app. (required).</param>
         /// <param name="workspaceFolder">Path to the user&#39;s workspace folder where profiles are stored. Modifying these files outside of Kameleo is strictly prohibited. (required).</param>
-        /// <param name="localStorage">localStorage (required).</param>
-        /// <param name="cloudStorage">cloudStorage (required).</param>
+        /// <param name="localStorage">Current usage and maximum limit for local profiles. (required).</param>
+        /// <param name="cloudStorage">Current usage and maximum limit for cloud profiles. (required).</param>
         /// <param name="hasTeamSubscription">Indicates if the user has a team subscription. This can also be true if the user does not have any team members yet. (required).</param>
         /// <param name="teamId">The team ID if the user is part of a team. (required).</param>
         /// <param name="teamRole">The user&#39;s role within the team, such as &#39;owner&#39; or &#39;member&#39;. (required).</param>
-        /// <param name="userProfiles">userProfiles.</param>
-        /// <param name="teamProfiles">teamProfiles.</param>
-        public UserInfoResponse(Guid userId = default(Guid), string displayName = default(string), string email = default(string), bool emailConfirmed = default(bool), DateTime subscriptionEnd = default(DateTime), List<string> capabilities = default(List<string>), bool gracePeriod = default(bool), DateTime lastAppLogin = default(DateTime), string workspaceFolder = default(string), QuotaStatistics localStorage = default(QuotaStatistics), QuotaStatistics cloudStorage = default(QuotaStatistics), bool hasTeamSubscription = default(bool), Guid? teamId = default(Guid?), string teamRole = default(string), RunningProfilesStatistics userProfiles = default(RunningProfilesStatistics), RunningProfilesStatistics teamProfiles = default(RunningProfilesStatistics))
+        /// <param name="runningUserProfiles">Current usage and maximum limit of running manual and automated profiles for the logged-in user..</param>
+        /// <param name="runningTeamProfiles">Current usage and maximum limit of running manual and automated profiles across the user&#39;s team..</param>
+        /// <param name="runningTenantProfiles">Current usage and maximum limit of running manual and automated profiles across the tenant..</param>
+        /// <param name="profileMinutes">Current usage and maximum limit of profile minutes across the tenant..</param>
+        public UserInfoResponse(Guid userId = default, string displayName = default, string email = default, bool emailConfirmed = default, DateTime subscriptionEnd = default, List<string> capabilities = default, bool gracePeriod = default, DateTime lastAppLogin = default, string workspaceFolder = default, QuotaStatistics localStorage = default, QuotaStatistics cloudStorage = default, bool hasTeamSubscription = default, Guid? teamId = default, string teamRole = default, RunningProfilesStatistics runningUserProfiles = default, RunningProfilesStatistics runningTeamProfiles = default, RunningProfilesStatistics runningTenantProfiles = default, ProfileMinutesQuota profileMinutes = default)
         {
             this.UserId = userId;
             // to ensure "displayName" is required (not null)
@@ -111,8 +113,10 @@ namespace Kameleo.LocalApiClient.Model
                 throw new ArgumentNullException("teamRole is a required property for UserInfoResponse and cannot be null");
             }
             this.TeamRole = teamRole;
-            this.UserProfiles = userProfiles;
-            this.TeamProfiles = teamProfiles;
+            this.RunningUserProfiles = runningUserProfiles;
+            this.RunningTeamProfiles = runningTeamProfiles;
+            this.RunningTenantProfiles = runningTenantProfiles;
+            this.ProfileMinutes = profileMinutes;
         }
 
         /// <summary>
@@ -206,14 +210,16 @@ namespace Kameleo.LocalApiClient.Model
         public string WorkspaceFolder { get; set; }
 
         /// <summary>
-        /// Gets or Sets LocalStorage
+        /// Current usage and maximum limit for local profiles.
         /// </summary>
+        /// <value>Current usage and maximum limit for local profiles.</value>
         [DataMember(Name = "localStorage", IsRequired = true, EmitDefaultValue = true)]
         public QuotaStatistics LocalStorage { get; set; }
 
         /// <summary>
-        /// Gets or Sets CloudStorage
+        /// Current usage and maximum limit for cloud profiles.
         /// </summary>
+        /// <value>Current usage and maximum limit for cloud profiles.</value>
         [DataMember(Name = "cloudStorage", IsRequired = true, EmitDefaultValue = true)]
         public QuotaStatistics CloudStorage { get; set; }
 
@@ -248,16 +254,32 @@ namespace Kameleo.LocalApiClient.Model
         public string TeamRole { get; set; }
 
         /// <summary>
-        /// Gets or Sets UserProfiles
+        /// Current usage and maximum limit of running manual and automated profiles for the logged-in user.
         /// </summary>
-        [DataMember(Name = "userProfiles", EmitDefaultValue = false)]
-        public RunningProfilesStatistics UserProfiles { get; set; }
+        /// <value>Current usage and maximum limit of running manual and automated profiles for the logged-in user.</value>
+        [DataMember(Name = "runningUserProfiles", EmitDefaultValue = true)]
+        public RunningProfilesStatistics RunningUserProfiles { get; set; }
 
         /// <summary>
-        /// Gets or Sets TeamProfiles
+        /// Current usage and maximum limit of running manual and automated profiles across the user&#39;s team.
         /// </summary>
-        [DataMember(Name = "teamProfiles", EmitDefaultValue = false)]
-        public RunningProfilesStatistics TeamProfiles { get; set; }
+        /// <value>Current usage and maximum limit of running manual and automated profiles across the user&#39;s team.</value>
+        [DataMember(Name = "runningTeamProfiles", EmitDefaultValue = true)]
+        public RunningProfilesStatistics RunningTeamProfiles { get; set; }
+
+        /// <summary>
+        /// Current usage and maximum limit of running manual and automated profiles across the tenant.
+        /// </summary>
+        /// <value>Current usage and maximum limit of running manual and automated profiles across the tenant.</value>
+        [DataMember(Name = "runningTenantProfiles", EmitDefaultValue = true)]
+        public RunningProfilesStatistics RunningTenantProfiles { get; set; }
+
+        /// <summary>
+        /// Current usage and maximum limit of profile minutes across the tenant.
+        /// </summary>
+        /// <value>Current usage and maximum limit of profile minutes across the tenant.</value>
+        [DataMember(Name = "profileMinutes", EmitDefaultValue = true)]
+        public ProfileMinutesQuota ProfileMinutes { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -281,8 +303,10 @@ namespace Kameleo.LocalApiClient.Model
             sb.Append("  HasTeamSubscription: ").Append(HasTeamSubscription).Append("\n");
             sb.Append("  TeamId: ").Append(TeamId).Append("\n");
             sb.Append("  TeamRole: ").Append(TeamRole).Append("\n");
-            sb.Append("  UserProfiles: ").Append(UserProfiles).Append("\n");
-            sb.Append("  TeamProfiles: ").Append(TeamProfiles).Append("\n");
+            sb.Append("  RunningUserProfiles: ").Append(RunningUserProfiles).Append("\n");
+            sb.Append("  RunningTeamProfiles: ").Append(RunningTeamProfiles).Append("\n");
+            sb.Append("  RunningTenantProfiles: ").Append(RunningTenantProfiles).Append("\n");
+            sb.Append("  ProfileMinutes: ").Append(ProfileMinutes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

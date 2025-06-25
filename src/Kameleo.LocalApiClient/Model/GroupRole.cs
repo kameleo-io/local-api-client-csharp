@@ -42,7 +42,7 @@ namespace Kameleo.LocalApiClient.Model
         /// <param name="id">Unique identifier of the role. (required).</param>
         /// <param name="name">Name of the role. (required).</param>
         /// <param name="description">Description of the role. (required).</param>
-        public GroupRole(Guid id = default(Guid), string name = default(string), string description = default(string))
+        public GroupRole(Guid id = default, string name = default, string description = default)
         {
             this.Id = id;
             // to ensure "name" is required (not null)
