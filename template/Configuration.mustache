@@ -1,4 +1,4 @@
-{{! source: https://github.com/OpenAPITools/openapi-generator/blob/v7.13.0/modules/openapi-generator/src/main/resources/csharp/Configuration.mustache }}
+{{! source: https://github.com/OpenAPITools/openapi-generator/blob/v7.16.0/modules/openapi-generator/src/main/resources/csharp/Configuration.mustache }}
 {{>partial_header}}
 
 using System;
@@ -56,8 +56,8 @@ namespace {{packageName}}.Client
                 return new HttpRequestException(response.StatusCode.ToString(),
                     new ApiException(
                         status,
-                        string.Format("Error calling {0}: {1}", methodName, response.RawContent),
-                        response.RawContent,
+                        string.Format("Error calling {0}: {1}", methodName, status == 0 ? response.ErrorText : response.RawContent),
+                        status == 0 ? response.ErrorText : response.RawContent,
                         response.Headers));
             }
             {{^netStandard}}
