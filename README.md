@@ -1,6 +1,6 @@
 # Kameleo Local API Client
 
-With [Kameleo](https://kameleo.io), you can easily create multiple virtual browser profiles to work with multiple accounts. It helps you hide your actual timezone, geolocation, language, IP address and creates natural browser fingerprints to prevent detection by anti-bot systems. Kameleo is compatible with [Selenium](https://www.selenium.dev/), [Playwright](https://playwright.dev/), and [Puppeteer](https://pptr.dev/) frameworks for automating web scraping tasks. This .NET Standard package provides convenient access to the [Local API](https://app.swaggerhub.com/apis/kameleo-team/kameleo-local-api/) REST interface of the Kameleo Client. See the [article](https://help.kameleo.io/hc/en-us/articles/4418166326417) in our knowledge base for Getting Started with Kameleo Automation.
+With [Kameleo](https://kameleo.io), you can easily create multiple virtual browser profiles to work with multiple accounts. It helps you hide your actual timezone, geolocation, language, IP address and creates natural browser fingerprints to prevent detection by anti-bot systems. Kameleo is compatible with [Selenium](https://www.selenium.dev/), [Playwright](https://playwright.dev/), and [Puppeteer](https://pptr.dev/) frameworks for automating web scraping tasks. This .NET Standard package provides convenient access to the [Local API](https://app.swaggerhub.com/apis/kameleo-team/kameleo-local-api/) REST interface of the Kameleo Client. See the [article](https://developer.kameleo.io/getting-started/quickstart/) in our knowledge base for Getting Started with Kameleo Automation.
 
 ## Features
 
@@ -131,7 +131,7 @@ You need to import the official [Playwright package](https://www.nuget.org/packa
 using Microsoft.Playwright;
 ```
 
-You can find more details here: [Using Kameleo with Playwright framework – Kameleo Support Center](https://help.kameleo.io/hc/en-us/articles/4419471627793-Using-Kameleo-with-Playwright-framework).
+You can find more details here: [Using Kameleo with Playwright framework – Kameleo Support Center](https://developer.kameleo.io/integrations/playwright/).
 
 ### Chromium-based profiles with Playwright
 
@@ -181,7 +181,7 @@ else if (pwBridgePath is null && OperatingSystem.IsMacOS())
 }
 
 var playwright = await Playwright.CreateAsync();
-var browser = await playwright.Firefox.LaunchPersistentContextAsync("", new BrowserTypeLaunchPersistentContextOptions
+var context = await playwright.Firefox.LaunchPersistentContextAsync("", new BrowserTypeLaunchPersistentContextOptions
 {
  ExecutablePath = pwBridgePath,
  Args = new List<string> { $"-target {browserWsEndpoint}" },
@@ -191,7 +191,7 @@ var browser = await playwright.Firefox.LaunchPersistentContextAsync("", new Brow
 // Kameleo will open the a new page in the default browser context.
 // NOTE: We DO NOT recommend using multiple browser contexts, as this might interfere
 //       with Kameleo's browser fingerprint modification features.
-var page = await browser.NewPageAsync();
+var page = await context.NewPageAsync();
 
 // Use any Playwright command to drive the browser
 // and enjoy full protection from bot detection products
